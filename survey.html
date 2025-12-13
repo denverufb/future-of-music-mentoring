@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weekly Check-In — Future of Music Mentoring</title>
+  <meta name="description" content="Weekly check-in survey for mentees in the Future of Music mentoring program." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
+        <strong>Future of Music</strong>
+        <span class="tagline">Youth Mentoring Program</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+        <a href="survey.html" class="nav-link">Weekly Check-In</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="form-page">
+      <h1>Weekly Check-In</h1>
+      <p class="lede">
+        Complete this short check-in to track progress on your goals.
+      </p>
+
+      <ul>
+        <li>Name</li>
+        <li>Email</li>
+        <li>Which goal they are updating</li>
+        <li>Progress % (0–100)</li>
+        <li>What went well</li>
+        <li>Challenges faced</li>
+        <li>Support needed</li>
+      </ul>
+
+      <section class="iframe-wrapper" aria-label="Weekly check-in form">
+        <!--
+          PLACEHOLDER: Replace the iframe src below with your Google Form or Formspree form embed URL.
+          Example Google Forms embed URL:
+          https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true
+        -->
+        <iframe
+          src="https://example.com/your-checkin-form-embed"
+          title="Weekly Check-In Form"
+          frameborder="0"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      </section>
+
+      <p class="form-fallback">
+        If the form does not appear above, open it in a new tab:
+        <a href="https://example.com/your-checkin-form-embed" target="_blank" rel="noopener">Open the Weekly Check-In form</a>
+      </p>
+
+      <p class="note small">
+        Tip for admins: ask the mentee to include the same email and a concise goal identifier so you can link check-ins to goals.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year-survey"></span> Future of Music Mentoring</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year-survey').textContent = new Date().getFullYear();
+    (function () {
+      const links = document.querySelectorAll('.main-nav .nav-link');
+      links.forEach(link => {
+        if (location.pathname.endsWith(link.getAttribute('href'))) {
+          link.classList.add('active');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

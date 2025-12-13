@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Submit Weekly Goals — Future of Music Mentoring</title>
+  <meta name="description" content="Submit your weekly goals to the Future of Music mentoring program." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
+        <strong>Future of Music</strong>
+        <span class="tagline">Youth Mentoring Program</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+        <a href="survey.html" class="nav-link">Weekly Check-In</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="form-page">
+      <h1>Submit Weekly Goals</h1>
+      <p class="lede">
+        Use the embedded form below to submit your weekly goals. Please include:
+      </p>
+      <ul>
+        <li>Name</li>
+        <li>Email</li>
+        <li>Week of</li>
+        <li>Goal description</li>
+        <li>Goal category (School, Career, Music, Business, Personal)</li>
+        <li>Expected outcome</li>
+      </ul>
+
+      <section class="iframe-wrapper" aria-label="Weekly goals form">
+        <!--
+          PLACEHOLDER: Replace the iframe src below with your Google Form or Formspree form embed URL.
+          Example Google Forms embed URL:
+          https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true
+
+          Example Formspree form URL (if you host an HTML form that posts to Formspree, you can embed that HTML page):
+          https://formspree.io/f/your-form-id
+        -->
+        <iframe
+          src="https://example.com/your-goals-form-embed"
+          title="Weekly Goals Form"
+          frameborder="0"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      </section>
+
+      <p class="form-fallback">
+        If the form does not appear above, open it in a new tab:
+        <a href="https://example.com/your-goals-form-embed" target="_blank" rel="noopener">Open the Weekly Goals form</a>
+      </p>
+
+      <p class="note small">
+        Admins: set up your Google Form to collect responses and view them in Google Sheets, or use Formspree to forward responses to email.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year-goals"></span> Future of Music Mentoring</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year-goals').textContent = new Date().getFullYear();
+    // Set active nav link
+    (function () {
+      const links = document.querySelectorAll('.main-nav .nav-link');
+      links.forEach(link => {
+        if (location.pathname.endsWith(link.getAttribute('href'))) {
+          link.classList.add('active');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

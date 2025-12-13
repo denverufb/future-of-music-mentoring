@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Future of Music - Youth Mentoring</title>
+  <meta name="description" content="Free, professional, youth-friendly mentoring program to help mentees set weekly goals and track progress." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
+        <strong>Future of Music</strong>
+        <span class="tagline">Youth Mentoring Program</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+        <a href="survey.html" class="nav-link">Weekly Check-In</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Welcome to the Future of Music Mentoring Program</h1>
+      <p class="lede">
+        A free, youth-friendly mentoring program supporting young musicians and creatives.
+        Set weekly goals, check in each week, and get feedback from your mentors.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
+        <a class="btn btn-outline" href="survey.html">Weekly Check-In</a>
+      </div>
+
+      <div class="notes">
+        <p>
+          Forms are hosted externally (Google Forms or Formspree) and embedded on the following pages.
+          If you can't see an embedded form, open it in a new tab using the link on the form page.
+        </p>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <h2>How it works</h2>
+      <ol>
+        <li>Each week, submit one or more goals through the "Submit Weekly Goals" form.</li>
+        <li>During the week (or at week's end), complete the "Weekly Check-In" to record progress.</li>
+        <li>Admins will review submissions, leave feedback, and track mentee progress over time.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Future of Music Mentoring — Free program for youth.</p>
+      <p class="small">Admins: Program founders can view form responses via Google Forms or Formspree dashboards.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Set active nav link
+    (function () {
+      const links = document.querySelectorAll('.main-nav .nav-link');
+      links.forEach(link => {
+        if (location.pathname.endsWith(link.getAttribute('href'))) {
+          link.classList.add('active');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
