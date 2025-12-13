@@ -51,18 +51,31 @@ body{
 .brand .tagline{font-size:0.8rem;color:var(--muted);display:block;margin-top:0.15rem}
 
 /* Navigation */
-.main-nav{display:flex;gap:0.5rem;align-items:center}
-.nav-link{
-  color:var(--text);
-  text-decoration:none;
-  padding:0.35rem 0.6rem;
-  border-radius:6px;
-  font-size:0.95rem;
+/* Navigation bubbles */
+.nav-link {
+  display: inline-block;
+  padding: 10px 20px;        /* bigger padding for bubble effect */
+  margin: 5px 0;             /* vertical spacing */
+  border-radius: 25px;       /* fully rounded bubble */
+  background-color: #1E2238; /* slightly lighter than main bg */
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
-.nav-link:hover{background:#9199CA33} /* subtle hover with alpha */
-.nav-link.active{
-  font-weight:600;
-  text-decoration:underline;
+
+.nav-link:hover {
+  background-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background-color: var(--accent);
+  color: #fff;
+}
+
 }
 
 /* Hero */
