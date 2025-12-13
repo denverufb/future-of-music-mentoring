@@ -7,10 +7,10 @@
   <meta name="description" content="Portal for the Future of Music Mentorship Program, supporting youth in entrepreneurship, academics, and personal growth." />
   <style>
     :root{
-      --bg: #141729;         /* Dark background */
-      --text: #ffffff;       /* White text */
-      --muted: #9199CA;      /* Light muted text */
-      --accent: #76ADCB;     /* Buttons / highlights */
+      --bg: #141729;
+      --text: #ffffff;
+      --muted: #9199CA;
+      --accent: #76ADCB;
       --container-max: 980px;
       --radius: 8px;
       --gap: 1rem;
@@ -28,14 +28,12 @@
       padding-bottom:3rem;
     }
 
-    /* Container */
     .container{
       max-width:var(--container-max);
       margin:0 auto;
       padding:1rem;
     }
 
-    /* Header */
     .site-header{
       border-bottom:1px solid #9199CA;
       background:transparent;
@@ -68,7 +66,6 @@
       margin-top:0.25rem;
     }
 
-    /* Navigation bubbles */
     .main-nav{
       display:flex;
       justify-content:center;
@@ -98,7 +95,6 @@
       color:#fff;
     }
 
-    /* Hero */
     .hero{
       padding:2rem 0 1.5rem;
       text-align:center;
@@ -135,7 +131,6 @@
       border:2px solid var(--accent);
     }
 
-    /* Sections */
     .how-it-works, .overview{
       margin-top:1.5rem;
       padding:1.5rem 0;
@@ -147,7 +142,6 @@
       color:var(--muted);
     }
 
-    /* Form page layout */
     .form-page{padding:1rem 0 2rem}
     .form-page h1{margin-top:0}
     .iframe-wrapper{
@@ -166,11 +160,9 @@
       display:block;
     }
 
-    /* Small notes */
     .small{font-size:0.85rem;color:var(--muted)}
     .note{margin-top:0.75rem}
 
-    /* Footer */
     .site-footer{
       border-top:1px solid #9199CA33;
       margin-top:2rem;
@@ -186,12 +178,10 @@
       color:var(--muted);
     }
 
-    /* Utilities */
     ul{margin-top:0}
     .form-fallback{margin-top:0.75rem}
     .actions .btn{min-width:200px}
 
-    /* Accessibility: focus states */
     a:focus, button:focus, input:focus, textarea:focus{
       outline:3px solid rgba(118,173,203,0.4);
       outline-offset:2px;
@@ -203,6 +193,15 @@
   </style>
 </head>
 <body>
+  <script>
+    const passwords = ["YCLMentee", "FOMMentee"];
+    let userPass = prompt("Enter password to access the site:");
+    if (!passwords.includes(userPass)) {
+      alert("Incorrect password. You cannot access this site.");
+      window.location.href = "https://www.google.com"; // redirect
+    }
+  </script>
+
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
       <span class="brand-title">Future of Music and Youth Creator Launch</span>
@@ -264,10 +263,7 @@
   </footer>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Set active nav link
     (function () {
       const links = document.querySelectorAll('.main-nav .nav-link');
       links.forEach(link => {
