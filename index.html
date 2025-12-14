@@ -11,8 +11,9 @@
       --bg:#141729;
       --card:#1c2040;
       --text:#ffffff;
-      --muted:#b5bbff;
+      --muted:#9199CA;
       --accent:#76ADCB;
+      --max:980px;
     }
 
     *{box-sizing:border-box}
@@ -22,16 +23,17 @@
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
       background:var(--bg);
       color:var(--text);
+      line-height:1.45;
       text-align:center;
     }
 
     .container{
-      max-width:900px;
+      max-width:var(--max);
       margin:0 auto;
-      padding:1.25rem;
+      padding:1rem;
     }
 
-    /* ===== PASSWORD SCREEN ===== */
+    /* ===== PASSWORD ===== */
     body.locked header,
     body.locked main,
     body.locked footer{
@@ -52,7 +54,7 @@
     .password-box{
       background:var(--card);
       padding:2rem;
-      border-radius:12px;
+      border-radius:10px;
       width:100%;
       max-width:380px;
     }
@@ -60,21 +62,19 @@
     .password-box h1{
       margin:0;
       font-size:1.5rem;
-      font-weight:700;
     }
 
     .password-box p{
-      margin:.5rem 0 1.25rem;
       color:var(--muted);
-      font-size:.95rem;
+      margin:.5rem 0 1.25rem;
     }
 
     .password-box input{
       width:100%;
       padding:.75rem;
-      font-size:1rem;
       border-radius:6px;
       border:none;
+      font-size:1rem;
       margin-bottom:.75rem;
     }
 
@@ -102,14 +102,14 @@
     }
 
     .brand{
-      font-size:1.35rem;
       font-weight:800;
+      font-size:1.35rem;
     }
 
     .subtitle{
-      margin-top:.25rem;
-      font-size:.9rem;
       color:var(--muted);
+      font-size:.9rem;
+      margin-top:.25rem;
     }
 
     .main-nav{
@@ -124,7 +124,7 @@
       text-decoration:none;
       padding:.5rem 1rem;
       border-radius:999px;
-      background:#1e2347;
+      background:#1E2238;
       border:2px solid var(--accent);
       color:#fff;
       font-weight:600;
@@ -136,16 +136,64 @@
 
     /* ===== HERO ===== */
     .hero{
-      padding:2rem 0;
+      padding:2rem 0 1.5rem;
     }
 
-    .hero p{
+    .lede{
       color:var(--muted);
       max-width:60ch;
-      margin:.75rem auto 0;
+      margin:.75rem auto 1rem;
     }
 
-    /* ===== FOOTER ===== */
+    .actions{
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin-top:1rem;
+    }
+
+    .btn{
+      text-decoration:none;
+      padding:.75rem 1.25rem;
+      border-radius:8px;
+      font-weight:600;
+      border:2px solid var(--accent);
+      color:var(--accent);
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+    }
+
+    /* ===== SECTIONS ===== */
+    .overview{
+      margin-top:2rem;
+      padding-top:1.5rem;
+      border-top:1px solid rgba(255,255,255,.15);
+      text-align:left;
+    }
+
+    .overview h2,
+    .overview h3{
+      text-align:center;
+    }
+
+    .overview ul{
+      max-width:520px;
+      margin:0.75rem auto;
+      padding-left:1.25rem;
+      color:var(--muted);
+      text-align:left;
+    }
+
+    .overview p{
+      max-width:720px;
+      margin:.5rem auto;
+      color:var(--muted);
+    }
+
     footer{
       margin-top:2rem;
       padding:1rem 0;
@@ -168,7 +216,7 @@
     </div>
   </div>
 
-  <!-- SITE CONTENT -->
+  <!-- SITE -->
   <header class="site-header">
     <div class="container">
       <div class="brand">Future of Music & Youth Creator Launch</div>
@@ -184,11 +232,48 @@
 
   <main class="container">
     <section class="hero">
-      <h1>Welcome</h1>
-      <p>
-        This portal supports youth ages 13–18 through entrepreneurship,
-        academics, and personal growth via structured mentorship.
+      <h1>Welcome to the Future of Music Mentorship Portal</h1>
+      <p class="lede">
+        This is the central portal for the Future of Music Mentorship Program,
+        supporting youth ages 13–18 in St. Louis through entrepreneurship,
+        academics, and personal growth.
       </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
+        <a class="btn" href="survey.html">Schedule Weekly Check-In</a>
+      </div>
+    </section>
+
+    <section class="overview">
+      <h2>Program Overview</h2>
+
+      <p><strong>Purpose:</strong> Support youth ages 13–18 in entrepreneurship, academics, and personal growth.</p>
+
+      <p><strong>Mission Statement:</strong> To empower youth in St. Louis to build leadership and business skills through peer mentorship and real-world experience.</p>
+
+      <p><strong>Target Audience:</strong> Youth ages 13–18 in the St. Louis region.</p>
+
+      <h3>Program Types</h3>
+      <ul>
+        <li>Entrepreneurship Mentorship</li>
+        <li>Academic Mentorship</li>
+        <li>General / Personal Development Mentorship</li>
+      </ul>
+
+      <h3>Format</h3>
+      <ul>
+        <li>1-on-1 mentorship (Virtual / Phone)</li>
+        <li>Weekly meetings</li>
+        <li>3-month program</li>
+      </ul>
+
+      <h3>Mentors</h3>
+      <ul>
+        <li><strong>Executive Director (Aereon):</strong> All-round mentor</li>
+        <li><strong>Managing Director (Qwentin):</strong> All-round mentor</li>
+        <li><strong>Program Coach (Gabriel):</strong> Academic & Personal Development</li>
+      </ul>
     </section>
   </main>
 
@@ -199,7 +284,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Check if already unlocked
     if (localStorage.getItem("fomAccess") === "true") {
       unlockSite();
     }
