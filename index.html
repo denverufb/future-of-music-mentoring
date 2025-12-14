@@ -170,6 +170,25 @@
       margin-top:2rem;
       text-align:center;
     }
+    
+    /* New style for the announcement section */
+    .announcement-section {
+        margin-top: 3rem;
+        text-align: center;
+    }
+
+    .announcement-section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Style for the embedded Canva container */
+    .canva-embed-container {
+        max-width: 800px; /* Limits the width of the canvas */
+        margin: 0 auto;
+        /* The styling from your provided <div> is already good for full responsiveness */
+    }
+
 
     .program-buttons{
       display:flex;
@@ -246,7 +265,6 @@
 
 <body class="locked">
 
-  <!-- PASSWORD SCREEN -->
   <div id="password-screen">
     <div class="password-box">
       <h1>Future of Music</h1>
@@ -284,9 +302,22 @@
         <a class="btn" href="survey.html">Schedule Weekly Check-In</a>
       </div>
     </section>
-
-    <div class="divider"></div>
-
+    
+    <section class="announcement-section">
+        <div class="divider"></div>
+        <h2>📢 Mentor Announcements</h2>
+        <div class="canva-embed-container">
+            <div style="position: relative; width: 100%; height: 0; padding-top: 100.0000%;
+            padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+            border-radius: 8px; will-change: transform;">
+              <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                src="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+              </iframe>
+            </div>
+            <a href="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?utm_content=DAG7c71XU2U&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">View Full Announcement Board on Canva</a>
+            </div>
+        <div class="divider"></div>
+    </section>
     <h3>Select which programs you are enrolled in to view timeline</h3>
     <div class="program-buttons">
       <button data-program="personal">Personal Development</button>
@@ -294,7 +325,6 @@
       <button data-program="academic">Academic</button>
     </div>
 
-    <!-- Timelines -->
     <div class="timeline-section" id="personal">
       <div class="timeline-month-buttons">
         <button class="active" data-month="1">Month 1</button>
