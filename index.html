@@ -33,7 +33,6 @@
       padding:1rem;
     }
 
-    /* ===== PASSWORD SCREEN ===== */
     body.locked header,
     body.locked main,
     body.locked footer{
@@ -96,7 +95,6 @@
       font-size:.9rem;
     }
 
-    /* ===== HEADER ===== */
     .site-header{
       border-bottom:1px solid rgba(255,255,255,.15);
       padding:1.5rem 0;
@@ -135,11 +133,6 @@
       background:var(--accent);
     }
 
-    .nav-link.active{
-      background:var(--accent);
-    }
-
-    /* ===== HERO ===== */
     .hero{
       padding:2rem 0 1.5rem;
     }
@@ -171,14 +164,6 @@
     .btn-primary{
       background:var(--accent);
       color:#fff;
-    }
-
-    /* ===== SECTIONS ===== */
-    .overview{
-      margin-top:2rem;
-      padding-top:1.5rem;
-      border-top:1px solid rgba(255,255,255,.15);
-      text-align:center;
     }
 
     .timeline-section{
@@ -256,7 +241,6 @@
     .timeline-month-buttons button.active{
       background:var(--accent);
     }
-
   </style>
 </head>
 
@@ -273,7 +257,6 @@
     </div>
   </div>
 
-  <!-- SITE -->
   <header class="site-header">
     <div class="container">
       <div class="brand">Future of Music & Youth Creator Launch</div>
@@ -302,128 +285,109 @@
       </div>
     </section>
 
-    <section class="overview">
-      <h2>Program Overview</h2>
+    <div class="divider"></div>
 
-      <p><strong>Purpose:</strong> Support youth ages 13–18 in entrepreneurship, academics, and personal growth.</p>
+    <h3>Select which programs you are enrolled in to view timeline</h3>
+    <div class="program-buttons">
+      <button data-program="personal">Personal Development</button>
+      <button data-program="entrepreneurship">Entrepreneurship</button>
+      <button data-program="academic">Academic</button>
+    </div>
 
-      <p><strong>Mission Statement:</strong> To empower youth in St. Louis to build leadership and business skills through peer mentorship and real-world experience.</p>
-
-      <p><strong>Target Audience:</strong> Youth ages 13–18 in the St. Louis region.</p>
-
-      <h3>Program Types</h3>
-      <ul>
-        <li>Entrepreneurship Mentorship</li>
-        <li>Academic Mentorship</li>
-        <li>Personal Development Mentorship</li>
-      </ul>
-
-      <div class="divider"></div>
-
-      <h3>Select which programs you are enrolled in to view timeline</h3>
-      <div class="program-buttons">
-        <button class="active" data-program="personal">Personal Development</button>
-        <button data-program="entrepreneurship">Entrepreneurship</button>
-        <button data-program="academic">Academic</button>
+    <!-- Timelines -->
+    <div class="timeline-section" id="personal">
+      <div class="timeline-month-buttons">
+        <button class="active" data-month="1">Month 1</button>
+        <button data-month="2">Month 2</button>
+        <button data-month="3">Month 3</button>
       </div>
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
+        </thead>
+        <tbody data-month="1">
+          <tr><td>1</td><td>Building Self-Confidence</td><td>Move from “somewhat confident” to “more self-assured.”</td></tr>
+          <tr><td>2</td><td>Taking Initiative</td><td>Encourage consistent independence.</td></tr>
+          <tr><td>3</td><td>Handling Feedback</td><td>Become comfortable accepting and using critique.</td></tr>
+          <tr><td>4</td><td>Networking & Communication</td><td>Build confidence in social and networking settings.</td></tr>
+        </tbody>
+        <tbody data-month="2" style="display:none;">
+          <tr><td>5</td><td>Reflection & Growth</td><td>Develop consistent self-reflection habits.</td></tr>
+          <tr><td>6</td><td>Personal Leadership</td><td>Solidify self-leadership and goal-driven mindset.</td></tr>
+          <tr><td>7</td><td>Time Management</td><td>Learn to prioritize tasks effectively.</td></tr>
+          <tr><td>8</td><td>Collaboration</td><td>Improve teamwork and interpersonal skills.</td></tr>
+        </tbody>
+        <tbody data-month="3" style="display:none;">
+          <tr><td>9</td><td>Goal Setting</td><td>Set and track achievable personal goals.</td></tr>
+          <tr><td>10</td><td>Resilience</td><td>Develop persistence in challenges.</td></tr>
+          <tr><td>11</td><td>Decision Making</td><td>Make informed and confident choices.</td></tr>
+          <tr><td>12</td><td>Leadership Project</td><td>Apply leadership in a real-life task.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-      <!-- Personal Development Timeline -->
-      <div class="timeline-section" id="personal">
-        <div class="timeline-month-buttons">
-          <button class="active" data-month="1">Month 1</button>
-          <button data-month="2">Month 2</button>
-          <button data-month="3">Month 3</button>
-        </div>
-        <table>
-          <thead>
-            <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
-          </thead>
-          <tbody data-month="1">
-            <tr><td>1</td><td>Building Self-Confidence</td><td>Move from “somewhat confident” to “more self-assured.”</td></tr>
-            <tr><td>2</td><td>Taking Initiative</td><td>Encourage consistent independence.</td></tr>
-            <tr><td>3</td><td>Handling Feedback</td><td>Become comfortable accepting and using critique.</td></tr>
-            <tr><td>4</td><td>Networking & Communication</td><td>Build confidence in social and networking settings.</td></tr>
-          </tbody>
-          <tbody data-month="2" style="display:none;">
-            <tr><td>5</td><td>Reflection & Growth</td><td>Develop consistent self-reflection habits.</td></tr>
-            <tr><td>6</td><td>Personal Leadership</td><td>Solidify self-leadership and goal-driven mindset.</td></tr>
-            <tr><td>7</td><td>Time Management</td><td>Learn to prioritize tasks effectively.</td></tr>
-            <tr><td>8</td><td>Collaboration</td><td>Improve teamwork and interpersonal skills.</td></tr>
-          </tbody>
-          <tbody data-month="3" style="display:none;">
-            <tr><td>9</td><td>Goal Setting</td><td>Set and track achievable personal goals.</td></tr>
-            <tr><td>10</td><td>Resilience</td><td>Develop persistence in challenges.</td></tr>
-            <tr><td>11</td><td>Decision Making</td><td>Make informed and confident choices.</td></tr>
-            <tr><td>12</td><td>Leadership Project</td><td>Apply leadership in a real-life task.</td></tr>
-          </tbody>
-        </table>
+    <div class="timeline-section" id="entrepreneurship" style="display:none;">
+      <div class="timeline-month-buttons">
+        <button class="active" data-month="1">Month 1</button>
+        <button data-month="2">Month 2</button>
+        <button data-month="3">Month 3</button>
       </div>
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
+        </thead>
+        <tbody data-month="1">
+          <tr><td>1</td><td>Idea Brainstorming</td><td>Build creative thinking and confidence.</td></tr>
+          <tr><td>2</td><td>Problem Solving / Target Market</td><td>Strengthen market awareness.</td></tr>
+          <tr><td>3</td><td>Budgeting & Startup Costs</td><td>Develop financial thinking.</td></tr>
+          <tr><td>4</td><td>Branding & Promotion</td><td>Build marketing and presentation skills.</td></tr>
+        </tbody>
+        <tbody data-month="2" style="display:none;">
+          <tr><td>5</td><td>Customer Service & Growth</td><td>Learn empathy and problem-solving for clients.</td></tr>
+          <tr><td>6</td><td>Pitch & Confidence</td><td>Achieve full entrepreneurial confidence.</td></tr>
+          <tr><td>7</td><td>Market Research</td><td>Understand customer needs and trends.</td></tr>
+          <tr><td>8</td><td>Budget Planning</td><td>Refine business financial plans.</td></tr>
+        </tbody>
+        <tbody data-month="3" style="display:none;">
+          <tr><td>9</td><td>Brand Strategy</td><td>Create a consistent business identity.</td></tr>
+          <tr><td>10</td><td>Promotion Techniques</td><td>Effectively market products/services.</td></tr>
+          <tr><td>11</td><td>Customer Engagement</td><td>Build strong customer relationships.</td></tr>
+          <tr><td>12</td><td>Final Pitch</td><td>Deliver confident business presentation.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-      <!-- Entrepreneurship Timeline -->
-      <div class="timeline-section" id="entrepreneurship" style="display:none;">
-        <div class="timeline-month-buttons">
-          <button class="active" data-month="1">Month 1</button>
-          <button data-month="2">Month 2</button>
-          <button data-month="3">Month 3</button>
-        </div>
-        <table>
-          <thead>
-            <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
-          </thead>
-          <tbody data-month="1">
-            <tr><td>1</td><td>Idea Brainstorming</td><td>Build creative thinking and confidence.</td></tr>
-            <tr><td>2</td><td>Problem Solving / Target Market</td><td>Strengthen market awareness.</td></tr>
-            <tr><td>3</td><td>Budgeting & Startup Costs</td><td>Develop financial thinking.</td></tr>
-            <tr><td>4</td><td>Branding & Promotion</td><td>Build marketing and presentation skills.</td></tr>
-          </tbody>
-          <tbody data-month="2" style="display:none;">
-            <tr><td>5</td><td>Customer Service & Growth</td><td>Learn empathy and problem-solving for clients.</td></tr>
-            <tr><td>6</td><td>Pitch & Confidence</td><td>Achieve full entrepreneurial confidence.</td></tr>
-            <tr><td>7</td><td>Market Research</td><td>Understand customer needs and trends.</td></tr>
-            <tr><td>8</td><td>Budget Planning</td><td>Refine business financial plans.</td></tr>
-          </tbody>
-          <tbody data-month="3" style="display:none;">
-            <tr><td>9</td><td>Brand Strategy</td><td>Create a consistent business identity.</td></tr>
-            <tr><td>10</td><td>Promotion Techniques</td><td>Effectively market products/services.</td></tr>
-            <tr><td>11</td><td>Customer Engagement</td><td>Build strong customer relationships.</td></tr>
-            <tr><td>12</td><td>Final Pitch</td><td>Deliver confident business presentation.</td></tr>
-          </tbody>
-        </table>
+    <div class="timeline-section" id="academic" style="display:none;">
+      <div class="timeline-month-buttons">
+        <button class="active" data-month="1">Month 1</button>
+        <button data-month="2">Month 2</button>
+        <button data-month="3">Month 3</button>
       </div>
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
+        </thead>
+        <tbody data-month="1">
+          <tr><td>1</td><td>Study Skills</td><td>Improve organization and note-taking.</td></tr>
+          <tr><td>2</td><td>Time Management</td><td>Manage homework and assignments efficiently.</td></tr>
+          <tr><td>3</td><td>Active Listening</td><td>Enhance comprehension and retention in class.</td></tr>
+          <tr><td>4</td><td>Reading Strategies</td><td>Increase reading speed and understanding.</td></tr>
+        </tbody>
+        <tbody data-month="2" style="display:none;">
+          <tr><td>5</td><td>Critical Thinking</td><td>Analyze information effectively.</td></tr>
+          <tr><td>6</td><td>Note Review</td><td>Improve retention through revision.</td></tr>
+          <tr><td>7</td><td>Test Preparation</td><td>Develop study plans for exams.</td></tr>
+          <tr><td>8</td><td>Research Skills</td><td>Conduct research efficiently and accurately.</td></tr>
+        </tbody>
+        <tbody data-month="3" style="display:none;">
+          <tr><td>9</td><td>Essay Writing</td><td>Produce clear, well-structured essays.</td></tr>
+          <tr><td>10</td><td>Presentation Skills</td><td>Confidently present projects in class.</td></tr>
+          <tr><td>11</td><td>Collaboration</td><td>Work effectively in group assignments.</td></tr>
+          <tr><td>12</td><td>Self-Assessment</td><td>Evaluate and track academic growth.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-      <!-- Academic Timeline -->
-      <div class="timeline-section" id="academic" style="display:none;">
-        <div class="timeline-month-buttons">
-          <button class="active" data-month="1">Month 1</button>
-          <button data-month="2">Month 2</button>
-          <button data-month="3">Month 3</button>
-        </div>
-        <table>
-          <thead>
-            <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
-          </thead>
-          <tbody data-month="1">
-            <tr><td>1</td><td>Study Skills</td><td>Improve organization and note-taking.</td></tr>
-            <tr><td>2</td><td>Time Management</td><td>Manage homework and assignments efficiently.</td></tr>
-            <tr><td>3</td><td>Active Listening</td><td>Enhance comprehension and retention in class.</td></tr>
-            <tr><td>4</td><td>Reading Strategies</td><td>Increase reading speed and understanding.</td></tr>
-          </tbody>
-          <tbody data-month="2" style="display:none;">
-            <tr><td>5</td><td>Critical Thinking</td><td>Analyze information effectively.</td></tr>
-            <tr><td>6</td><td>Note Review</td><td>Improve retention through revision.</td></tr>
-            <tr><td>7</td><td>Test Preparation</td><td>Develop study plans for exams.</td></tr>
-            <tr><td>8</td><td>Research Skills</td><td>Conduct research efficiently and accurately.</td></tr>
-          </tbody>
-          <tbody data-month="3" style="display:none;">
-            <tr><td>9</td><td>Essay Writing</td><td>Produce clear, well-structured essays.</td></tr>
-            <tr><td>10</td><td>Presentation Skills</td><td>Confidently present projects in class.</td></tr>
-            <tr><td>11</td><td>Collaboration</td><td>Work effectively in group assignments.</td></tr>
-            <tr><td>12</td><td>Self-Assessment</td><td>Evaluate and track academic growth.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-    </section>
   </main>
 
   <footer>
@@ -451,15 +415,17 @@
       document.getElementById("password-screen").style.display="none";
     }
 
-    // Program selection
+    // Program multi-select
     const programButtons = document.querySelectorAll(".program-buttons button");
-    const timelines = document.querySelectorAll(".timeline-section");
     programButtons.forEach(btn=>{
       btn.addEventListener("click",()=>{
-        programButtons.forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        timelines.forEach(t=>t.style.display="none");
-        document.getElementById(btn.dataset.program).style.display="block";
+        btn.classList.toggle("active");
+        const program = document.getElementById(btn.dataset.program);
+        if(btn.classList.contains("active")){
+          program.style.display="block";
+        } else {
+          program.style.display="none";
+        }
       });
     });
 
@@ -476,7 +442,7 @@
         tbodies.forEach(t=>t.style.display = t.dataset.month===month ? "table-row-group":"none");
       });
     });
-
   </script>
+
 </body>
 </html>
