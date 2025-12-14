@@ -169,53 +169,7 @@
 
   <!-- Progress Card -->
   <div class="card" id="progressCard" style="display:none;">
-    <h2>Arianne’s Progress Overview</h2>
-    <p style="color:var(--muted)">
-      This dashboard reflects growth across the R3 pillars.
-    </p>
-
-    <!-- Academics -->
-    <div class="pillar">
-      <h3>Academics</h3>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:70%"></div>
-      </div>
-      <ul>
-        <li>Improved study consistency</li>
-        <li>Weekly academic check-ins completed</li>
-        <li>Better time management habits</li>
-      </ul>
-    </div>
-
-    <!-- Personal Development -->
-    <div class="pillar">
-      <h3>Personal Development</h3>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:80%"></div>
-      </div>
-      <ul>
-        <li>Increased confidence in communication</li>
-        <li>Consistent goal reflection</li>
-        <li>Stronger accountability habits</li>
-      </ul>
-    </div>
-
-    <!-- Entrepreneurship -->
-    <div class="pillar">
-      <h3>Entrepreneurship</h3>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:60%"></div>
-      </div>
-      <ul>
-        <li>Business idea development started</li>
-        <li>Branding basics introduced</li>
-        <li>Pitch confidence improving</li>
-      </ul>
-    </div>
-
-    <p style="margin-top:1rem;color:var(--muted)">
-      Mentor notes and goal updates are reviewed weekly.
-    </p>
+    <!-- Content will be dynamically inserted -->
   </div>
 
 </main>
@@ -227,16 +181,81 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  function loadProgress(){
+  // Define mentee progress data
+  const menteeProgress = {
+    arianne: {
+      programs: {
+        academics: {
+          enabled: true,
+          progress: 70,
+          tasks: [
+            "Improved study consistency",
+            "Weekly academic check-ins completed",
+            "Better time management habits"
+          ]
+        },
+        personalDevelopment: {
+          enabled: true,
+          progress: 80,
+          tasks: [
+            "Increased confidence in communication",
+            "Consistent goal reflection",
+            "Stronger accountability habits"
+          ]
+        },
+        entrepreneurship: {
+          enabled: true,
+          progress: 60,
+          tasks: [
+            "Business idea development started",
+            "Branding basics introduced",
+            "Pitch confidence improving"
+          ]
+        }
+      }
+    }
+  };
+
+  // Load progress dynamically
+  function loadProgress() {
     const name = document.getElementById("nameInput").value.trim().toLowerCase();
     const error = document.getElementById("errorMsg");
+    const progressCard = document.getElementById("progressCard");
 
-    if(name === "arianne"){
-      document.getElementById("lookup").style.display = "none";
-      document.getElementById("progressCard").style.display = "block";
-    } else {
+    if (!menteeProgress[name]) {
       error.textContent = "No progress found for this name.";
+      progressCard.style.display = "none";
+      return;
     }
+
+    error.textContent = "";
+    progressCard.style.display = "block";
+
+    // Clear old progress
+    progressCard.innerHTML = `<h2>${name.charAt(0).toUpperCase()+name.slice(1)}’s Progress Overview</h2>
+      <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>`;
+
+    const programs = menteeProgress[name].programs;
+
+    for (const [pillar, data] of Object.entries(programs)) {
+      if (!data.enabled) continue;
+
+      const ul = data.tasks ? data.tasks.map(task => `<li>${task}</li>`).join("") : "";
+      const displayName = pillar === "personalDevelopment" ? "Personal Development" : pillar.charAt(0).toUpperCase() + pillar.slice(1);
+      progressCard.innerHTML += `
+        <div class="pillar">
+          <h3>${displayName}</h3>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width:${data.progress}%"></div>
+          </div>
+          <ul>${ul}</ul>
+        </div>
+      `;
+    }
+
+    progressCard.innerHTML += `<p style="margin-top:1rem;color:var(--muted)">
+      Mentor notes and goal updates are reviewed weekly.
+    </p>`;
   }
 </script>
 
