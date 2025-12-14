@@ -1,484 +1,483 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Future of Music Mentorship Portal</title>
-  <meta name="description" content="Portal for the Future of Music Mentorship Program." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Future of Music Mentorship Portal</title>
+  <meta name="description" content="Portal for the Future of Music Mentorship Program." />
 
-  <style>
-    :root{
-      --bg:#141729;
-      --card:#1c2040;
-      --text:#ffffff;
-      --muted:#9199CA;
-      --accent:#76ADCB;
-      --max:980px;
-    }
+  <style>
+    :root{
+      --bg:#141729;
+      --card:#1c2040;
+      --text:#ffffff;
+      --muted:#9199CA;
+      --accent:#76ADCB;
+      --max:980px;
+    }
 
-    *{box-sizing:border-box}
+    *{box-sizing:border-box}
 
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.45;
-      text-align:center;
-    }
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.45;
+      text-align:center;
+    }
 
-    .container{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:1rem;
-    }
+    .container{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:1rem;
+    }
 
-    body.locked header,
-    body.locked main,
-    body.locked footer{
-      display:none;
-    }
+    body.locked header,
+    body.locked main,
+    body.locked footer{
+      display:none;
+    }
 
-    #password-screen{
-      position:fixed;
-      inset:0;
-      background:var(--bg);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:1rem;
-      z-index:9999;
-    }
+    #password-screen{
+      position:fixed;
+      inset:0;
+      background:var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:1rem;
+      z-index:9999;
+    }
 
-    .password-box{
-      background:var(--card);
-      padding:2rem;
-      border-radius:10px;
-      width:100%;
-      max-width:380px;
-      text-align:center;
-    }
+    .password-box{
+      background:var(--card);
+      padding:2rem;
+      border-radius:10px;
+      width:100%;
+      max-width:380px;
+      text-align:center;
+    }
 
-    .password-box h1{
-      margin:0;
-      font-size:1.5rem;
-    }
+    .password-box h1{
+      margin:0;
+      font-size:1.5rem;
+    }
 
-    .password-box p{
-      color:var(--muted);
-      margin:.5rem 0 1.25rem;
-    }
+    .password-box p{
+      color:var(--muted);
+      margin:.5rem 0 1.25rem;
+    }
 
-    .password-box input{
-      width:100%;
-      padding:.75rem;
-      border-radius:6px;
-      border:none;
-      font-size:1rem;
-      margin-bottom:.75rem;
-    }
+    .password-box input{
+      width:100%;
+      padding:.75rem;
+      border-radius:6px;
+      border:none;
+      font-size:1rem;
+      margin-bottom:.75rem;
+    }
 
-    .password-box button{
-      width:100%;
-      padding:.75rem;
-      border-radius:6px;
-      border:none;
-      background:var(--accent);
-      color:#fff;
-      font-size:1rem;
-      cursor:pointer;
-    }
+    .password-box button{
+      width:100%;
+      padding:.75rem;
+      border-radius:6px;
+      border:none;
+      background:var(--accent);
+      color:#fff;
+      font-size:1rem;
+      cursor:pointer;
+    }
 
-    #error-msg{
-      margin-top:.75rem;
-      color:#ff6b6b;
-      font-size:.9rem;
-    }
+    #error-msg{
+      margin-top:.75rem;
+      color:#ff6b6b;
+      font-size:.9rem;
+    }
 
-    .site-header{
-      border-bottom:1px solid rgba(255,255,255,.15);
-      padding:1.5rem 0;
-    }
+    .site-header{
+      border-bottom:1px solid rgba(255,255,255,.15);
+      padding:1.5rem 0;
+    }
 
-    .brand{
-      font-weight:800;
-      font-size:1.35rem;
-    }
+    .brand{
+      font-weight:800;
+      font-size:1.35rem;
+    }
 
-    .subtitle{
-      color:var(--muted);
-      font-size:.9rem;
-      margin-top:.25rem;
-    }
+    .subtitle{
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:.25rem;
+    }
 
-    .main-nav{
-      margin-top:1rem;
-      display:flex;
-      justify-content:center;
-      gap:.75rem;
-      flex-wrap:wrap;
-    }
+    .main-nav{
+      margin-top:1rem;
+      display:flex;
+      justify-content:center;
+      gap:.75rem;
+      flex-wrap:wrap;
+    }
 
-    .nav-link{
-      text-decoration:none;
-      padding:.5rem 1rem;
-      border-radius:999px;
-      background:#1E2238;
-      border:2px solid var(--accent);
-      color:#fff;
-      font-weight:600;
-    }
+    .nav-link{
+      text-decoration:none;
+      padding:.5rem 1rem;
+      border-radius:999px;
+      background:#1E2238;
+      border:2px solid var(--accent);
+      color:#fff;
+      font-weight:600;
+    }
 
-    .nav-link:hover{
-      background:var(--accent);
-    }
+    .nav-link:hover{
+      background:var(--accent);
+    }
 
-    .hero{
-      padding:2rem 0 1.5rem;
-    }
+    .hero{
+      padding:2rem 0 1.5rem;
+    }
 
-    .lede{
-      color:var(--muted);
-      max-width:60ch;
-      margin:.75rem auto 1rem;
-    }
+    .lede{
+      color:var(--muted);
+      max-width:60ch;
+      margin:.75rem auto 1rem;
+    }
 
-    .actions{
-      display:flex;
-      justify-content:center;
-      gap:1rem;
-      flex-wrap:wrap;
-      margin-top:1rem;
-    }
+    .actions{
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin-top:1rem;
+    }
 
-    .btn{
-      text-decoration:none;
-      padding:.75rem 1.25rem;
-      border-radius:8px;
-      font-weight:600;
-      border:2px solid var(--accent);
-      color:var(--accent);
-      cursor:pointer;
-    }
+    .btn{
+      text-decoration:none;
+      padding:.75rem 1.25rem;
+      border-radius:8px;
+      font-weight:600;
+      border:2px solid var(--accent);
+      color:var(--accent);
+      cursor:pointer;
+    }
 
-    .btn-primary{
-      background:var(--accent);
-      color:#fff;
-    }
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+    }
 
-    .timeline-section{
-      margin-top:2rem;
-      text-align:center;
-    }
-    
-    /* New style for the announcement section */
-    .announcement-section {
-        margin-top: 3rem;
-        text-align: center;
-    }
+    .timeline-section{
+      margin-top:2rem;
+      text-align:center;
+    }
+    
+    /* New style for the announcement section */
+    .announcement-section {
+        margin-top: 3rem;
+        text-align: center;
+    }
 
-    .announcement-section h2 {
-        font-size: 1.75rem;
-        margin-bottom: 1.5rem;
-    }
+    .announcement-section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
 
-    /* Style for the embedded Canva container */
-    .canva-embed-container {
-        max-width: 800px; /* Limits the width of the canvas */
-        margin: 0 auto;
-    }
-    
-    /* MODIFIED: This CSS rule controls the height of the embedded Canva. 
-       Changed from 100% (square) to 56.25% (16:9 widescreen) for less vertical space. */
-    .canva-embed-container > div:first-child {
-      padding-top: 56.25%; /* 9 / 16 = 0.5625 */
-    }
+    /* Style for the embedded Canva container */
+    .canva-embed-container {
+        max-width: 800px; /* Limits the width of the canvas */
+        margin: 0 auto;
+    }
+    
+    /* MODIFIED: This CSS rule controls the height of the embedded Canva. 
+       Changed from 100% (square) to 56.25% (16:9 widescreen) for less vertical space. */
+    .canva-embed-container > div:first-child {
+      padding-top: 56.25%; /* 9 / 16 = 0.5625 */
+    }
 
 
-    .program-buttons{
-      display:flex;
-      justify-content:center;
-      gap:.5rem;
-      flex-wrap:wrap;
-      margin-bottom:1rem;
-    }
+    .program-buttons{
+      display:flex;
+      justify-content:center;
+      gap:.5rem;
+      flex-wrap:wrap;
+      margin-bottom:1rem;
+    }
 
-    .program-buttons button{
-      padding:.5rem 1rem;
-      border-radius:8px;
-      border:none;
-      background:#1E2238;
-      color:#fff;
-      font-weight:600;
-      cursor:pointer;
-    }
+    .program-buttons button{
+      padding:.5rem 1rem;
+      border-radius:8px;
+      border:none;
+      background:#1E2238;
+      color:#fff;
+      font-weight:600;
+      cursor:pointer;
+    }
 
-    .program-buttons button.active{
-      background:var(--accent);
-    }
+    .program-buttons button.active{
+      background:var(--accent);
+    }
 
-    table{
-      width:100%;
-      max-width:800px;
-      margin:1rem auto;
-      border-collapse:collapse;
-      text-align:center;
-    }
+    table{
+      width:100%;
+      max-width:800px;
+      margin:1rem auto;
+      border-collapse:collapse;
+      text-align:center;
+    }
 
-    th, td{
-      border:1px solid rgba(255,255,255,.15);
-      padding:.5rem;
-    }
+    th, td{
+      border:1px solid rgba(255,255,255,.15);
+      padding:.5rem;
+    }
 
-    th{
-      background:#1E2238;
-    }
+    th{
+      background:#1E2238;
+    }
 
-    footer{
-      margin-top:2rem;
-      padding:1rem 0;
-      color:var(--muted);
-      border-top:1px solid rgba(255,255,255,.15);
-    }
+    footer{
+      margin-top:2rem;
+      padding:1rem 0;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.15);
+    }
 
-    .divider{
-      border-top:1px solid rgba(255,255,255,.3);
-      margin:2rem 0;
-    }
+    .divider{
+      border-top:1px solid rgba(255,255,255,.3);
+      margin:2rem 0;
+    }
 
-    .timeline-month-buttons{
-      display:flex;
-      justify-content:center;
-      gap:.5rem;
-      margin-bottom:1rem;
-    }
+    .timeline-month-buttons{
+      display:flex;
+      justify-content:center;
+      gap:.5rem;
+      margin-bottom:1rem;
+    }
 
-    .timeline-month-buttons button{
-      padding:.4rem .8rem;
-      border-radius:6px;
-      border:none;
-      background:#1E2238;
-      color:#fff;
-      cursor:pointer;
-    }
+    .timeline-month-buttons button{
+      padding:.4rem .8rem;
+      border-radius:6px;
+      border:none;
+      background:#1E2238;
+      color:#fff;
+      cursor:pointer;
+    }
 
-    .timeline-month-buttons button.active{
-      background:var(--accent);
-    }
-  </style>
+    .timeline-month-buttons button.active{
+      background:var(--accent);
+    }
+  </style>
 </head>
 
 <body class="locked">
 
-  <div id="password-screen">
-    <div class="password-box">
-      <h1>Future of Music</h1>
-      <p>Youth Creator Launch<br>Youth Mentorship Portal</p>
-      <input type="password" id="password-input" placeholder="Enter password">
-      <button onclick="checkPassword()">Enter</button>
-      <div id="error-msg"></div>
-    </div>
-  </div>
+  <div id="password-screen">
+    <div class="password-box">
+      <h1>Future of Music</h1>
+      <p>Youth Creator Launch<br>Youth Mentorship Portal</p>
+      <input type="password" id="password-input" placeholder="Enter password">
+      <button onclick="checkPassword()">Enter</button>
+      <div id="error-msg"></div>
+    </div>
+  </div>
 
-  <header class="site-header">
-    <div class="container">
-      <div class="brand">Future of Music & Youth Creator Launch</div>
-      <div class="subtitle">Youth Mentoring Program</div>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">Future of Music & Youth Creator Launch</div>
+      <div class="subtitle">Youth Mentoring Program</div>
 
-      <nav class="main-nav">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-        <a href="survey.html" class="nav-link">Weekly Check-In</a>
-                <a href="progress.html" class="nav-link">Mentee Progress Check</a> 
-      </nav>
-    </div>
-  </header>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+        <a href="survey.html" class="nav-link">Weekly Check-In</a>
+      </nav>
+    </div>
+  </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Welcome to the Future of Music Mentorship Portal</h1>
-      <p class="lede">
-        This is the central portal for the Future of Music Mentorship Program,
-        supporting youth ages 13–18 in St. Louis through entrepreneurship,
-        academics, and personal growth.
-      </p>
+  <main class="container">
+    <section class="hero">
+      <h1>Welcome to the Future of Music Mentorship Portal</h1>
+      <p class="lede">
+        This is the central portal for the Future of Music Mentorship Program,
+        supporting youth ages 13–18 in St. Louis through entrepreneurship,
+        academics, and personal growth.
+      </p>
 
-      <div class="actions">
-        <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
-        <a class="btn" href="survey.html">Schedule Weekly Check-In</a>
-              </div>
-    </section>
-    
-    <section class="announcement-section">
-        <div class="divider"></div>
-        <h2>📢 Mentor Announcements</h2>
-        <div class="canva-embed-container">
-            <div style="position: relative; width: 100%; height: 0; 
-            padding-bottom: 56.25%; /* MODIFIED: Set to 16:9 aspect ratio */ box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
-            border-radius: 8px; will-change: transform;">
-              <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-                src="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-              </iframe>
-            </div>
-            <a href="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?utm_content=DAG7c71XU2U&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">View Full Announcement Board on Canva</a>
-            </div>
-        <div class="divider"></div>
-    </section>
-    <h3>Select which programs you are enrolled in to view timeline</h3>
-    <div class="program-buttons">
-      <button data-program="personal">Personal Development</button>
-      <button data-program="entrepreneurship">Entrepreneurship</button>
-      <button data-program="academic">Academic</button>
-    </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
+        <a class="btn" href="survey.html">Schedule Weekly Check-In</a>
+      </div>
+    </section>
+    
+    <section class="announcement-section">
+        <div class="divider"></div>
+        <h2>📢 Mentor Announcements</h2>
+        <div class="canva-embed-container">
+            <div style="position: relative; width: 100%; height: 0; 
+            padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+            border-radius: 8px; will-change: transform;">
+              <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                src="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+              </iframe>
+            </div>
+            <a href="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?utm_content=DAG7c71XU2U&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">View Full Announcement Board on Canva</a>
+            </div>
+        <div class="divider"></div>
+    </section>
+    <h3>Select which programs you are enrolled in to view timeline</h3>
+    <div class="program-buttons">
+      <button data-program="personal">Personal Development</button>
+      <button data-program="entrepreneurship">Entrepreneurship</button>
+      <button data-program="academic">Academic</button>
+    </div>
 
-    <div class="timeline-section" id="personal">
-      <div class="timeline-month-buttons">
-        <button class="active" data-month="1">Month 1</button>
-        <button data-month="2">Month 2</button>
-        <button data-month="3">Month 3</button>
-      </div>
-      <table>
-        <thead>
-          <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
-        </thead>
-        <tbody data-month="1">
-          <tr><td>1</td><td>Building Self-Confidence</td><td>Move from “somewhat confident” to “more self-assured.”</td></tr>
-          <tr><td>2</td><td>Taking Initiative</td><td>Encourage consistent independence.</td></tr>
-          <tr><td>3</td><td>Handling Feedback</td><td>Become comfortable accepting and using critique.</td></tr>
-          <tr><td>4</td><td>Networking & Communication</td><td>Build confidence in social and networking settings.</td></tr>
-        </tbody>
-        <tbody data-month="2" style="display:none;">
-          <tr><td>5</td><td>Reflection & Growth</td><td>Develop consistent self-reflection habits.</td></tr>
-          <tr><td>6</td><td>Personal Leadership</td><td>Solidify self-leadership and goal-driven mindset.</td></tr>
-          <tr><td>7</td><td>Time Management</td><td>Learn to prioritize tasks effectively.</td></tr>
-          <tr><td>8</td><td>Collaboration</td><td>Improve teamwork and interpersonal skills.</td></tr>
-        </tbody>
-        <tbody data-month="3" style="display:none;">
-          <tr><td>9</td><td>Goal Setting</td><td>Set and track achievable personal goals.</td></tr>
-          <tr><td>10</td><td>Resilience</td><td>Develop persistence in challenges.</td></tr>
-          <tr><td>11</td><td>Decision Making</td><td>Make informed and confident choices.</td></tr>
-          <tr><td>12</td><td>Leadership Project</td><td>Apply leadership in a real-life task.</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="timeline-section" id="personal">
+      <div class="timeline-month-buttons">
+        <button class="active" data-month="1">Month 1</button>
+        <button data-month="2">Month 2</button>
+        <button data-month="3">Month 3</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
+        </thead>
+        <tbody data-month="1">
+          <tr><td>1</td><td>Building Self-Confidence</td><td>Move from “somewhat confident” to “more self-assured.”</td></tr>
+          <tr><td>2</td><td>Taking Initiative</td><td>Encourage consistent independence.</td></tr>
+          <tr><td>3</td><td>Handling Feedback</td><td>Become comfortable accepting and using critique.</td></tr>
+          <tr><td>4</td><td>Networking & Communication</td><td>Build confidence in social and networking settings.</td></tr>
+        </tbody>
+        <tbody data-month="2" style="display:none;">
+          <tr><td>5</td><td>Reflection & Growth</td><td>Develop consistent self-reflection habits.</td></tr>
+          <tr><td>6</td><td>Personal Leadership</td><td>Solidify self-leadership and goal-driven mindset.</td></tr>
+          <tr><td>7</td><td>Time Management</td><td>Learn to prioritize tasks effectively.</td></tr>
+          <tr><td>8</td><td>Collaboration</td><td>Improve teamwork and interpersonal skills.</td></tr>
+        </tbody>
+        <tbody data-month="3" style="display:none;">
+          <tr><td>9</td><td>Goal Setting</td><td>Set and track achievable personal goals.</td></tr>
+          <tr><td>10</td><td>Resilience</td><td>Develop persistence in challenges.</td></tr>
+          <tr><td>11</td><td>Decision Making</td><td>Make informed and confident choices.</td></tr>
+          <tr><td>12</td><td>Leadership Project</td><td>Apply leadership in a real-life task.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="timeline-section" id="entrepreneurship" style="display:none;">
-      <div class="timeline-month-buttons">
-        <button class="active" data-month="1">Month 1</button>
-        <button data-month="2">Month 2</button>
-        <button data-month="3">Month 3</button>
-      </div>
-      <table>
-        <thead>
-          <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
-        </thead>
-        <tbody data-month="1">
-          <tr><td>1</td><td>Idea Brainstorming</td><td>Build creative thinking and confidence.</td></tr>
-          <tr><td>2</td><td>Problem Solving / Target Market</td><td>Strengthen market awareness.</td></tr>
-          <tr><td>3</td><td>Budgeting & Startup Costs</td><td>Develop financial thinking.</td></tr>
-          <tr><td>4</td><td>Branding & Promotion</td><td>Build marketing and presentation skills.</td></tr>
-        </tbody>
-        <tbody data-month="2" style="display:none;">
-          <tr><td>5</td><td>Customer Service & Growth</td><td>Learn empathy and problem-solving for clients.</td></tr>
-          <tr><td>6</td><td>Pitch & Confidence</td><td>Achieve full entrepreneurial confidence.</td></tr>
-          <tr><td>7</td><td>Market Research</td><td>Understand customer needs and trends.</td></tr>
-          <tr><td>8</td><td>Budget Planning</td><td>Refine business financial plans.</td></tr>
-        </tbody>
-        <tbody data-month="3" style="display:none;">
-          <tr><td>9</td><td>Brand Strategy</td><td>Create a consistent business identity.</td></tr>
-          <tr><td>10</td><td>Promotion Techniques</td><td>Effectively market products/services.</td></tr>
-          <tr><td>11</td><td>Customer Engagement</td><td>Build strong customer relationships.</td></tr>
-          <tr><td>12</td><td>Final Pitch</td><td>Deliver confident business presentation.</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="timeline-section" id="entrepreneurship" style="display:none;">
+      <div class="timeline-month-buttons">
+        <button class="active" data-month="1">Month 1</button>
+        <button data-month="2">Month 2</button>
+        <button data-month="3">Month 3</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
+        </thead>
+        <tbody data-month="1">
+          <tr><td>1</td><td>Idea Brainstorming</td><td>Build creative thinking and confidence.</td></tr>
+          <tr><td>2</td><td>Problem Solving / Target Market</td><td>Strengthen market awareness.</td></tr>
+          <tr><td>3</td><td>Budgeting & Startup Costs</td><td>Develop financial thinking.</td></tr>
+          <tr><td>4</td><td>Branding & Promotion</td><td>Build marketing and presentation skills.</td></tr>
+        </tbody>
+        <tbody data-month="2" style="display:none;">
+          <tr><td>5</td><td>Customer Service & Growth</td><td>Learn empathy and problem-solving for clients.</td></tr>
+          <tr><td>6</td><td>Pitch & Confidence</td><td>Achieve full entrepreneurial confidence.</td></tr>
+          <tr><td>7</td><td>Market Research</td><td>Understand customer needs and trends.</td></tr>
+          <tr><td>8</td><td>Budget Planning</td><td>Refine business financial plans.</td></tr>
+        </tbody>
+        <tbody data-month="3" style="display:none;">
+          <tr><td>9</td><td>Brand Strategy</td><td>Create a consistent business identity.</td></tr>
+          <tr><td>10</td><td>Promotion Techniques</td><td>Effectively market products/services.</td></tr>
+          <tr><td>11</td><td>Customer Engagement</td><td>Build strong customer relationships.</td></tr>
+          <tr><td>12</td><td>Final Pitch</td><td>Deliver confident business presentation.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="timeline-section" id="academic" style="display:none;">
-      <div class="timeline-month-buttons">
-        <button class="active" data-month="1">Month 1</button>
-        <button data-month="2">Month 2</button>
-        <button data-month="3">Month 3</button>
-      </div>
-      <table>
-        <thead>
-          <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
-        </thead>
-        <tbody data-month="1">
-          <tr><td>1</td><td>Study Skills</td><td>Improve organization and note-taking.</td></tr>
-          <tr><td>2</td><td>Time Management</td><td>Manage homework and assignments efficiently.</td></tr>
-          <tr><td>3</td><td>Active Listening</td><td>Enhance comprehension and retention in class.</td></tr>
-          <tr><td>4</td><td>Reading Strategies</td><td>Increase reading speed and understanding.</td></tr>
-        </tbody>
-        <tbody data-month="2" style="display:none;">
-          <tr><td>5</td><td>Critical Thinking</td><td>Analyze information effectively.</td></tr>
-          <tr><td>6</td><td>Note Review</td><td>Improve retention through revision.</td></tr>
-          <tr><td>7</td><td>Test Preparation</td><td>Develop study plans for exams.</td></tr>
-          <tr><td>8</td><td>Research Skills</td><td>Conduct research efficiently and accurately.</td></tr>
-        </tbody>
-        <tbody data-month="3" style="display:none;">
-          <tr><td>9</td><td>Essay Writing</td><td>Produce clear, well-structured essays.</td></tr>
-          <tr><td>10</td><td>Presentation Skills</td><td>Confidently present projects in class.</td></tr>
-          <tr><td>11</td><td>Collaboration</td><td>Work effectively in group assignments.</td></tr>
-          <tr><td>12</td><td>Self-Assessment</td><td>Evaluate and track academic growth.</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="timeline-section" id="academic" style="display:none;">
+      <div class="timeline-month-buttons">
+        <button class="active" data-month="1">Month 1</button>
+        <button data-month="2">Month 2</button>
+        <button data-month="3">Month 3</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
+        </thead>
+        <tbody data-month="1">
+          <tr><td>1</td><td>Study Skills</td><td>Improve organization and note-taking.</td></tr>
+          <tr><td>2</td><td>Time Management</td><td>Manage homework and assignments efficiently.</td></tr>
+          <tr><td>3</td><td>Active Listening</td><td>Enhance comprehension and retention in class.</td></tr>
+          <tr><td>4</td><td>Reading Strategies</td><td>Increase reading speed and understanding.</td></tr>
+        </tbody>
+        <tbody data-month="2" style="display:none;">
+          <tr><td>5</td><td>Critical Thinking</td><td>Analyze information effectively.</td></tr>
+          <tr><td>6</td><td>Note Review</td><td>Improve retention through revision.</td></tr>
+          <tr><td>7</td><td>Test Preparation</td><td>Develop study plans for exams.</td></tr>
+          <tr><td>8</td><td>Research Skills</td><td>Conduct research efficiently and accurately.</td></tr>
+        </tbody>
+        <tbody data-month="3" style="display:none;">
+          <tr><td>9</td><td>Essay Writing</td><td>Produce clear, well-structured essays.</td></tr>
+          <tr><td>10</td><td>Presentation Skills</td><td>Confidently present projects in class.</td></tr>
+          <tr><td>11</td><td>Collaboration</td><td>Work effectively in group assignments.</td></tr>
+          <tr><td>12</td><td>Self-Assessment</td><td>Evaluate and track academic growth.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-  </main>
+  </main>
 
-  <footer>
-    © <span id="year"></span> Future of Music Mentoring
-  </footer>
+  <footer>
+    © <span id="year"></span> Future of Music Mentoring
+  </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    if(localStorage.getItem("fomAccess") === "true") unlockSite();
+    if(localStorage.getItem("fomAccess") === "true") unlockSite();
 
-    function checkPassword(){
-      const pass = document.getElementById("password-input").value;
-      const error = document.getElementById("error-msg");
-      if(pass === "YCLMentee" || pass === "FOMMentee"){
-        localStorage.setItem("fomAccess","true");
-        unlockSite();
-      } else {
-        error.textContent = "Incorrect password";
-      }
-    }
+    function checkPassword(){
+      const pass = document.getElementById("password-input").value;
+      const error = document.getElementById("error-msg");
+      if(pass === "YCLMentee" || pass === "FOMMentee"){
+        localStorage.setItem("fomAccess","true");
+        unlockSite();
+      } else {
+        error.textContent = "Incorrect password";
+      }
+    }
 
-    function unlockSite(){
-      document.body.classList.remove("locked");
-      document.getElementById("password-screen").style.display="none";
-    }
+    function unlockSite(){
+      document.body.classList.remove("locked");
+      document.getElementById("password-screen").style.display="none";
+    }
 
-    // Program multi-select
-    const programButtons = document.querySelectorAll(".program-buttons button");
-    programButtons.forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        btn.classList.toggle("active");
-        const program = document.getElementById(btn.dataset.program);
-        if(btn.classList.contains("active")){
-          program.style.display="block";
-        } else {
-          program.style.display="none";
-        }
-      });
-    });
+    // Program multi-select
+    const programButtons = document.querySelectorAll(".program-buttons button");
+    programButtons.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        btn.classList.toggle("active");
+        const program = document.getElementById(btn.dataset.program);
+        if(btn.classList.contains("active")){
+          program.style.display="block";
+        } else {
+          program.style.display="none";
+        }
+      });
+    });
 
-    // Month selection for timelines
-    const allMonthButtons = document.querySelectorAll(".timeline-month-buttons button");
-    allMonthButtons.forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        const container = btn.closest(".timeline-section");
-        const monthButtons = container.querySelectorAll(".timeline-month-buttons button");
-        monthButtons.forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        const month = btn.dataset.month;
-        const tbodies = container.querySelectorAll("tbody");
-        tbodies.forEach(t=>t.style.display = t.dataset.month===month ? "table-row-group":"none");
-      });
-    });
-  </script>
+    // Month selection for timelines
+    const allMonthButtons = document.querySelectorAll(".timeline-month-buttons button");
+    allMonthButtons.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const container = btn.closest(".timeline-section");
+        const monthButtons = container.querySelectorAll(".timeline-month-buttons button");
+        monthButtons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        const month = btn.dataset.month;
+        const tbodies = container.querySelectorAll("tbody");
+        tbodies.forEach(t=>t.style.display = t.dataset.month===month ? "table-row-group":"none");
+      });
+    });
+  </script>
 
 </body>
 </html>
