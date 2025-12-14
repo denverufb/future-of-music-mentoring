@@ -33,7 +33,7 @@
       padding:1rem;
     }
 
-    /* ===== PASSWORD ===== */
+    /* ===== PASSWORD SCREEN ===== */
     body.locked header,
     body.locked main,
     body.locked footer{
@@ -57,6 +57,7 @@
       border-radius:10px;
       width:100%;
       max-width:380px;
+      text-align:center;
     }
 
     .password-box h1{
@@ -134,6 +135,10 @@
       background:var(--accent);
     }
 
+    .nav-link.active{
+      background:var(--accent);
+    }
+
     /* ===== HERO ===== */
     .hero{
       padding:2rem 0 1.5rem;
@@ -173,26 +178,51 @@
       margin-top:2rem;
       padding-top:1.5rem;
       border-top:1px solid rgba(255,255,255,.15);
-      text-align:left;
-    }
-
-    .overview h2,
-    .overview h3{
       text-align:center;
     }
 
-    .overview ul{
-      max-width:520px;
-      margin:0.75rem auto;
-      padding-left:1.25rem;
-      color:var(--muted);
-      text-align:left;
+    .timeline-section{
+      margin-top:2rem;
+      text-align:center;
     }
 
-    .overview p{
-      max-width:720px;
-      margin:.5rem auto;
-      color:var(--muted);
+    .program-buttons{
+      display:flex;
+      justify-content:center;
+      gap:.5rem;
+      flex-wrap:wrap;
+      margin-bottom:1rem;
+    }
+
+    .program-buttons button{
+      padding:.5rem 1rem;
+      border-radius:8px;
+      border:none;
+      background:#1E2238;
+      color:#fff;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .program-buttons button.active{
+      background:var(--accent);
+    }
+
+    table{
+      width:100%;
+      max-width:800px;
+      margin:1rem auto;
+      border-collapse:collapse;
+      text-align:center;
+    }
+
+    th, td{
+      border:1px solid rgba(255,255,255,.15);
+      padding:.5rem;
+    }
+
+    th{
+      background:#1E2238;
     }
 
     footer{
@@ -202,94 +232,31 @@
       border-top:1px solid rgba(255,255,255,.15);
     }
 
-    /* ===== PROGRAM TIMELINE ===== */
-    .program-selection{
+    .divider{
+      border-top:1px solid rgba(255,255,255,.3);
+      margin:2rem 0;
+    }
+
+    .timeline-month-buttons{
       display:flex;
       justify-content:center;
-      gap:1rem;
-      margin:1rem 0;
-      flex-wrap:wrap;
-      border-top:1px solid var(--accent);
-      padding-top:1rem;
-    }
-
-    .program-selection-title{
-      text-align:center;
-      margin-top:2rem;
-      margin-bottom:.5rem;
-      color:var(--accent);
-      font-weight:bold;
-    }
-
-    .program-selection label{
-      display:flex;
-      align-items:center;
       gap:.5rem;
-      cursor:pointer;
-      font-weight:bold;
-      color:var(--accent);
-    }
-
-    .timeline-container{
-      max-width:900px;
-      margin:0 auto 2rem auto;
-    }
-
-    .program-timeline{
-      display:none;
-      margin-bottom:2rem;
-      border:1px solid var(--accent);
-      border-radius:8px;
-      padding:1rem;
-      background:#1E2238;
-    }
-
-    .month-btns{
-      display:flex;
-      justify-content:center;
-      gap:1rem;
       margin-bottom:1rem;
     }
 
-    .month-btns button{
-      background:#1E2238;
-      border:2px solid var(--accent);
-      color:var(--accent);
-      padding:.5rem 1rem;
+    .timeline-month-buttons button{
+      padding:.4rem .8rem;
       border-radius:6px;
+      border:none;
+      background:#1E2238;
+      color:#fff;
       cursor:pointer;
     }
 
-    .month-btns button.active{
+    .timeline-month-buttons button.active{
       background:var(--accent);
-      color:#141729;
     }
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:.5rem;
-    }
-
-    th, td{
-      border:1px solid var(--accent);
-      padding:.5rem;
-      text-align:left;
-      vertical-align:top;
-    }
-
-    th{
-      background:var(--accent);
-      color:var(--bg);
-    }
-
-    .month-timeline{
-      display:none;
-    }
-
-    .month-timeline.active{
-      display:block;
-    }
   </style>
 </head>
 
@@ -348,66 +315,115 @@
       <ul>
         <li>Entrepreneurship Mentorship</li>
         <li>Academic Mentorship</li>
-        <li>General / Personal Development Mentorship</li>
+        <li>Personal Development Mentorship</li>
       </ul>
 
-      <h3>Format</h3>
-      <ul>
-        <li>1-on-1 mentorship (Virtual / Phone)</li>
-        <li>Weekly meetings</li>
-        <li>3-month program</li>
-      </ul>
-    </section>
+      <div class="divider"></div>
 
-    <!-- PROGRAM SELECTION -->
-    <div class="program-selection-title">Select which programs you are enrolled in to view timeline</div>
-    <div class="program-selection">
-      <label><input type="checkbox" value="personal" /> Personal Development</label>
-      <label><input type="checkbox" value="entrepreneurship" /> Entrepreneurship</label>
-      <label><input type="checkbox" value="academic" /> Academic</label>
-    </div>
-
-    <div class="timeline-container">
-      <!-- Example for Personal Development -->
-      <div id="personal" class="program-timeline">
-        <h2>Personal Development</h2>
-        <div class="month-btns">
-          <button class="month-btn active" data-month="personal-1">Month 1</button>
-          <button class="month-btn" data-month="personal-2">Month 2</button>
-          <button class="month-btn" data-month="personal-3">Month 3</button>
-        </div>
-        <div id="personal-1" class="month-timeline active">
-          <table>
-            <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
-            <tr><td>1</td><td>Building Self-Confidence</td><td>More self-assured</td></tr>
-            <tr><td>2</td><td>Taking Initiative</td><td>Encourage independence</td></tr>
-            <tr><td>3</td><td>Handling Feedback</td><td>Use critique effectively</td></tr>
-            <tr><td>4</td><td>Networking & Communication</td><td>Confidence in social settings</td></tr>
-          </table>
-        </div>
-        <div id="personal-2" class="month-timeline">
-          <table>
-            <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
-            <tr><td>5</td><td>Reflection & Growth</td><td>Develop self-reflection habits</td></tr>
-            <tr><td>6</td><td>Personal Leadership</td><td>Solidify leadership mindset</td></tr>
-            <tr><td>7</td><td>Goal Setting</td><td>Set short-term goals</td></tr>
-            <tr><td>8</td><td>Time Management</td><td>Improve scheduling skills</td></tr>
-          </table>
-        </div>
-        <div id="personal-3" class="month-timeline">
-          <table>
-            <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
-            <tr><td>9</td><td>Stress Management</td><td>Handle challenges calmly</td></tr>
-            <tr><td>10</td><td>Self-Motivation</td><td>Develop intrinsic drive</td></tr>
-            <tr><td>11</td><td>Collaboration</td><td>Work effectively in teams</td></tr>
-            <tr><td>12</td><td>Reflection & Celebration</td><td>Celebrate growth and progress</td></tr>
-          </table>
-        </div>
+      <h3>Select which programs you are enrolled in to view timeline</h3>
+      <div class="program-buttons">
+        <button class="active" data-program="personal">Personal Development</button>
+        <button data-program="entrepreneurship">Entrepreneurship</button>
+        <button data-program="academic">Academic</button>
       </div>
 
-      <!-- Repeat same for Entrepreneurship and Academic, splitting 12 weeks into 3 months -->
+      <!-- Personal Development Timeline -->
+      <div class="timeline-section" id="personal">
+        <div class="timeline-month-buttons">
+          <button class="active" data-month="1">Month 1</button>
+          <button data-month="2">Month 2</button>
+          <button data-month="3">Month 3</button>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
+          </thead>
+          <tbody data-month="1">
+            <tr><td>1</td><td>Building Self-Confidence</td><td>Move from “somewhat confident” to “more self-assured.”</td></tr>
+            <tr><td>2</td><td>Taking Initiative</td><td>Encourage consistent independence.</td></tr>
+            <tr><td>3</td><td>Handling Feedback</td><td>Become comfortable accepting and using critique.</td></tr>
+            <tr><td>4</td><td>Networking & Communication</td><td>Build confidence in social and networking settings.</td></tr>
+          </tbody>
+          <tbody data-month="2" style="display:none;">
+            <tr><td>5</td><td>Reflection & Growth</td><td>Develop consistent self-reflection habits.</td></tr>
+            <tr><td>6</td><td>Personal Leadership</td><td>Solidify self-leadership and goal-driven mindset.</td></tr>
+            <tr><td>7</td><td>Time Management</td><td>Learn to prioritize tasks effectively.</td></tr>
+            <tr><td>8</td><td>Collaboration</td><td>Improve teamwork and interpersonal skills.</td></tr>
+          </tbody>
+          <tbody data-month="3" style="display:none;">
+            <tr><td>9</td><td>Goal Setting</td><td>Set and track achievable personal goals.</td></tr>
+            <tr><td>10</td><td>Resilience</td><td>Develop persistence in challenges.</td></tr>
+            <tr><td>11</td><td>Decision Making</td><td>Make informed and confident choices.</td></tr>
+            <tr><td>12</td><td>Leadership Project</td><td>Apply leadership in a real-life task.</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-    </div>
+      <!-- Entrepreneurship Timeline -->
+      <div class="timeline-section" id="entrepreneurship" style="display:none;">
+        <div class="timeline-month-buttons">
+          <button class="active" data-month="1">Month 1</button>
+          <button data-month="2">Month 2</button>
+          <button data-month="3">Month 3</button>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
+          </thead>
+          <tbody data-month="1">
+            <tr><td>1</td><td>Idea Brainstorming</td><td>Build creative thinking and confidence.</td></tr>
+            <tr><td>2</td><td>Problem Solving / Target Market</td><td>Strengthen market awareness.</td></tr>
+            <tr><td>3</td><td>Budgeting & Startup Costs</td><td>Develop financial thinking.</td></tr>
+            <tr><td>4</td><td>Branding & Promotion</td><td>Build marketing and presentation skills.</td></tr>
+          </tbody>
+          <tbody data-month="2" style="display:none;">
+            <tr><td>5</td><td>Customer Service & Growth</td><td>Learn empathy and problem-solving for clients.</td></tr>
+            <tr><td>6</td><td>Pitch & Confidence</td><td>Achieve full entrepreneurial confidence.</td></tr>
+            <tr><td>7</td><td>Market Research</td><td>Understand customer needs and trends.</td></tr>
+            <tr><td>8</td><td>Budget Planning</td><td>Refine business financial plans.</td></tr>
+          </tbody>
+          <tbody data-month="3" style="display:none;">
+            <tr><td>9</td><td>Brand Strategy</td><td>Create a consistent business identity.</td></tr>
+            <tr><td>10</td><td>Promotion Techniques</td><td>Effectively market products/services.</td></tr>
+            <tr><td>11</td><td>Customer Engagement</td><td>Build strong customer relationships.</td></tr>
+            <tr><td>12</td><td>Final Pitch</td><td>Deliver confident business presentation.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Academic Timeline -->
+      <div class="timeline-section" id="academic" style="display:none;">
+        <div class="timeline-month-buttons">
+          <button class="active" data-month="1">Month 1</button>
+          <button data-month="2">Month 2</button>
+          <button data-month="3">Month 3</button>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr>
+          </thead>
+          <tbody data-month="1">
+            <tr><td>1</td><td>Study Skills</td><td>Improve organization and note-taking.</td></tr>
+            <tr><td>2</td><td>Time Management</td><td>Manage homework and assignments efficiently.</td></tr>
+            <tr><td>3</td><td>Active Listening</td><td>Enhance comprehension and retention in class.</td></tr>
+            <tr><td>4</td><td>Reading Strategies</td><td>Increase reading speed and understanding.</td></tr>
+          </tbody>
+          <tbody data-month="2" style="display:none;">
+            <tr><td>5</td><td>Critical Thinking</td><td>Analyze information effectively.</td></tr>
+            <tr><td>6</td><td>Note Review</td><td>Improve retention through revision.</td></tr>
+            <tr><td>7</td><td>Test Preparation</td><td>Develop study plans for exams.</td></tr>
+            <tr><td>8</td><td>Research Skills</td><td>Conduct research efficiently and accurately.</td></tr>
+          </tbody>
+          <tbody data-month="3" style="display:none;">
+            <tr><td>9</td><td>Essay Writing</td><td>Produce clear, well-structured essays.</td></tr>
+            <tr><td>10</td><td>Presentation Skills</td><td>Confidently present projects in class.</td></tr>
+            <tr><td>11</td><td>Collaboration</td><td>Work effectively in group assignments.</td></tr>
+            <tr><td>12</td><td>Self-Assessment</td><td>Evaluate and track academic growth.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
   </main>
 
   <footer>
@@ -417,14 +433,12 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    if (localStorage.getItem("fomAccess") === "true") {
-      unlockSite();
-    }
+    if(localStorage.getItem("fomAccess") === "true") unlockSite();
 
     function checkPassword(){
       const pass = document.getElementById("password-input").value;
       const error = document.getElementById("error-msg");
-      if (pass === "YCLMentee" || pass === "FOMMentee") {
+      if(pass === "YCLMentee" || pass === "FOMMentee"){
         localStorage.setItem("fomAccess","true");
         unlockSite();
       } else {
@@ -434,34 +448,35 @@
 
     function unlockSite(){
       document.body.classList.remove("locked");
-      document.getElementById("password-screen").style.display = "none";
+      document.getElementById("password-screen").style.display="none";
     }
 
-    // Program Timeline Logic
-    const checkboxes = document.querySelectorAll('.program-selection input');
-    checkboxes.forEach(cb => {
-      cb.addEventListener('change', () => {
-        document.querySelectorAll('.program-timeline').forEach(t => t.style.display = 'none');
-        checkboxes.forEach(c => {
-          if(c.checked) {
-            document.getElementById(c.value).style.display = 'block';
-          }
-        });
+    // Program selection
+    const programButtons = document.querySelectorAll(".program-buttons button");
+    const timelines = document.querySelectorAll(".timeline-section");
+    programButtons.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        programButtons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        timelines.forEach(t=>t.style.display="none");
+        document.getElementById(btn.dataset.program).style.display="block";
       });
     });
 
-    // Month toggle logic
-    const monthBtns = document.querySelectorAll('.month-btn');
-    monthBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const parent = btn.closest('.program-timeline');
-        parent.querySelectorAll('.month-timeline').forEach(mt => mt.classList.remove('active'));
-        parent.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(btn.dataset.month).classList.add('active');
-        btn.classList.add('active');
+    // Month selection for timelines
+    const allMonthButtons = document.querySelectorAll(".timeline-month-buttons button");
+    allMonthButtons.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const container = btn.closest(".timeline-section");
+        const monthButtons = container.querySelectorAll(".timeline-month-buttons button");
+        monthButtons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        const month = btn.dataset.month;
+        const tbodies = container.querySelectorAll("tbody");
+        tbodies.forEach(t=>t.style.display = t.dataset.month===month ? "table-row-group":"none");
       });
     });
+
   </script>
-
 </body>
 </html>
