@@ -1,131 +1,160 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Future of Music Mentorship Portal</title>
-<style>
-  :root{
-    --bg: #141729;
-    --text: #ffffff;
-    --muted: #9199CA;
-    --accent: #76ADCB;
-    --container-max: 980px;
-    --radius: 8px;
-    --gap: 1rem;
-    --btn-padding: 0.75rem 1.25rem;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Future of Music Mentorship Portal</title>
+  <meta name="description" content="Portal for the Future of Music Mentorship Program, supporting youth in entrepreneurship, academics, and personal growth." />
+  <link rel="stylesheet" href="style.css" />
 
-  body, html {
-    margin:0;
-    padding:0;
-    height:100%;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: var(--bg);
-    color: var(--text);
-  }
+  <style>
+    /* ===== PASSWORD OVERLAY ===== */
+    #password-screen {
+      position: fixed;
+      inset: 0;
+      background: #141729;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
 
-  /* Password overlay */
-  #password-screen {
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: var(--bg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    text-align: center;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
+    .password-box {
+      width: 100%;
+      max-width: 380px;
+      background: #1c2040;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      box-sizing: border-box;
+    }
 
-  #password-screen h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-  }
+    .password-box h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: #fff;
+      font-weight: bold;
+    }
 
-  #password-screen p {
-    margin-bottom: 1rem;
-    color: var(--muted);
-    font-size: 1.1rem;
-  }
+    .password-box p {
+      margin: 0.5rem 0 1.25rem;
+      color: #b5bbff;
+      font-size: 0.95rem;
+    }
 
-  #password-screen input {
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: 1px solid var(--accent);
-    width: 250px;
-    max-width: 90%;
-    margin-bottom: 0.5rem;
-  }
+    .password-box input {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 0.75rem;
+      box-sizing: border-box;
+    }
 
-  #password-screen button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: none;
-    background: var(--accent);
-    color: #fff;
-    cursor: pointer;
-    width: 250px;
-    max-width: 90%;
-  }
+    .password-box button {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      background: #76ADCB;
+      color: #fff;
+      cursor: pointer;
+    }
 
-  #password-screen button:hover {
-    background: #5f95a6;
-  }
+    .password-box button:hover {
+      background: #5f95a6;
+    }
 
-  #error-msg { color: #ff4c4c; margin-top: 0.5rem; font-size: 0.9rem; }
+    #error-msg {
+      margin-top: 0.75rem;
+      color: #ff5c5c;
+      font-size: 0.9rem;
+    }
 
-  /* Main content hidden until password is correct */
-  #main-content { display:none; }
+    /* Hide site until unlocked */
+    body.locked main,
+    body.locked header,
+    body.locked footer {
+      display: none;
+    }
+  </style>
+</head>
 
-  /* Existing styles for portal */
-  .container{
-    max-width:var(--container-max);
-    margin:0 auto;
-    padding:1rem;
-  }
+<body class="locked">
 
-  .site-header{
-    border-bottom:1px solid #9199CA;
-    background:transparent;
-    position:sticky;
-    top:0;
-    z-index:100;
-    backdrop-filter: blur(4px);
-    text-align:center;
-    padding:1rem 0;
-  }
+  <!-- PASSWORD SCREEN -->
+  <div id="password-screen">
+    <div class="password-box">
+      <h1>Future of Music</h1>
+      <p>Youth Creator Launch<br>Mentoring Portal</p>
+      <input type="password" id="password-input" placeholder="Enter password" />
+      <button onclick="checkPassword()">Enter</button>
+      <div id="error-msg"></div>
+    </div>
+  </div>
 
-  .brand {
-    display:block;
-    color:var(--text);
-    text-decoration:none;
-    margin-bottom:0.5rem;
-  }
+  <!-- ORIGINAL SITE CONTENT (UNCHANGED) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <strong>Future of Music & Youth Creator Launch</strong><br>
+        <span class="tagline">Youth Mentoring Program</span>
+      </a>
 
-  .brand-title {
-    font-weight: bold;
-    font-size:1.25rem;
-    display:block;
-  }
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+        <a href="survey.html" class="nav-link">Weekly Check-In</a>
+      </nav>
+    </div>
+  </header>
 
-  .brand-subtitle {
-    font-weight: normal;
-    font-size:0.9rem;
-    color:var(--muted);
-    display:block;
-    margin-top:0.25rem;
-  }
+  <main class="container">
+    <section class="hero">
+      <h1>Welcome to the Future of Music Mentorship Portal</h1>
+      <p class="lede">
+        This is the central portal for the Future of Music Mentorship Program, designed to support youth ages 13–18 in St. Louis through entrepreneurship, academics, and personal growth.
+      </p>
 
-  .main-nav{
-    display:flex;
-    justify-content:center;
-    gap
+      <div class="actions">
+        <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
+        <a class="btn btn-outline" href="survey.html">Schedule Weekly Check-In</a>
+      </div>
+    </section>
+
+    <section class="overview">
+      <h2>Program Overview</h2>
+      <p><strong>Purpose:</strong> Support youth ages 13–18 in entrepreneurship, academics, and personal growth.</p>
+      <p><strong>Mission Statement:</strong> To empower youth in St. Louis to build leadership and business skills through peer mentorship and real-world experience.</p>
+      <p><strong>Target Audience:</strong> Youth ages 13–18 in the St. Louis region.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Future of Music Mentoring</p>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function checkPassword() {
+      const input = document.getElementById('password-input').value;
+      const error = document.getElementById('error-msg');
+
+      if (input === "YCLMentee" || input === "FOMMentee") {
+        document.getElementById('password-screen').style.display = "none";
+        document.body.classList.remove("locked");
+      } else {
+        error.textContent = "Incorrect password. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
