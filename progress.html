@@ -76,6 +76,7 @@
       border-radius:12px;
       padding:1.5rem;
       margin-top:1.5rem;
+      text-align:left;
     }
 
     input{
@@ -107,7 +108,6 @@
     }
 
     .pillar{
-      text-align:left;
       margin-top:1.25rem;
     }
 
@@ -116,14 +116,14 @@
     }
 
     .progress-bar{
-      background:#141729;
+      background:#1E2238;
       border-radius:6px;
       overflow:hidden;
       margin:.5rem 0;
     }
 
     .progress-fill{
-      height:10px;
+      height:12px;
       background:var(--accent);
       width:0%;
     }
@@ -133,6 +133,7 @@
       padding:1rem 0;
       color:var(--muted);
       border-top:1px solid rgba(255,255,255,.15);
+      text-align:center;
     }
   </style>
 </head>
@@ -155,7 +156,7 @@
 
 <main class="container">
 
-  <!-- Login Card -->
+  <!-- Mentee Lookup -->
   <div class="card" id="lookup">
     <h2>View Your Progress</h2>
     <p style="color:var(--muted)">
@@ -169,7 +170,11 @@
 
   <!-- Progress Card -->
   <div class="card" id="progressCard" style="display:none;">
-    <!-- Content will be dynamically inserted -->
+    <h2 id="menteeName">Progress Overview</h2>
+    <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
+
+    <!-- Progress sections will be generated dynamically -->
+    <div id="progressSections"></div>
   </div>
 
 </main>
@@ -181,81 +186,88 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Define mentee progress data
-  const menteeProgress = {
-    arianne: {
+  // --- Mentee data ---
+  const mentees = {
+    "aereon": {
+      name: "Aereon",
       programs: {
-        academics: {
-          enabled: true,
-          progress: 70,
-          tasks: [
-            "Improved study consistency",
-            "Weekly academic check-ins completed",
-            "Better time management habits"
-          ]
-        },
-        personalDevelopment: {
-          enabled: true,
-          progress: 80,
-          tasks: [
-            "Increased confidence in communication",
-            "Consistent goal reflection",
-            "Stronger accountability habits"
-          ]
-        },
-        entrepreneurship: {
-          enabled: true,
-          progress: 60,
-          tasks: [
-            "Business idea development started",
-            "Branding basics introduced",
-            "Pitch confidence improving"
-          ]
-        }
+        academics: true,
+        personal: true,
+        entrepreneurship: false
+      },
+      progress: {
+        academics: { percent: 60, notes: ["Improved study habits", "Consistent homework completion"] },
+        personal: { percent: 80, notes: ["Increased confidence", "Regular goal reflection"] },
+        entrepreneurship: { percent: 0, notes: ["Not participating in this program yet"] }
+      }
+    },
+    "Jeremiah": {
+      name: "Jeremiah",
+      programs: {
+        academics: true,
+        personal: false,
+        entrepreneurship: false,
+      },
+      progress: {
+        academics: { percent: 70, notes: ["Improved study consistency", "Weekly check-ins completed"] },
+        personal: { percent: 80, notes: ["Increased confidence in communication", "Consistent goal reflection"] },
+        entrepreneurship: { percent: 60, notes: ["Business idea development started", "Branding basics introduced"] }
       }
     }
+    // --- Add new mentees here ---
   };
 
-  // Load progress dynamically
+  // --- Function to load mentee progress ---
   function loadProgress() {
     const name = document.getElementById("nameInput").value.trim().toLowerCase();
     const error = document.getElementById("errorMsg");
     const progressCard = document.getElementById("progressCard");
+    const lookupCard = document.getElementById("lookup");
+    const sections = document.getElementById("progressSections");
 
-    if (!menteeProgress[name]) {
+    if(mentees[name]){
+      lookupCard.style.display = "none";
+      progressCard.style.display = "block";
+      document.getElementById("menteeName").textContent = mentees[name].name + "'s Progress Overview";
+      
+      // Clear previous sections
+      sections.innerHTML = "";
+
+      // Loop through programs
+      for(const program in mentees[name].programs){
+        if(mentees[name].programs[program]){
+          const data = mentees[name].progress[program];
+          const section = document.createElement("div");
+          section.className = "pillar";
+
+          const title = document.createElement("h3");
+          title.textContent = program.charAt(0).toUpperCase() + program.slice(1);
+          section.appendChild(title);
+
+          const bar = document.createElement("div");
+          bar.className = "progress-bar";
+          const fill = document.createElement("div");
+          fill.className = "progress-fill";
+          fill.style.width = data.percent + "%";
+          bar.appendChild(fill);
+          section.appendChild(bar);
+
+          const list = document.createElement("ul");
+          data.notes.forEach(note => {
+            const li = document.createElement("li");
+            li.textContent = note;
+            list.appendChild(li);
+          });
+          section.appendChild(list);
+
+          sections.appendChild(section);
+        }
+      }
+
+      error.textContent = "";
+    } else {
       error.textContent = "No progress found for this name.";
-      progressCard.style.display = "none";
-      return;
     }
-
-    error.textContent = "";
-    progressCard.style.display = "block";
-
-    // Clear old progress
-    progressCard.innerHTML = `<h2>${name.charAt(0).toUpperCase()+name.slice(1)}’s Progress Overview</h2>
-      <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>`;
-
-    const programs = menteeProgress[name].programs;
-
-    for (const [pillar, data] of Object.entries(programs)) {
-      if (!data.enabled) continue;
-
-      const ul = data.tasks ? data.tasks.map(task => `<li>${task}</li>`).join("") : "";
-      const displayName = pillar === "personalDevelopment" ? "Personal Development" : pillar.charAt(0).toUpperCase() + pillar.slice(1);
-      progressCard.innerHTML += `
-        <div class="pillar">
-          <h3>${displayName}</h3>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width:${data.progress}%"></div>
-          </div>
-          <ul>${ul}</ul>
-        </div>
-      `;
-    }
-
-    progressCard.innerHTML += `<p style="margin-top:1rem;color:var(--muted)">
-      Mentor notes and goal updates are reviewed weekly.
-    </p>`;
   }
 </script>
 
