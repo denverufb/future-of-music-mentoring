@@ -213,19 +213,6 @@
         personal: { percent: 0, notes: ["Not started yet"] },
         entrepreneurship: { percent: 0, notes: ["Not started yet"] }
       }
-    },
-    “lauren”: {
-      name: “Lauren”,
-      programs: {
-        academics: true,
-        personal: true,
-        entrepreneurship: true
-      },
-      progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 0, notes: ["Not started yet"] },
-        entrepreneurship: { percent: 0, notes: ["Not started yet"] }
-      }
     }
     // --- Add new mentees here ---
   };
@@ -238,17 +225,15 @@
     const lookupCard = document.getElementById("lookup");
     const sections = document.getElementById("progressSections");
 
-    if(mentees[name]){
+    if (mentees[name]) {
       lookupCard.style.display = "none";
       progressCard.style.display = "block";
       document.getElementById("menteeName").textContent = mentees[name].name + "'s Progress Overview";
-      
-      // Clear previous sections
+
       sections.innerHTML = "";
 
-      // Loop through programs
-      for(const program in mentees[name].programs){
-        if(mentees[name].programs[program]){
+      for (const program in mentees[name].programs) {
+        if (mentees[name].programs[program]) {
           const data = mentees[name].progress[program];
           const section = document.createElement("div");
           section.className = "pillar";
@@ -276,7 +261,6 @@
           sections.appendChild(section);
         }
       }
-
       error.textContent = "";
     } else {
       error.textContent = "No progress found for this name.";
