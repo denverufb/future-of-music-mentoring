@@ -27,28 +27,29 @@
     <main class="container">
         <article class="form-page">
             <h1>✅ Check-In Confirmed!</h1>
+            
             <p class="lede">
-                Your weekly check-in with your mentor has been successfully scheduled.
+                Your weekly check-in with **[Mentor Name]** has been successfully scheduled for **[Day of Week], [Month Day] at [Time] [Timezone]**.
             </p>
 
-            <section class="confirmation-details">
-                <h2>Meeting Details</h2>
-                <p><strong>Mentor:</strong> [Mentor Name]</p>
-                <p><strong>Date & Time:</strong> [Day of Week], [Month Day] at [Time] [Timezone]</p>
-                <p><strong>Duration:</strong> 10 Minutes</p>
-                <p><strong>Location:</strong> Check your email for the meeting link (usually via Google Meet or Zoom).</p>
-            </section>
-            
             <p style="margin-top: 30px;">
-                A confirmation email with all the details and a link to add it to your calendar has been sent to your inbox.
+                A confirmation email with the meeting link (video conference) and calendar invite has been sent to your registered email address. Please check your spam folder if you do not receive it shortly.
             </p>
             
-            <div class="next-steps" style="margin-top: 40px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
-                <h3>What's Next?</h3>
-                <ul>
-                    <li>Make sure to <a href="goals.html">**Submit Your Weekly Goals**</a> before your check-in!</li>
-                    <li>If you need to reschedule, please use the link provided in your confirmation email.</li>
-                </ul>
+            <div class="iframe-wrapper" style="margin-top: 40px; padding: 2rem;">
+                <h2>What's Next?</h2>
+                <p class="lede">
+                    The most important step is submitting your weekly progress and goals before your check-in!
+                </p>
+                
+                <div class="actions">
+                    <a href="goals.html" class="btn btn-primary">
+                        Submit Weekly Goals Now
+                    </a>
+                    <a href="survey.html" class="btn btn-outline">
+                        Reschedule Check-In
+                    </a>
+                </div>
             </div>
             
         </article>
@@ -67,9 +68,12 @@
         (function () {
             const links = document.querySelectorAll('.main-nav .nav-link');
             links.forEach(link => {
-                // Assuming this confirmation page follows the 'survey.html' flow.
-                if (link.getAttribute('href') === 'survey.html') {
-                    link.classList.add('active');
+                // Check if the current path includes the link's href (for robustness)
+                if (location.pathname.includes(link.getAttribute('href').replace('.html', '')) && link.getAttribute('href') !== 'index.html') {
+                     // Since this is the confirmation page of the 'survey.html' flow:
+                     if (link.getAttribute('href') === 'survey.html') {
+                        link.classList.add('active');
+                     }
                 }
             });
         })();
