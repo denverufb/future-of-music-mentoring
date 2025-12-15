@@ -95,25 +95,44 @@
                 margin: 0.5rem auto 1rem;
                 font-size: 1.15rem;
             ">
-                Your weekly check-in with **Qwentin** has been successfully scheduled for **[Month Day] at [Time] [Timezone]**.
+                Your weekly check-in with **Qwentin** has been successfully scheduled.
             </p>
 
             <p style="margin-top: 30px; color: #9199CA;">
-                A confirmation email with the meeting link (video conference) and calendar invite has been sent to your registered email address.
+                A detailed confirmation email with the meeting link/location and calendar invite has been sent to your registered email address by Calendly.
             </p>
 
             <div style="
                 margin-top: 30px;
                 padding: 1rem 1.5rem;
-                border-left: 4px solid #76ADCB; /* Accent color bar */
+                border-left: 4px solid #76ADCB;
                 background: #1E2238;
                 border-radius: 0 8px 8px 0;
                 color: #9199CA;
             ">
-                <p style="margin: 0; font-weight: 600; color: #ffffff;">In-Person Meeting Note (The Legacy Center):</p>
-                <p style="margin-top: 5px; margin-bottom: 0; font-size: 0.95rem;">
+                <p style="margin: 0; font-weight: 600; color: #ffffff;">📍 In-Person Meeting Note (The Legacy Center):</p>
+                
+                <p style="margin-top: 5px; margin-bottom: 10px; font-size: 0.95rem;">
                     If your meeting is scheduled for an **in-person** check-in at The Legacy Center, please arrive at the scheduled time at the **Front of the building (not fenced in)**. Qwentin will meet you there and lead you to the meeting location inside.
                 </p>
+
+                <p style="margin-top: 15px; margin-bottom: 5px; font-size: 0.95rem; color: #fff;">
+                    **Important Timeframe Policy:**
+                </p>
+                <p style="margin-top: 0; margin-bottom: 10px; font-size: 0.95rem;">
+                    If you scheduled an in-person meeting **outside** of the following timeframe, it will **automatically default to a Google Meet (Virtual Meeting)**. You will receive an email confirmation of this change before the meeting.
+                </p>
+                
+                <ul style="list-style-type: none; padding-left: 0; font-size: 0.9rem;">
+                    <li style="margin-bottom: 3px;">**Sunday:** Closed</li>
+                    <li style="margin-bottom: 3px;">**Monday:** 5:00 - 6:30pm</li>
+                    <li style="margin-bottom: 3px;">**Tuesday:** 5:00 - 6:30pm</li>
+                    <li style="margin-bottom: 3px;">**Wednesday:** 4:00 - 6:30pm</li>
+                    <li style="margin-bottom: 3px;">**Thursday:** 5:00 - 6:30pm</li>
+                    <li style="margin-bottom: 3px;">**Friday:** 5:00 - 5:30pm</li>
+                    <li style="margin-bottom: 3px;">**Saturday:** Closed</li>
+                </ul>
+
             </div>
             
             <div style="
@@ -130,7 +149,7 @@
                 </p>
                 
                 <div style="display: flex; gap: 1rem; justify-content: flex-start; margin-top: 1.5rem; flex-wrap: wrap;">
-                    <a href="../goals.html" style=" /* Adjusted path */
+                    <a href="../goals.html" style="
                         display: inline-block;
                         text-decoration: none;
                         text-align: center;
@@ -143,8 +162,9 @@
                     ">
                         Submit Weekly Goals Now
                     </a>
-                    <a href="../survey.html" style=" /* Adjusted path */
+                    <button type="button" onclick="alert('To reschedule or cancel your meeting, please use the links provided in the confirmation email that was sent to you by Calendly.');" style="
                         display: inline-block;
+                        cursor: pointer;
                         text-decoration: none;
                         text-align: center;
                         border-radius: 8px;
@@ -156,7 +176,7 @@
                         min-width: 200px;
                     ">
                         Reschedule Check-In
-                    </a>
+                    </button>
                 </div>
             </div>
             
