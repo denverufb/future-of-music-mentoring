@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login — Future of Music Mentorship</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* Login-only styles (will be moved to style.css in File B) */
+.login-wrapper{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.login-card{
+  width:100%;
+  max-width:420px;
+  background:var(--card);
+  border-radius:20px;
+  padding:2.5rem;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 0 30px rgba(0,0,0,.3);
+  animation:fadeUp .6s ease both;
+}
+
+.login-card h1{
+  margin-top:0;
+  text-align:center;
+}
+
+.login-card p{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:2rem;
+}
+
+.login-card input{
+  width:100%;
+  padding:.85rem 1rem;
+  margin-bottom:1rem;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.15);
+  background:#0f1224;
+  color:#fff;
+  font-size:1rem;
+}
+
+.login-card input:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--glow);
+}
+
+.login-card button{
+  width:100%;
+  padding:.9rem;
+  border-radius:14px;
+  border:none;
+  font-weight:800;
+  font-size:1rem;
+  cursor:pointer;
+  background:linear-gradient(135deg,var(--accent),#9fdcff);
+  color:#fff;
+  box-shadow:0 0 18px var(--glow);
+}
+
+.login-error{
+  color:#ff6b6b;
+  text-align:center;
+  margin-top:1rem;
+  font-size:.9rem;
+}
+
+.account-hint{
+  margin-top:1.5rem;
+  font-size:.8rem;
+  color:var(--muted);
+  text-align:center;
+  line-height:1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-wrapper">
+  <div class="login-card">
+    <h1>Welcome Back</h1>
+    <p>Future of Music Mentorship Portal</p>
+
+    <input
+      type="text"
+      id="username"
+      placeholder="Username"
+      autocomplete="username"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    >
+
+    <button onclick="login()">Log In</button>
+
+    <div id="error" class="login-error"></div>
+
+    <div class="account-hint">
+      <strong>Demo Accounts</strong><br><br>
+      👤 Student<br>
+      Username: <code>demo</code><br>
+      Password: <code>demo123</code><br><br>
+      🧑‍🏫 Mentor<br>
+      Username: <code>mentor</code><br>
+      Password: <code>mentor123</code>
+    </div>
+  </div>
+</div>
+
+<script>
+/*
+  AUTH SYSTEM — BACKEND READY
+  ----------------------------------
+  This structure mirrors a real auth flow.
+  Passwords are plaintext ONLY for demo.
+  Later: replace credential check with API call.
+*/
+
+/* DEMO USER DATABASE */
+const users = [
+  {
+    username: "demo",
+    password: "demo123", // demo only
+    role: "mentee",
+    name: "Demo Student",
+    xp: 380
+  },
+  {
+    username: "mentor",
+    password: "mentor123", // demo only
+    role: "mentor",
+    name: "Mentor Account",
+    xp: 999
+  }
+];
+
+/* LOGIN FUNCTION */
+function login(){
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+  const error = document.getElementById("error");
+
+  if(!username || !password){
+    error.textContent = "Please enter username and password.";
+    return;
+  }
+
+  const user = users.find(
+    u => u.username === username && u.password === password
+  );
+
+  if(!user){
+    error.textContent = "Invalid username or password.";
+    return;
+  }
+
+  /* SESSION OBJECT (LOGIN-READY) */
+  const sessionUser = {
+    username: user.username,
+    name: user.name,
+    role: user.role,
+    xp: user.xp,
+    loginTime: Date.now()
+  };
+
+  /* Persist session */
+  localStorage.setItem("authUser", JSON.stringify(sessionUser));
+
+  /* Redirect */
+  window.location.href = "index.html";
+}
+
+/* AUTO REDIRECT IF ALREADY LOGGED IN */
+if(localStorage.getItem("authUser")){
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
