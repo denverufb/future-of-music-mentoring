@@ -1,108 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Submit Weekly Goals — Future of Music Mentoring</title>
-  <meta name="description" content="Submit your weekly goals to the Future of Music mentoring program." />
-  <link rel="stylesheet" href="style.css" />
-
-  <style>
-    .iframe-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding-bottom: 140%;
-      height: 0;
-      overflow: hidden;
-    }
-
-    .iframe-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    @media (min-width: 768px) {
-      .iframe-wrapper {
-        padding-bottom: 110%;
-      }
-    }
-  </style>
-   <script>
-  // Hover soundless micro-interaction feel
-  document.querySelectorAll('button, .btn, .nav-link').forEach(el=>{
-    el.addEventListener('mouseenter',()=> {
-      el.style.transition = "all .25s ease";
-    });
-  });
-</script>
+<meta charset="UTF-8">
+<title>Weekly Goals</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- SAME STYLE + SCRIPT AS INDEX -->
+<!-- COPY STYLE + SCRIPT FROM index.html -->
 </head>
-
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
-        <strong>Future of Music & Youth Creator Launch</strong>
-        <span class="tagline">Youth Mentorship Program</span>
-      </a>
-     <nav class="main-nav">
-  <a href="index.html" class="nav-link">Home</a>
-  <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-  <a href="survey.html" class="nav-link">Weekly Check-In</a>
-  <a href="progress.html" class="nav-link">Progress</a>
-</nav>
+<header>
+  <h1>Submit Weekly Goals</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="goals.html">Goals</a>
+    <a href="survey.html">Check-In</a>
+    <a href="progress.html">Progress</a>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex;gap:1rem;align-items:center">
+      <div class="avatar">J</div>
+      <strong>Jeremiah</strong>
+      <span class="badge fire">🔥 Active</span>
     </div>
-  </header>
 
-  <main class="container">
-    <article class="form-page">
-      <h1>Submit Weekly Goals</h1>
-      <p class="lede">Use the form below to submit your weekly goals.</p>
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSednkwZGRM1i37wXVPyknM0-Fr8UEtOeT42FZx-qamf2ffrMQ/viewform?embedded=true"
+      style="width:100%;height:800px;border:none;border-radius:12px;margin-top:1rem">
+    </iframe>
+  </div>
+</div>
 
-      <section class="iframe-wrapper" aria-label="Weekly goals form">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSednkwZGRM1i37wXVPyknM0-Fr8UEtOeT42FZx-qamf2ffrMQ/viewform?embedded=true"
-          title="Weekly Goals Form"
-          loading="lazy"
-        ></iframe>
-      </section>
-
-      <p class="form-fallback">
-        If the form does not appear above, open it in a new tab:
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSednkwZGRM1i37wXVPyknM0-Fr8UEtOeT42FZx-qamf2ffrMQ/viewform?embedded=true" target="_blank" rel="noopener">
-          Open the Weekly Goals form
-        </a>
-      </p>
-
-      <p class="note small">
-        Admins: view all responses in Google Sheets to track progress and provide feedback.
-      </p>
-    </article>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year-goals"></span> Future of Music Mentoring</p>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('year-goals').textContent = new Date().getFullYear();
-
-    (function () {
-      const links = document.querySelectorAll('.main-nav .nav-link');
-      links.forEach(link => {
-        if (location.pathname.endsWith(link.getAttribute('href'))) {
-          link.classList.add('active');
-        }
-      });
-    })();
-  </script>
 </body>
 </html>
-
