@@ -1,13 +1,17 @@
+/* ================================
+   ROOT THEME VARIABLES
+================================ */
 :root{
   --bg:#0f1224;
-  --card:rgba(30,34,56,.82);
+  --card:rgba(30,34,56,.85);
   --text:#ffffff;
   --muted:#a3aadf;
   --accent:#76ADCB;
   --glow:rgba(118,173,203,.45);
+  --danger:#ff6b6b;
 }
 
-/* Light mode */
+/* Light Mode */
 [data-theme="light"]{
   --bg:#f4f6ff;
   --card:#ffffff;
@@ -15,6 +19,9 @@
   --muted:#5a5f8a;
 }
 
+/* ================================
+   GLOBAL RESET
+================================ */
 *{box-sizing:border-box}
 
 body{
@@ -23,25 +30,30 @@ body{
   background:var(--bg);
   color:var(--text);
   transition:background .35s ease,color .35s ease;
+  min-height:100vh;
 }
 
-/* Header */
+/* ================================
+   HEADER / NAV
+================================ */
 header{
   padding:1.5rem;
   text-align:center;
   border-bottom:1px solid rgba(255,255,255,.1);
 }
+
 nav a{
   display:inline-block;
   margin:.25rem;
-  padding:.55rem 1.1rem;
+  padding:.55rem 1.15rem;
   border-radius:999px;
   background:rgba(255,255,255,.08);
   color:var(--accent);
   text-decoration:none;
-  font-weight:700;
+  font-weight:800;
   transition:.25s;
 }
+
 nav a:hover{
   background:var(--accent);
   color:#fff;
@@ -49,27 +61,36 @@ nav a:hover{
   transform:translateY(-2px);
 }
 
+/* ================================
+   LAYOUT
+================================ */
 .container{
   max-width:1100px;
   margin:auto;
   padding:1.5rem;
 }
 
-/* Cards */
+/* ================================
+   CARDS
+================================ */
 .card{
   background:var(--card);
   border-radius:20px;
   padding:2rem;
   margin-top:2rem;
   border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 0 30px rgba(0,0,0,.25);
   animation:fadeUp .6s ease both;
 }
+
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(20px)}
 }
 
-/* Buttons */
-.btn{
+/* ================================
+   BUTTONS
+================================ */
+.btn, button{
   padding:.8rem 1.5rem;
   border-radius:14px;
   border:none;
@@ -80,9 +101,34 @@ nav a:hover{
   box-shadow:0 0 18px var(--glow);
   transition:.25s;
 }
-.btn:hover{transform:scale(1.05)}
 
-/* Avatar */
+.btn:hover, button:hover{
+  transform:scale(1.05);
+}
+
+/* ================================
+   FORMS
+================================ */
+input, select{
+  width:100%;
+  padding:.85rem 1rem;
+  margin-bottom:1rem;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.15);
+  background:#0f1224;
+  color:#fff;
+  font-size:1rem;
+}
+
+input:focus, select:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--glow);
+}
+
+/* ================================
+   AVATAR
+================================ */
 .avatar{
   width:72px;
   height:72px;
@@ -96,24 +142,32 @@ nav a:hover{
   box-shadow:0 0 20px var(--glow);
 }
 
-/* Badges */
+/* ================================
+   BADGES
+================================ */
 .badge{
   display:inline-block;
   padding:.35rem .8rem;
   border-radius:999px;
   font-size:.75rem;
-  font-weight:800;
+  font-weight:900;
+  margin-right:.25rem;
 }
-.fire{background:#ff6b6b}
-.star{background:#ffd166}
 
-/* Progress / XP */
+.fire{background:#ff6b6b}
+.star{background:#ffd166;color:#000}
+.mentor{background:#9B5DE5}
+
+/* ================================
+   PROGRESS / XP
+================================ */
 .progress-wrap{
   background:#1E2238;
   border-radius:999px;
   overflow:hidden;
   height:14px;
 }
+
 .progress-bar{
   height:100%;
   width:0%;
@@ -122,7 +176,9 @@ nav a:hover{
   transition:width 1.3s ease;
 }
 
-/* Floating UI */
+/* ================================
+   FLOATING UI (THEME + COLOR)
+================================ */
 #ui{
   position:fixed;
   bottom:18px;
@@ -131,7 +187,8 @@ nav a:hover{
   gap:.5rem;
   z-index:999;
 }
-#ui button,.dot{
+
+#ui button, .dot{
   width:36px;
   height:36px;
   border-radius:50%;
@@ -141,4 +198,54 @@ nav a:hover{
   color:var(--accent);
   box-shadow:0 0 12px currentColor;
 }
-.dot{background:currentColor}
+
+.dot{
+  background:currentColor;
+}
+
+/* ================================
+   LOGIN PAGE
+================================ */
+.login-wrapper{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.login-card{
+  width:100%;
+  max-width:420px;
+  background:var(--card);
+  border-radius:20px;
+  padding:2.5rem;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 0 40px rgba(0,0,0,.35);
+  animation:fadeUp .6s ease both;
+}
+
+.login-card h1{
+  margin-top:0;
+  text-align:center;
+}
+
+.login-card p{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:2rem;
+}
+
+.login-error{
+  color:var(--danger);
+  text-align:center;
+  margin-top:1rem;
+  font-size:.9rem;
+}
+
+.account-hint{
+  margin-top:1.5rem;
+  font-size:.8rem;
+  color:var(--muted);
+  text-align:center;
+  line-height:1.5;
+}
