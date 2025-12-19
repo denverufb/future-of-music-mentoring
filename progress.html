@@ -4,24 +4,152 @@
 <meta charset="UTF-8">
 <title>Your Progress</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- COPY STYLE + SCRIPT FROM index.html -->
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 1.5rem;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 1.5rem;
+  padding: 0.7rem;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #333;
+}
+</style>
 </head>
+
 <body>
-<header><h1>Your Progress</h1></header>
+
+<header>
+  <h1>Your Progress</h1>
+</header>
 
 <div class="container">
+
   <div class="card">
     <div class="avatar">J</div>
-    <h3>Academic Growth</h3>
-    <div class="progress-wrap">
-      <div class="progress-bar" data-progress="65"></div>
-    </div>
 
-    <h3 style="margin-top:1.5rem">Personal Development</h3>
-    <div class="progress-wrap">
-      <div class="progress-bar" data-progress="80"></div>
-    </div>
+    <h3>Submit Current Grades</h3>
+
+    <form id="gradesForm">
+
+      <label for="menteeName">Your Name</label>
+      <input type="text" name="menteeName" id="menteeName" required>
+
+      <label for="mentor">Select Your Mentor</label>
+      <select id="mentor" name="mentorEmail" required>
+        <option value="">Choose mentor</option>
+        <option value="qwentin@fomusic.org">Qwentin</option>
+        <option value="gabriel@fomusic.org">Gabriel</option>
+        <option value="aereon@fomusic.org">Aereon</option>
+      </select>
+
+      <label>Class 1</label>
+      <input type="text" name="class1" placeholder="Class name">
+      <input type="number" name="grade1" placeholder="Grade (%)">
+
+      <label>Class 2</label>
+      <input type="text" name="class2" placeholder="Class name">
+      <input type="number" name="grade2" placeholder="Grade (%)">
+
+      <label>Class 3</label>
+      <input type="text" name="class3" placeholder="Class name">
+      <input type="number" name="grade3" placeholder="Grade (%)">
+
+      <label>Class 4</label>
+      <input type="text" name="class4" placeholder="Class name">
+      <input type="number" name="grade4" placeholder="Grade (%)">
+
+      <button type="submit">Send Grades to Mentor</button>
+    </form>
   </div>
+
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){
+  emailjs.init("YOUR_PUBLIC_KEY");
+})();
+
+document.getElementById("gradesForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  emailjs.sendForm(
+    "YOUR_SERVICE_ID",
+    "YOUR_TEMPLATE_ID",
+    this
+  ).then(
+    function() {
+      alert("Your grades have been sent to your mentor.");
+    },
+    function() {
+      alert("There was an error sending your grades. Please try again.");
+    }
+  );
+});
+</script>
+
 </body>
 </html>
