@@ -1,4 +1,146 @@
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mentee Progress — Future of Music</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#141729;
+      --card:#1c2040;
+      --text:#ffffff;
+      --muted:#9199CA;
+      --accent:#76ADCB;
+      --max:980px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.45;
+      text-align:center;
+    }
+
+    .container{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:1rem;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:1.5rem;
+      margin-top:1.5rem;
+      text-align:left;
+    }
+
+    input, select{
+      width:100%;
+      max-width:320px;
+      padding:.75rem;
+      border-radius:6px;
+      border:none;
+      font-size:1rem;
+      margin-top:.5rem;
+    }
+
+    button{
+      margin-top:1rem;
+      padding:.75rem 1.25rem;
+      border-radius:8px;
+      border:none;
+      background:var(--accent);
+      color:#fff;
+      font-size:1rem;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .error{
+      color:#ff6b6b;
+      margin-top:.75rem;
+      font-size:.9rem;
+    }
+
+    .progress-bar{
+      background:#1E2238;
+      border-radius:6px;
+      overflow:hidden;
+      margin:.5rem 0;
+    }
+
+    .progress-fill{
+      height:12px;
+      background:var(--accent);
+      width:0%;
+    }
+
+    footer{
+      margin-top:2rem;
+      padding:1rem 0;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.15);
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="container">
+
+  <!-- LOOKUP -->
+  <div class="card" id="lookup">
+    <h2>View Your Progress</h2>
+    <input id="nameInput" placeholder="Enter your first name" />
+    <button onclick="loadProgress()">View Progress</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="card" id="progressCard" style="display:none;">
+    <h2 id="menteeName"></h2>
+    <div id="progressSections"></div>
+  </div>
+
+  <!-- GRADES -->
+  <div class="card" id="gradesCard" style="display:none;">
+    <h2>Submit Grades</h2>
+
+    <form id="gradesForm">
+      <input type="hidden" id="menteeNameForm" />
+
+      <label>Mentor (selection does not affect delivery)</label>
+      <select id="mentor">
+        <option>Any Mentor</option>
+        <option>Academic Mentor</option>
+        <option>Personal Mentor</option>
+      </select>
+
+      <div id="gradesContainer">
+        <div class="grade-row">
+          <input type="text" placeholder="Class name" required>
+          <input type="number" placeholder="Grade (%)" required>
+        </div>
+      </div>
+
+      <button type="button" onclick="addGradeRow()">Add Class</button>
+      <button type="submit">Send Grades</button>
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Future of Music Mentoring
+</footer>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -8,71 +150,85 @@
   const mentees = {
     "jeremiah": {
       name: "Jeremiah",
-      programs: { academics: true, personal: true, entrepreneurship: true },
+      programs: { academics:true, personal:true, entrepreneurship:true },
       progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 0, notes: ["Not started yet"] },
-        entrepreneurship: { percent: 0, notes: ["Not started yet"] }
+        academics:{percent:0,notes:["Not started yet"]},
+        personal:{percent:0,notes:["Not started yet"]},
+        entrepreneurship:{percent:0,notes:["Not started yet"]}
       }
     }
   };
 
-  function loadProgress() {
-    const name = document.getElementById("nameInput").value.trim().toLowerCase();
-    const error = document.getElementById("errorMsg");
-
-    if (!mentees[name]) {
-      error.textContent = "No progress found for this name.";
+  function loadProgress(){
+    const name = nameInput.value.trim().toLowerCase();
+    if(!mentees[name]){
+      errorMsg.textContent = "No progress found.";
       return;
     }
 
-    document.getElementById("lookup").style.display = "none";
-    document.getElementById("progressCard").style.display = "block";
-    document.getElementById("gradesCard").style.display = "block";
+    lookup.style.display = "none";
+    progressCard.style.display = "block";
+    gradesCard.style.display = "block";
 
-    document.getElementById("menteeName").textContent =
-      mentees[name].name + "'s Progress Overview";
+    menteeName.textContent = mentees[name].name + "'s Progress";
+    menteeNameForm.value = mentees[name].name;
 
-    document.getElementById("menteeNameForm").value = mentees[name].name;
-    error.textContent = "";
+    progressSections.innerHTML = "";
+
+    for(const key in mentees[name].programs){
+      if(!mentees[name].programs[key]) continue;
+
+      const data = mentees[name].progress[key];
+      const div = document.createElement("div");
+
+      div.innerHTML = `
+        <h3>${key.charAt(0).toUpperCase()+key.slice(1)}</h3>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${data.percent}%"></div>
+        </div>
+        <ul>${data.notes.map(n=>`<li>${n}</li>`).join("")}</ul>
+      `;
+
+      progressSections.appendChild(div);
+    }
   }
 
-  let gradeCount = 3;
-  function addGradeRow() {
-    gradeCount++;
-    const container = document.getElementById("gradesContainer");
+  function addGradeRow(){
     const row = document.createElement("div");
     row.className = "grade-row";
     row.innerHTML = `
       <input type="text" placeholder="Class name" required>
       <input type="number" placeholder="Grade (%)" required>
     `;
-    container.appendChild(row);
+    gradesContainer.appendChild(row);
   }
 
-  document.getElementById("gradesForm").addEventListener("submit", function(e) {
+  gradesForm.addEventListener("submit", function(e){
     e.preventDefault();
 
     let gradesText = "";
-    document.querySelectorAll(".grade-row").forEach(row => {
-      const cls = row.querySelector("input[type='text']").value;
-      const grd = row.querySelector("input[type='number']").value;
-      if (cls && grd) {
-        gradesText += cls + ": " + grd + "%\n";
-      }
+    document.querySelectorAll(".grade-row").forEach(r=>{
+      const c = r.children[0].value;
+      const g = r.children[1].value;
+      if(c && g) gradesText += `${c}: ${g}%\n`;
     });
 
-    emailjs.send("service_e1wqoft", "template_3ux780j", {
-      mentee_name: document.getElementById("menteeNameForm").value,
-      mentor_email: document.getElementById("mentor").value,
-      grades: gradesText
-    })
-    .then(() => {
-      alert("Grades sent to mentor.");
-      document.getElementById("gradesForm").reset();
-    })
-    .catch(() => {
-      alert("Failed to send grades. Try again.");
+    emailjs.send(
+      "service_e1wqoft",
+      "template_3ux780j",
+      {
+        mentee_name: menteeNameForm.value,
+        mentor_email: "aereon@fomusic.org",
+        grades: gradesText
+      }
+    ).then(()=>{
+      alert("Grades sent.");
+      gradesForm.reset();
+    }).catch(()=>{
+      alert("Send failed.");
     });
   });
 </script>
+
+</body>
+</html>
