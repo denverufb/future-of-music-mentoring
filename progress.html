@@ -1,264 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mentee Progress — Future of Music</title>
-  <meta name="description" content="View mentee progress across academics, personal development, and entrepreneurship." />
+<meta charset="UTF-8">
+<title>Your Progress</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <style>
-    :root{
-      --bg:#141729;
-      --card:#1c2040;
-      --text:#ffffff;
-      --muted:#9199CA;
-      --accent:#76ADCB;
-      --max:980px;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
 
-    *{box-sizing:border-box}
+header {
+  padding: 1.5rem;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
 
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.45;
-      text-align:center;
-    }
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
 
-    .container{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:1rem;
-    }
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+}
 
-    .site-header{
-      border-bottom:1px solid rgba(255,255,255,.15);
-      padding:1.5rem 0;
-    }
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
 
-    .brand{
-      font-weight:800;
-      font-size:1.35rem;
-    }
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
 
-    .subtitle{
-      color:var(--muted);
-      font-size:.9rem;
-      margin-top:.25rem;
-    }
+input, select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
 
-    .main-nav{
-      margin-top:1rem;
-      display:flex;
-      justify-content:center;
-      gap:.75rem;
-      flex-wrap:wrap;
-    }
+button {
+  margin-top: 1.5rem;
+  padding: 0.7rem;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
 
-    .nav-link{
-      text-decoration:none;
-      padding:.5rem 1rem;
-      border-radius:999px;
-      background:#1E2238;
-      border:2px solid var(--accent);
-      color:#fff;
-      font-weight:600;
-    }
-
-    .nav-link:hover{
-      background:var(--accent);
-    }
-
-    .card{
-      background:var(--card);
-      border-radius:12px;
-      padding:1.5rem;
-      margin-top:1.5rem;
-      text-align:left;
-    }
-
-    input{
-      width:100%;
-      max-width:320px;
-      padding:.75rem;
-      border-radius:6px;
-      border:none;
-      font-size:1rem;
-      margin-top:.75rem;
-    }
-
-    button{
-      margin-top:.75rem;
-      padding:.75rem 1.25rem;
-      border-radius:8px;
-      border:none;
-      background:var(--accent);
-      color:#fff;
-      font-size:1rem;
-      cursor:pointer;
-      font-weight:600;
-    }
-
-    .error{
-      color:#ff6b6b;
-      margin-top:.75rem;
-      font-size:.9rem;
-    }
-
-    .pillar{
-      margin-top:1.25rem;
-    }
-
-    .pillar h3{
-      margin-bottom:.25rem;
-    }
-
-    .progress-bar{
-      background:#1E2238;
-      border-radius:6px;
-      overflow:hidden;
-      margin:.5rem 0;
-    }
-
-    .progress-fill{
-      height:12px;
-      background:var(--accent);
-      width:0%;
-    }
-
-    footer{
-      margin-top:2rem;
-      padding:1rem 0;
-      color:var(--muted);
-      border-top:1px solid rgba(255,255,255,.15);
-      text-align:center;
-    }
-  </style>
+button:hover {
+  background: #333;
+}
+</style>
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="container">
-    <div class="brand">Future of Music & Youth Creator Launch</div>
-    <div class="subtitle">Mentorship Progress Portal</div>
-
-    <nav class="main-nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-      <a href="survey.html" class="nav-link">Weekly Check-In</a>
-      <a href="progress.html" class="nav-link">Progress</a>
-    </nav>
-  </div>
+<header>
+  <h1>Your Progress</h1>
 </header>
 
-<main class="container">
+<div class="container">
 
-  <div class="card" id="lookup">
-    <h2>View Your Progress</h2>
-    <p style="color:var(--muted)">
-      Enter your first name to view your mentorship progress.
-    </p>
-    <input id="nameInput" placeholder="Enter your name" />
-    <br>
-    <button onclick="loadProgress()">View Progress</button>
-    <div class="error" id="errorMsg"></div>
+  <div class="card">
+    <div class="avatar">J</div>
+
+    <h3>Submit Current Grades</h3>
+
+    <form id="gradesForm">
+
+      <label for="menteeName">Your Name</label>
+      <input type="text" name="menteeName" id="menteeName" required>
+
+      <label for="mentor">Select Your Mentor</label>
+      <select id="mentor" name="mentorEmail" required>
+        <option value="">Choose mentor</option>
+        <option value="qwentin@fomusic.org">Qwentin</option>
+        <option value="gabriel@fomusic.org">Gabriel</option>
+        <option value="aereon@fomusic.org">Aereon</option>
+      </select>
+
+      <label>Class 1</label>
+      <input type="text" name="class1" placeholder="Class name">
+      <input type="number" name="grade1" placeholder="Grade (%)">
+
+      <label>Class 2</label>
+      <input type="text" name="class2" placeholder="Class name">
+      <input type="number" name="grade2" placeholder="Grade (%)">
+
+      <label>Class 3</label>
+      <input type="text" name="class3" placeholder="Class name">
+      <input type="number" name="grade3" placeholder="Grade (%)">
+
+      <label>Class 4</label>
+      <input type="text" name="class4" placeholder="Class name">
+      <input type="number" name="grade4" placeholder="Grade (%)">
+
+      <button type="submit">Send Grades to Mentor</button>
+    </form>
   </div>
 
-  <div class="card" id="progressCard" style="display:none;">
-    <h2 id="menteeName">Progress Overview</h2>
-    <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
-    <div id="progressSections"></div>
-  </div>
+</div>
 
-</main>
-
-<footer>
-  © <span id="year"></span> Future of Music Mentoring
-</footer>
-
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+(function(){
+  emailjs.init("YOUR_PUBLIC_KEY");
+})();
 
-  const mentees = {
-    "jeremiah": {
-      name: "Jeremiah",
-      programs: { academics: true, personal: true, entrepreneurship: true },
-      progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 0, notes: ["Not started yet"] },
-        entrepreneurship: { percent: 0, notes: ["Not started yet"] }
-      }
+document.getElementById("gradesForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  emailjs.sendForm(
+    "YOUR_SERVICE_ID",
+    "YOUR_TEMPLATE_ID",
+    this
+  ).then(
+    function() {
+      alert("Your grades have been sent to your mentor.");
     },
-    "billy": {
-      name: "Billy",
-      programs: { academics: true, personal: true, entrepreneurship: true },
-      progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 0, notes: ["Not started yet"] },
-        entrepreneurship: { percent: 0, notes: ["Not started yet"] }
-      }
-    },
-    "leah": {
-      name: "Leah",
-      programs: { academics: true, personal: true, entrepreneurship: false },
-      progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 0, notes: ["Not started yet"] }
-      }
+    function() {
+      alert("There was an error sending your grades. Please try again.");
     }
-  };
-
-  function loadProgress() {
-    const name = document.getElementById("nameInput").value.trim().toLowerCase();
-    const error = document.getElementById("errorMsg");
-    const progressCard = document.getElementById("progressCard");
-    const lookupCard = document.getElementById("lookup");
-    const sections = document.getElementById("progressSections");
-
-    if (mentees[name]) {
-      lookupCard.style.display = "none";
-      progressCard.style.display = "block";
-      document.getElementById("menteeName").textContent = mentees[name].name + "'s Progress Overview";
-
-      sections.innerHTML = "";
-
-      for (const program in mentees[name].programs) {
-        if (mentees[name].programs[program]) {
-          const data = mentees[name].progress[program];
-          const section = document.createElement("div");
-          section.className = "pillar";
-
-          const title = document.createElement("h3");
-          title.textContent = program.charAt(0).toUpperCase() + program.slice(1);
-          section.appendChild(title);
-
-          const bar = document.createElement("div");
-          bar.className = "progress-bar";
-          const fill = document.createElement("div");
-          fill.className = "progress-fill";
-          fill.style.width = data.percent + "%";
-          bar.appendChild(fill);
-          section.appendChild(bar);
-
-          const list = document.createElement("ul");
-          data.notes.forEach(note => {
-            const li = document.createElement("li");
-            li.textContent = note;
-            list.appendChild(li);
-          });
-          section.appendChild(list);
-
-          sections.appendChild(section);
-        }
-      }
-      error.textContent = "";
-    } else {
-      error.textContent = "No progress found for this name.";
-    }
-  }
+  );
+});
 </script>
 
 </body>
