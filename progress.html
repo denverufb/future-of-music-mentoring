@@ -128,6 +128,33 @@
       width:0%;
     }
 
+    .grade-row{
+      display:flex;
+      gap:1rem;
+      margin-top:.5rem;
+    }
+
+    .grade-row input[type="text"]{
+      flex:2;
+    }
+
+    .grade-row input[type="number"]{
+      flex:1;
+    }
+
+    .plus-btn{
+      margin-top:.5rem;
+      background:transparent;
+      border:2px solid var(--accent);
+      color:var(--accent);
+      font-weight:bold;
+      font-size:1.2rem;
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      cursor:pointer;
+    }
+
     footer{
       margin-top:2rem;
       padding:1rem 0;
@@ -175,38 +202,42 @@
     <div id="progressSections"></div>
   </div>
 
-  <!-- Grade Submission Form (Added Below Original Progress) -->
+  <!-- Grade Submission Form -->
   <div class="card">
     <h2>Submit Current Grades</h2>
-
     <form id="gradesForm">
+      <!-- Mentee Name -->
       <label for="menteeNameForm">Your Name</label>
-      <input type="text" name="menteeNameForm" id="menteeNameForm" required>
+      <input type="text" id="menteeNameForm" name="menteeNameForm" required>
 
-      <label for="mentor">Select Your Mentor</label>
-      <select id="mentor" name="mentorEmail" required>
-        <option value="">Choose mentor</option>
-        <option value="qwentin@fomusic.org">Qwentin</option>
-        <option value="gabriel@fomusic.org">Gabriel</option>
-        <option value="aereon@fomusic.org">Aereon</option>
-      </select>
+      <!-- Mentor Selection -->
+      <div style="display:flex; align-items:center; gap:1rem; margin-top:.75rem;">
+        <label for="mentor" style="margin:0;">Select Mentor:</label>
+        <select id="mentor" name="mentorEmail" required>
+          <option value="">Choose mentor</option>
+          <option value="qwentin@fomusic.org">Qwentin</option>
+          <option value="gabriel@fomusic.org">Gabriel</option>
+          <option value="aereon@fomusic.org">Aereon</option>
+        </select>
+      </div>
 
-      <label>Class 1</label>
-      <input type="text" name="class1" placeholder="Class name">
-      <input type="number" name="grade1" placeholder="Grade (%)">
+      <!-- Grades Fields -->
+      <div id="gradesContainer">
+        <div class="grade-row">
+          <input type="text" name="class1" placeholder="Class name" required>
+          <input type="number" name="grade1" placeholder="Grade (%)" required>
+        </div>
+        <div class="grade-row">
+          <input type="text" name="class2" placeholder="Class name" required>
+          <input type="number" name="grade2" placeholder="Grade (%)" required>
+        </div>
+        <div class="grade-row">
+          <input type="text" name="class3" placeholder="Class name" required>
+          <input type="number" name="grade3" placeholder="Grade (%)" required>
+        </div>
+      </div>
 
-      <label>Class 2</label>
-      <input type="text" name="class2" placeholder="Class name">
-      <input type="number" name="grade2" placeholder="Grade (%)">
-
-      <label>Class 3</label>
-      <input type="text" name="class3" placeholder="Class name">
-      <input type="number" name="grade3" placeholder="Grade (%)">
-
-      <label>Class 4</label>
-      <input type="text" name="class4" placeholder="Class name">
-      <input type="number" name="grade4" placeholder="Grade (%)">
-
+      <button type="button" class="plus-btn" onclick="addGradeRow()">+</button>
       <button type="submit">Send Grades to Mentor</button>
     </form>
   </div>
@@ -217,6 +248,7 @@
   © <span id="year"></span> Future of Music Mentoring
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -298,6 +330,18 @@
     }
   }
 
+  // Add new grade row
+  let gradeCount = 3;
+  function addGradeRow() {
+    gradeCount++;
+    const container = document.getElementById("gradesContainer");
+    const row = document.createElement("div");
+    row.className = "grade-row";
+    row.innerHTML = `<input type="text" name="class${gradeCount}" placeholder="Class name" required>
+                     <input type="number" name="grade${gradeCount}" placeholder="Grade (%)" required>`;
+    container.appendChild(row);
+  }
+
   // EmailJS form submission
   (function(){
     emailjs.init("YOUR_PUBLIC_KEY");
@@ -315,7 +359,5 @@
     );
   });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
 </body>
 </html>
