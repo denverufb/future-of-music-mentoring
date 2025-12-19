@@ -344,14 +344,14 @@
 
   // EmailJS form submission
   (function(){
-    emailjs.init("YOUR_PUBLIC_KEY");
+    emailjs.init("dKsmeaeNzVRJkgmVc");
   })();
 
   document.getElementById("gradesForm").addEventListener("submit", function(e) {
     e.preventDefault();
     emailjs.sendForm(
-      "YOUR_SERVICE_ID",
-      "YOUR_TEMPLATE_ID",
+      "service_e1wqoft",
+      "template_x4vcnwn",
       this
     ).then(
       function() { alert("Your grades have been sent to your mentor."); },
