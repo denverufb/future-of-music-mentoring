@@ -186,7 +186,9 @@
   <!-- Lookup Card -->
   <div class="card" id="lookup">
     <h2>View Your Progress</h2>
-    <p style="color:var(--muted)">Enter your first name to view your mentorship progress.</p>
+    <p style="color:var(--muted)">
+      Enter your first name to view your mentorship progress.
+    </p>
     <input id="nameInput" placeholder="Enter your name" />
     <br>
     <button onclick="loadProgress()">View Progress</button>
@@ -200,12 +202,12 @@
     <div id="progressSections"></div>
   </div>
 
-  <!-- Grades Form -->
-  <div class="card" id="gradesCard" style="display:none;">
+  <!-- Grade Submission Form -->
+  <div class="card">
     <h2>Submit Current Grades</h2>
     <form id="gradesForm">
       <label for="menteeNameForm">Your Name</label>
-      <input type="text" id="menteeNameForm" name="menteeNameForm" readonly>
+      <input type="text" id="menteeNameForm" name="menteeNameForm" required>
 
       <div style="display:flex; align-items:center; gap:1rem; margin-top:.75rem;">
         <label for="mentor" style="margin:0;">Select Mentor:</label>
@@ -246,7 +248,6 @@
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
-
   emailjs.init("dKsmeaeNzVRJkgmVc");
 
   const mentees = {
@@ -282,19 +283,16 @@
     const name = document.getElementById("nameInput").value.trim().toLowerCase();
     const error = document.getElementById("errorMsg");
     const progressCard = document.getElementById("progressCard");
-    const gradesCard = document.getElementById("gradesCard");
     const lookupCard = document.getElementById("lookup");
     const sections = document.getElementById("progressSections");
 
     if (mentees[name]) {
       lookupCard.style.display = "none";
       progressCard.style.display = "block";
-      gradesCard.style.display = "block";
       document.getElementById("menteeName").textContent = mentees[name].name + "'s Progress Overview";
       document.getElementById("menteeNameForm").value = mentees[name].name;
 
       sections.innerHTML = "";
-
       for (const program in mentees[name].programs) {
         if (mentees[name].programs[program]) {
           const data = mentees[name].progress[program];
@@ -320,7 +318,6 @@
             list.appendChild(li);
           });
           section.appendChild(list);
-
           sections.appendChild(section);
         }
       }
@@ -336,36 +333,34 @@
     const container = document.getElementById("gradesContainer");
     const row = document.createElement("div");
     row.className = "grade-row";
-    row.innerHTML = `
-      <input type="text" name="class${gradeCount}" placeholder="Class name" required>
-      <input type="number" name="grade${gradeCount}" placeholder="Grade (%)" required>
-    `;
+    row.innerHTML = `<input type="text" name="class${gradeCount}" placeholder="Class name" required>
+                     <input type="number" name="grade${gradeCount}" placeholder="Grade (%)" required>`;
     container.appendChild(row);
   }
 
-  // EmailJS submission to always send to aereon@fomusic.org
   document.getElementById("gradesForm").addEventListener("submit", function(e) {
     e.preventDefault();
+
+    // Gather grades
+    const rows = document.querySelectorAll(".grade-row");
     let gradesText = "";
-    document.querySelectorAll(".grade-row").forEach((row, i) => {
+    rows.forEach((row, i) => {
       const className = row.querySelector("input[type='text']").value;
       const grade = row.querySelector("input[type='number']").value;
-      if (i < 3 && (!className || !grade)) return alert("Please fill in all 3 required classes.");
-      if (className && grade) gradesText += `${className}: ${grade}%\n`;
+      gradesText += `Class ${i+1}: ${className} - ${grade}%\n`;
     });
 
-    emailjs.send("service_e1wqoft", "template_3ux780j", {
+    // Send email via EmailJS
+    emailjs.send("service_e1wqoft", "template_x4vcnwn", {
       mentee_name: document.getElementById("menteeNameForm").value,
-      mentor_email: "aereon@fomusic.org",
-      grades: gradesText
-    }).then(() => {
-      alert("Grades sent to Aereon.");
-      document.getElementById("gradesForm").reset();
-    }).catch(() => {
-      alert("Failed to send grades. Try again.");
-    });
+      mentor_selected: document.getElementById("mentor").value,
+      grades: gradesText,
+      recipient_email: "aereon@fomusic.org"
+    }).then(
+      function(){ alert("Grades sent successfully!"); document.getElementById("gradesForm").reset(); },
+      function(){ alert("Failed to send grades. Please try again."); }
+    );
   });
 </script>
-
 </body>
 </html>
