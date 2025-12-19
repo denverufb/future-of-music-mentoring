@@ -195,51 +195,48 @@
     <div class="error" id="errorMsg"></div>
   </div>
 
-  <!-- Progress Card -->
+  <!-- Progress Card (hidden until login) -->
   <div class="card" id="progressCard" style="display:none;">
     <h2 id="menteeName">Progress Overview</h2>
     <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
     <div id="progressSections"></div>
-  </div>
 
-  <!-- Grade Submission Form -->
-  <div class="card">
-    <h2>Submit Current Grades</h2>
-    <form id="gradesForm">
-      <!-- Mentee Name -->
-      <label for="menteeNameForm">Your Name</label>
-      <input type="text" id="menteeNameForm" name="menteeNameForm" required>
+    <!-- Grades Form (shown only after login) -->
+    <div id="gradesCard" style="margin-top:2rem;">
+      <h2>Submit Current Grades</h2>
+      <form id="gradesForm">
+        <label for="menteeNameForm">Your Name</label>
+        <input type="text" id="menteeNameForm" name="menteeNameForm" readonly>
 
-      <!-- Mentor Selection -->
-      <div style="display:flex; align-items:center; gap:1rem; margin-top:.75rem;">
-        <label for="mentor" style="margin:0;">Select Mentor:</label>
-        <select id="mentor" name="mentorEmail" required>
-          <option value="">Choose mentor</option>
-          <option value="qwentin@fomusic.org">Qwentin</option>
-          <option value="gabriel@fomusic.org">Gabriel</option>
-          <option value="aereon@fomusic.org">Aereon</option>
-        </select>
-      </div>
-
-      <!-- Grades Fields -->
-      <div id="gradesContainer">
-        <div class="grade-row">
-          <input type="text" name="class1" placeholder="Class name" required>
-          <input type="number" name="grade1" placeholder="Grade (%)" required>
+        <div style="display:flex; align-items:center; gap:1rem; margin-top:.75rem;">
+          <label for="mentor" style="margin:0;">Select Mentor:</label>
+          <select id="mentor" name="mentorEmail" required>
+            <option value="">Choose mentor</option>
+            <option value="qwentin@fomusic.org">Qwentin</option>
+            <option value="gabriel@fomusic.org">Gabriel</option>
+            <option value="aereon@fomusic.org">Aereon</option>
+          </select>
         </div>
-        <div class="grade-row">
-          <input type="text" name="class2" placeholder="Class name" required>
-          <input type="number" name="grade2" placeholder="Grade (%)" required>
-        </div>
-        <div class="grade-row">
-          <input type="text" name="class3" placeholder="Class name" required>
-          <input type="number" name="grade3" placeholder="Grade (%)" required>
-        </div>
-      </div>
 
-      <button type="button" class="plus-btn" onclick="addGradeRow()">+</button>
-      <button type="submit">Send Grades to Mentor</button>
-    </form>
+        <div id="gradesContainer">
+          <div class="grade-row">
+            <input type="text" name="class1" placeholder="Class name" required>
+            <input type="number" name="grade1" placeholder="Grade (%)" required>
+          </div>
+          <div class="grade-row">
+            <input type="text" name="class2" placeholder="Class name" required>
+            <input type="number" name="grade2" placeholder="Grade (%)" required>
+          </div>
+          <div class="grade-row">
+            <input type="text" name="class3" placeholder="Class name" required>
+            <input type="number" name="grade3" placeholder="Grade (%)" required>
+          </div>
+        </div>
+
+        <button type="button" class="plus-btn" onclick="addGradeRow()">+</button>
+        <button type="submit">Send Grades to Mentor</button>
+      </form>
+    </div>
   </div>
 
 </main>
@@ -287,11 +284,14 @@
     const progressCard = document.getElementById("progressCard");
     const lookupCard = document.getElementById("lookup");
     const sections = document.getElementById("progressSections");
+    const gradesCard = document.getElementById("gradesCard");
 
     if (mentees[name]) {
       lookupCard.style.display = "none";
       progressCard.style.display = "block";
+      gradesCard.style.display = "block"; // show grades form only after login
       document.getElementById("menteeName").textContent = mentees[name].name + "'s Progress Overview";
+      document.getElementById("menteeNameForm").value = mentees[name].name; // pre-fill name
 
       sections.innerHTML = "";
 
