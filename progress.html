@@ -200,24 +200,12 @@
     <h2 id="menteeName">Progress Overview</h2>
     <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
     <div id="progressSections"></div>
-  </div>
 
-  <!-- Grade Submission Form -->
-  <div class="card">
-    <h2>Submit Current Grades</h2>
+    <!-- Grade Submission Form (inside progress viewer) -->
+    <h2 style="margin-top:1.5rem;">Submit Current Grades</h2>
     <form id="gradesForm">
       <label for="menteeNameForm">Your Name</label>
-      <input type="text" id="menteeNameForm" name="menteeNameForm" required>
-
-      <div style="display:flex; align-items:center; gap:1rem; margin-top:.75rem;">
-        <label for="mentor" style="margin:0;">Select Mentor:</label>
-        <select id="mentor" name="mentorEmail" required>
-          <option value="">Choose mentor</option>
-          <option value="qwentin@fomusic.org">Qwentin</option>
-          <option value="gabriel@fomusic.org">Gabriel</option>
-          <option value="aereon@fomusic.org">Aereon</option>
-        </select>
-      </div>
+      <input type="text" id="menteeNameForm" name="mentee_name" required>
 
       <div id="gradesContainer">
         <div class="grade-row">
@@ -235,7 +223,7 @@
       </div>
 
       <button type="button" class="plus-btn" onclick="addGradeRow()">+</button>
-      <button type="submit">Send Grades to Mentor</button>
+      <button type="submit">Send Grades</button>
     </form>
   </div>
 
@@ -248,7 +236,6 @@
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
-  emailjs.init("dKsmeaeNzVRJkgmVc");
 
   const mentees = {
     "jeremiah": {
@@ -293,6 +280,7 @@
       document.getElementById("menteeNameForm").value = mentees[name].name;
 
       sections.innerHTML = "";
+
       for (const program in mentees[name].programs) {
         if (mentees[name].programs[program]) {
           const data = mentees[name].progress[program];
@@ -318,6 +306,7 @@
             list.appendChild(li);
           });
           section.appendChild(list);
+
           sections.appendChild(section);
         }
       }
@@ -338,29 +327,33 @@
     container.appendChild(row);
   }
 
-  document.getElementById("gradesForm").addEventListener("submit", function(e) {
+  // EmailJS setup
+  emailjs.init("dKsmeaeNzVRJkgmVc");
+
+  document.getElementById("gradesForm").addEventListener("submit", function(e){
     e.preventDefault();
 
-    // Gather grades
-    const rows = document.querySelectorAll(".grade-row");
+    let form = this;
     let gradesText = "";
-    rows.forEach((row, i) => {
-      const className = row.querySelector("input[type='text']").value;
-      const grade = row.querySelector("input[type='number']").value;
-      gradesText += `Class ${i+1}: ${className} - ${grade}%\n`;
+    form.querySelectorAll(".grade-row").forEach((row, index) => {
+      const cls = row.querySelector("input[type='text']").value;
+      const grd = row.querySelector("input[type='number']").value;
+      gradesText += `Class ${index+1}: ${cls} - ${grd}%\n`;
     });
 
-    // Send email via EmailJS
     emailjs.send("service_e1wqoft", "template_x4vcnwn", {
-      mentee_name: document.getElementById("menteeNameForm").value,
-      mentor_selected: document.getElementById("mentor").value,
+      mentee_name: form.mentee_name.value,
       grades: gradesText,
-      recipient_email: "aereon@fomusic.org"
-    }).then(
-      function(){ alert("Grades sent successfully!"); document.getElementById("gradesForm").reset(); },
-      function(){ alert("Failed to send grades. Please try again."); }
-    );
+      mentor_email: "aereon@fomusic.org" // always sends to you
+    }).then(() => {
+      alert("Grades sent successfully!");
+      form.reset();
+    }).catch(() => {
+      alert("Failed to send grades. Try again.");
+    });
   });
+
 </script>
 </body>
 </html>
+
