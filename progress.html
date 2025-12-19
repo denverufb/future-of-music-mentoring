@@ -76,6 +76,25 @@ button {
 button:hover {
   background: #333;
 }
+
+/* Progress bar styles (unchanged) */
+.progress-wrap {
+  background: #e0e0e0;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+.progress-bar {
+  background: #111;
+  height: 20px;
+  border-radius: 6px;
+  width: 0;
+  transition: width 0.6s ease;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.9rem;
+}
 </style>
 </head>
 
@@ -87,6 +106,27 @@ button:hover {
 
 <div class="container">
 
+  <!-- Original Progress Card -->
+  <div class="card">
+    <div class="avatar">J</div>
+
+    <h3>Academic Growth</h3>
+    <div class="progress-wrap">
+      <div class="progress-bar" data-progress="65">65%</div>
+    </div>
+
+    <h3 style="margin-top:1.5rem">Personal Development</h3>
+    <div class="progress-wrap">
+      <div class="progress-bar" data-progress="80">80%</div>
+    </div>
+
+    <h3 style="margin-top:1.5rem">Community Engagement</h3>
+    <div class="progress-wrap">
+      <div class="progress-bar" data-progress="50">50%</div>
+    </div>
+  </div>
+
+  <!-- Grade Submission Form -->
   <div class="card">
     <div class="avatar">J</div>
 
@@ -132,6 +172,12 @@ button:hover {
 (function(){
   emailjs.init("YOUR_PUBLIC_KEY");
 })();
+
+// Animate progress bars
+document.querySelectorAll('.progress-bar').forEach(bar => {
+  const progress = bar.getAttribute('data-progress');
+  bar.style.width = progress + '%';
+});
 
 document.getElementById("gradesForm").addEventListener("submit", function(e) {
   e.preventDefault();
