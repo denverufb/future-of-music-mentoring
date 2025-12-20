@@ -79,7 +79,7 @@
       text-align:left;
     }
 
-    input, select{
+    input{
       width:100%;
       max-width:320px;
       padding:.75rem;
@@ -128,33 +128,6 @@
       width:0%;
     }
 
-    .grade-row{
-      display:flex;
-      gap:1rem;
-      margin-top:.5rem;
-    }
-
-    .grade-row input[type="text"]{
-      flex:2;
-    }
-
-    .grade-row input[type="number"]{
-      flex:1;
-    }
-
-    .plus-btn{
-      margin-top:.5rem;
-      background:transparent;
-      border:2px solid var(--accent);
-      color:var(--accent);
-      font-weight:bold;
-      font-size:1.2rem;
-      width:40px;
-      height:40px;
-      border-radius:50%;
-      cursor:pointer;
-    }
-
     footer{
       margin-top:2rem;
       padding:1rem 0;
@@ -200,31 +173,6 @@
     <h2 id="menteeName">Progress Overview</h2>
     <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
     <div id="progressSections"></div>
-
-    <!-- Grade Submission Form (inside progress viewer) -->
-    <h2 style="margin-top:1.5rem;">Submit Current Grades</h2>
-    <form id="gradesForm">
-      <label for="menteeNameForm">Your Name</label>
-      <input type="text" id="menteeNameForm" name="mentee_name" required>
-
-      <div id="gradesContainer">
-        <div class="grade-row">
-          <input type="text" name="class1" placeholder="Class name" required>
-          <input type="number" name="grade1" placeholder="Grade (%)" required>
-        </div>
-        <div class="grade-row">
-          <input type="text" name="class2" placeholder="Class name" required>
-          <input type="number" name="grade2" placeholder="Grade (%)" required>
-        </div>
-        <div class="grade-row">
-          <input type="text" name="class3" placeholder="Class name" required>
-          <input type="number" name="grade3" placeholder="Grade (%)" required>
-        </div>
-      </div>
-
-      <button type="button" class="plus-btn" onclick="addGradeRow()">+</button>
-      <button type="submit">Send Grades</button>
-    </form>
   </div>
 
 </main>
@@ -233,7 +181,6 @@
   © <span id="year"></span> Future of Music Mentoring
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -276,8 +223,8 @@
     if (mentees[name]) {
       lookupCard.style.display = "none";
       progressCard.style.display = "block";
-      document.getElementById("menteeName").textContent = mentees[name].name + "'s Progress Overview";
-      document.getElementById("menteeNameForm").value = mentees[name].name;
+      document.getElementById("menteeName").textContent =
+        mentees[name].name + "'s Progress Overview";
 
       sections.innerHTML = "";
 
@@ -288,7 +235,8 @@
           section.className = "pillar";
 
           const title = document.createElement("h3");
-          title.textContent = program.charAt(0).toUpperCase() + program.slice(1);
+          title.textContent =
+            program.charAt(0).toUpperCase() + program.slice(1);
           section.appendChild(title);
 
           const bar = document.createElement("div");
@@ -310,50 +258,13 @@
           sections.appendChild(section);
         }
       }
+
       error.textContent = "";
     } else {
       error.textContent = "No progress found for this name.";
     }
   }
-
-  let gradeCount = 3;
-  function addGradeRow() {
-    gradeCount++;
-    const container = document.getElementById("gradesContainer");
-    const row = document.createElement("div");
-    row.className = "grade-row";
-    row.innerHTML = `<input type="text" name="class${gradeCount}" placeholder="Class name" required>
-                     <input type="number" name="grade${gradeCount}" placeholder="Grade (%)" required>`;
-    container.appendChild(row);
-  }
-
-  // EmailJS setup
-  emailjs.init("dKsmeaeNzVRJkgmVc");
-
-  document.getElementById("gradesForm").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    let form = this;
-    let gradesText = "";
-    form.querySelectorAll(".grade-row").forEach((row, index) => {
-      const cls = row.querySelector("input[type='text']").value;
-      const grd = row.querySelector("input[type='number']").value;
-      gradesText += `Class ${index+1}: ${cls} - ${grd}%\n`;
-    });
-
-    emailjs.send("service_e1wqoft", "template_x4vcnwn", {
-      mentee_name: form.mentee_name.value,
-      grades: gradesText,
-      mentor_email: "aereon@fomusic.org" // always sends to you
-    }).then(() => {
-      alert("Grades sent successfully!");
-      form.reset();
-    }).catch(() => {
-      alert("Failed to send grades. Try again.");
-    });
-  });
-
 </script>
+
 </body>
 </html>
-
