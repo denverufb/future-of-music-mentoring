@@ -156,7 +156,6 @@
 
 <main class="container">
 
-  <!-- Lookup Card -->
   <div class="card" id="lookup">
     <h2>View Your Progress</h2>
     <p style="color:var(--muted)">
@@ -168,7 +167,6 @@
     <div class="error" id="errorMsg"></div>
   </div>
 
-  <!-- Progress Card -->
   <div class="card" id="progressCard" style="display:none;">
     <h2 id="menteeName">Progress Overview</h2>
     <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
@@ -190,7 +188,7 @@
       programs: { academics: true, personal: true, entrepreneurship: true },
       progress: {
         academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 9, notes: [Increasing self confidence] },
+        personal: { percent: 9, notes: ["Working on boosting confidence"] },
         entrepreneurship: { percent: 0, notes: ["Not started yet"] }
       }
     },
@@ -235,15 +233,16 @@
           section.className = "pillar";
 
           const title = document.createElement("h3");
-          title.textContent =
-            program.charAt(0).toUpperCase() + program.slice(1);
+          title.textContent = program.charAt(0).toUpperCase() + program.slice(1);
           section.appendChild(title);
 
           const bar = document.createElement("div");
           bar.className = "progress-bar";
+
           const fill = document.createElement("div");
           fill.className = "progress-fill";
           fill.style.width = data.percent + "%";
+
           bar.appendChild(fill);
           section.appendChild(bar);
 
@@ -253,8 +252,8 @@
             li.textContent = note;
             list.appendChild(li);
           });
-          section.appendChild(list);
 
+          section.appendChild(list);
           sections.appendChild(section);
         }
       }
