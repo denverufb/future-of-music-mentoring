@@ -119,11 +119,12 @@
     }
 
     .goal{
-      display:flex;
-      align-items:center;
-      gap:.75rem;
-      padding:.5rem 0;
-      cursor:pointer;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .5rem 0;
+      cursor: pointer;
+      position: relative;
     }
 
     .check{
@@ -143,6 +144,25 @@
       border-top:1px solid rgba(255,255,255,.15);
       text-align:center;
     }
+
+    /* Delete button default hidden */
+    .goal button.delete-btn {
+      position: absolute;
+      right: 0;
+      background: red;
+      color: white;
+      border: none;
+      padding: 2px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .goal:hover button.delete-btn {
+      opacity: 1;
+    }
+
   </style>
 </head>
 
@@ -248,12 +268,12 @@
     }
   };
 
-  // Load stored mentees, merge with default to ensure all five always exist
+  // Merge stored mentees with defaults so all five exist
   let mentees = {...defaultMentees};
   const stored = JSON.parse(localStorage.getItem("mentees") || "{}");
   for(const key in stored) {
     if(mentees[key]) {
-      mentees[key] = stored[key]; // merge saved goals/progress
+      mentees[key] = stored[key];
     }
   }
 
@@ -296,7 +316,7 @@
       goalTitle.textContent = "Goals Throughout the Program";
       goalSection.appendChild(goalTitle);
 
-      mentees[foundKey].goals.forEach((goal) => {
+      mentees[foundKey].goals.forEach((goal, index) => {
         const g = document.createElement("div");
         g.className = "goal";
 
@@ -305,10 +325,22 @@
             ${goal.completed ? '✔' : '○'}
           </span>
           <span>${goal.text}</span>
+          <button class="delete-btn">X</button>
         `;
 
-        g.addEventListener("click", () => {
-          goal.completed = !goal.completed;
+        // Toggle complete when clicking goal text
+        g.addEventListener("click", (e) => {
+          if (!e.target.classList.contains('delete-btn')) {
+            goal.completed = !goal.completed;
+            saveMentees();
+            loadProgress();
+          }
+        });
+
+        // Delete goal
+        g.querySelector(".delete-btn").addEventListener("click", (e) => {
+          e.stopPropagation();
+          mentees[currentMentee].goals.splice(index, 1);
           saveMentees();
           loadProgress();
         });
