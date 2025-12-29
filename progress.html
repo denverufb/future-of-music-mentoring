@@ -196,7 +196,7 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  let mentees = {
+  const defaultMentees = {
     "jeremiah": {
       name: "Jeremiah Jones",
       goals: [],
@@ -248,9 +248,13 @@
     }
   };
 
-  // Load saved goals from localStorage
-  if(localStorage.getItem("mentees")) {
-    mentees = JSON.parse(localStorage.getItem("mentees"));
+  // Load stored mentees, merge with default to ensure all five always exist
+  let mentees = {...defaultMentees};
+  const stored = JSON.parse(localStorage.getItem("mentees") || "{}");
+  for(const key in stored) {
+    if(mentees[key]) {
+      mentees[key] = stored[key]; // merge saved goals/progress
+    }
   }
 
   let currentMentee = null;
@@ -292,7 +296,7 @@
       goalTitle.textContent = "Goals Throughout the Program";
       goalSection.appendChild(goalTitle);
 
-      mentees[foundKey].goals.forEach((goal, index) => {
+      mentees[foundKey].goals.forEach((goal) => {
         const g = document.createElement("div");
         g.className = "goal";
 
@@ -303,7 +307,6 @@
           <span>${goal.text}</span>
         `;
 
-        // Toggle complete/incomplete on click
         g.addEventListener("click", () => {
           goal.completed = !goal.completed;
           saveMentees();
