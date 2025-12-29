@@ -51,13 +51,12 @@ body{
 .brand .tagline{font-size:0.8rem;color:var(--muted);display:block;margin-top:0.15rem}
 
 /* Navigation */
-/* Navigation bubbles */
 .nav-link {
   display: inline-block;
-  padding: 10px 20px;        /* bigger padding for bubble effect */
-  margin: 5px 0;             /* vertical spacing */
-  border-radius: 25px;       /* fully rounded bubble */
-  background-color: #1E2238; /* slightly lighter than main bg */
+  padding: 10px 20px;
+  margin: 5px 0;
+  border-radius: 25px;
+  background-color: #1E2238;
   color: var(--accent);
   text-decoration: none;
   font-size: 0.95rem;
@@ -74,8 +73,6 @@ body{
 .nav-link.active {
   background-color: var(--accent);
   color: #fff;
-}
-
 }
 
 /* Hero */
@@ -117,10 +114,8 @@ body{
   border:1px solid #9199CA33;
   padding:0.5rem;
   border-radius:6px;
-  background:#1E2238; /* slightly lighter than bg */
+  background:#1E2238;
 }
-
-/* Responsive iframe: maintain aspect ratio and be mobile friendly */
 .iframe-wrapper iframe{
   width:100%;
   min-height:520px;
@@ -151,6 +146,106 @@ ul{margin-top:0}
 a:focus, button:focus, input:focus, textarea:focus{
   outline:3px solid rgba(118,173,203,0.4);
   outline-offset:2px;
+}
+
+/* Progress page pillars and goals */
+.pillar{
+  margin-top:1.5rem;
+}
+
+.pillar h3{
+  margin-bottom:0.75rem;
+  color:var(--accent);
+}
+
+.progress-bar{
+  background:#1E2238;
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin:.5rem 0;
+  height:12px;
+}
+
+.progress-fill{
+  height:100%;
+  background:var(--accent);
+  width:0%;
+  transition: width 0.3s ease;
+}
+
+/* Goals list */
+.goal{
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+  padding:0.5rem 0;
+  cursor:pointer;
+  position:relative;
+  border-bottom:1px solid #9199CA33;
+}
+
+.goal span{
+  flex:1;
+}
+
+.goal .check{
+  font-size:1.25rem;
+  color:#4CAF50;
+}
+
+.goal .unchecked{
+  font-size:1.25rem;
+  color:var(--muted);
+}
+
+/* Delete button hidden by default, appears on hover */
+.goal button.delete-btn{
+  position:absolute;
+  right:0;
+  background:red;
+  color:white;
+  border:none;
+  padding:2px 6px;
+  border-radius:4px;
+  cursor:pointer;
+  opacity:0;
+  transition:opacity 0.2s;
+}
+
+.goal:hover button.delete-btn{
+  opacity:1;
+}
+
+/* Input for adding new goals */
+#addGoalSection{
+  display:flex;
+  gap:0.5rem;
+  margin-bottom:1rem;
+}
+
+#addGoalSection input{
+  flex:1;
+  border-radius:var(--radius);
+  border:1px solid #9199CA33;
+  background:#1E2238;
+  color:var(--text);
+  padding:var(--btn-padding);
+}
+
+#addGoalSection button{
+  border-radius:var(--radius);
+  padding:var(--btn-padding);
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.2s ease;
+}
+
+#addGoalSection button:hover{
+  transform:translateY(-2px);
+  background:#5e99b5;
 }
 
 /* Smaller screens */
