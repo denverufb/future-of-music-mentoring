@@ -169,7 +169,7 @@
     <p style="color:var(--muted)">
       Enter your first name to view your mentorship progress.
     </p>
-    <input id="nameInput" placeholder="Enter your name" />
+    <input id="nameInput" placeholder="Enter your first name" />
     <br>
     <button onclick="loadProgress()">View Progress</button>
     <div class="error" id="errorMsg"></div>
@@ -260,18 +260,27 @@
   }
 
   function loadProgress() {
-    const name = document.getElementById("nameInput").value.trim().toLowerCase();
+    const input = document.getElementById("nameInput").value.trim().toLowerCase();
+    let foundKey = null;
+
+    for (const key in mentees) {
+      if (mentees[key].name.split(" ")[0].toLowerCase() === input) {
+        foundKey = key;
+        break;
+      }
+    }
+
     const error = document.getElementById("errorMsg");
     const progressCard = document.getElementById("progressCard");
     const lookupCard = document.getElementById("lookup");
     const sections = document.getElementById("progressSections");
 
-    if (mentees[name]) {
-      currentMentee = name;
+    if (foundKey) {
+      currentMentee = foundKey;
       lookupCard.style.display = "none";
       progressCard.style.display = "block";
       document.getElementById("menteeName").textContent =
-        mentees[name].name + "'s Progress Overview";
+        mentees[foundKey].name + "'s Progress Overview";
 
       sections.innerHTML = "";
 
@@ -283,7 +292,7 @@
       goalTitle.textContent = "Goals Throughout the Program";
       goalSection.appendChild(goalTitle);
 
-      mentees[name].goals.forEach((goal, index) => {
+      mentees[foundKey].goals.forEach((goal, index) => {
         const g = document.createElement("div");
         g.className = "goal";
 
@@ -307,9 +316,9 @@
       sections.appendChild(goalSection);
 
       // Progress Sections
-      for (const program in mentees[name].programs) {
-        if (mentees[name].programs[program]) {
-          const data = mentees[name].progress[program];
+      for (const program in mentees[foundKey].programs) {
+        if (mentees[foundKey].programs[program]) {
+          const data = mentees[foundKey].progress[program];
           const section = document.createElement("div");
           section.className = "pillar";
 
@@ -343,7 +352,7 @@
 
       error.textContent = "";
     } else {
-      error.textContent = "No progress found for this name.";
+      error.textContent = "No progress found for this first name.";
     }
   }
 
