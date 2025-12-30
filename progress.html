@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mentee Progress — Future of Music</title>
-  <meta name="description" content="View mentee progress across academics, personal development, and entrepreneurship." />
 
   <style>
     :root{
@@ -24,7 +23,6 @@
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
       background:var(--bg);
       color:var(--text);
-      line-height:1.45;
       text-align:center;
     }
 
@@ -32,44 +30,6 @@
       max-width:var(--max);
       margin:0 auto;
       padding:1rem;
-    }
-
-    .site-header{
-      border-bottom:1px solid rgba(255,255,255,.15);
-      padding:1.5rem 0;
-    }
-
-    .brand{
-      font-weight:800;
-      font-size:1.35rem;
-    }
-
-    .subtitle{
-      color:var(--muted);
-      font-size:.9rem;
-      margin-top:.25rem;
-    }
-
-    .main-nav{
-      margin-top:1rem;
-      display:flex;
-      justify-content:center;
-      gap:.75rem;
-      flex-wrap:wrap;
-    }
-
-    .nav-link{
-      text-decoration:none;
-      padding:.5rem 1rem;
-      border-radius:999px;
-      background:#1E2238;
-      border:2px solid var(--accent);
-      color:#fff;
-      font-weight:600;
-    }
-
-    .nav-link:hover{
-      background:var(--accent);
     }
 
     .card{
@@ -91,18 +51,8 @@
     button{
       background:var(--accent);
       color:#fff;
-      cursor:pointer;
       font-weight:600;
-    }
-
-    .error{
-      color:#ff6b6b;
-      margin-top:.75rem;
-      font-size:.9rem;
-    }
-
-    .pillar{
-      margin-top:1.25rem;
+      cursor:pointer;
     }
 
     .progress-bar{
@@ -119,288 +69,197 @@
     }
 
     .goal{
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      padding: .5rem 0;
-      cursor: pointer;
-      position: relative;
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      padding:.5rem 0;
+      cursor:pointer;
+      position:relative;
     }
 
-    .check{
-      font-size:1.25rem;
-      color:var(--success);
+    .check{ color:var(--success); font-size:1.2rem }
+    .unchecked{ color:var(--muted); font-size:1.2rem }
+
+    .goal button{
+      position:absolute;
+      right:0;
+      background:red;
+      color:white;
+      border:none;
+      padding:2px 6px;
+      border-radius:4px;
+      opacity:0;
     }
 
-    .unchecked{
-      font-size:1.25rem;
-      color:var(--muted);
-    }
-
-    footer{
-      margin-top:2rem;
-      padding:1rem 0;
-      color:var(--muted);
-      border-top:1px solid rgba(255,255,255,.15);
-      text-align:center;
-    }
-
-    /* Delete button default hidden */
-    .goal button.delete-btn {
-      position: absolute;
-      right: 0;
-      background: red;
-      color: white;
-      border: none;
-      padding: 2px 6px;
-      border-radius: 4px;
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .goal:hover button.delete-btn {
-      opacity: 1;
-    }
-
+    .goal:hover button{ opacity:1 }
   </style>
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="container">
-    <div class="brand">Future of Music & Youth Creator Launch</div>
-    <div class="subtitle">Mentorship Progress Portal</div>
-
-    <nav class="main-nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-      <a href="survey.html" class="nav-link">Weekly Check-In</a>
-      <a href="progress.html" class="nav-link">Progress</a>
-    </nav>
-  </div>
-</header>
-
 <main class="container">
 
   <div class="card" id="lookup">
     <h2>View Your Progress</h2>
-    <p style="color:var(--muted)">
-      Enter your first name to view your mentorship progress.
-    </p>
     <input id="nameInput" placeholder="Enter your first name" />
     <br>
     <button onclick="loadProgress()">View Progress</button>
-    <div class="error" id="errorMsg"></div>
+    <div id="errorMsg" style="color:#ff6b6b;margin-top:.5rem"></div>
   </div>
 
   <div class="card" id="progressCard" style="display:none;">
-    <h2 id="menteeName">Progress Overview</h2>
-    <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
-    
-    <div id="addGoalSection" style="margin-bottom:1rem;">
-      <input id="newGoalInput" placeholder="Add a new goal" />
-      <button onclick="addGoal()">Add Goal</button>
-    </div>
-    
+    <h2 id="menteeName"></h2>
+
+    <input id="newGoalInput" placeholder="Add a new goal" />
+    <button onclick="addGoal()">Add Goal</button>
+
     <div id="progressSections"></div>
   </div>
 
 </main>
 
-<footer>
-  © <span id="year"></span> Future of Music Mentoring
-</footer>
-
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  const defaultMentees = {
-    "jeremiah": {
-      name: "Jeremiah Jones",
-      goals: [],
-      programs: { academics: true, personal: true, entrepreneurship: true },
-      progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 9, notes: ["Working on boosting confidence"] },
-        entrepreneurship: { percent: 0, notes: ["Not started yet"] }
-      }
-    },
-    "billy": {
-      name: "Billy Williams",
-      goals: [],
-      programs: { academics: true, personal: true, entrepreneurship: true },
-      progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 0, notes: ["Not started yet"] },
-        entrepreneurship: { percent: 0, notes: ["Not started yet"] }
-      }
-    },
-    "leah": {
-      name: "Leah Jimerson",
-      goals: [],
-      programs: { academics: true, personal: true, entrepreneurship: false },
-      progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 0, notes: ["Not started yet"] }
-      }
-    },
-    "zion": {
-      name: "Zion Williams",
-      goals: [],
-      programs: { academics: true, personal: true, entrepreneurship: true },
-      progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 0, notes: ["Not started yet"] },
-        entrepreneurship: { percent: 0, notes: ["Not started yet"] }
-      }
-    },
-    "derrick": {
-      name: "Derrick Flannel",
-      goals: [],
-      programs: { academics: true, personal: true, entrepreneurship: true },
-      progress: {
-        academics: { percent: 0, notes: ["Not started yet"] },
-        personal: { percent: 50, notes: ["He is confident and aware of how to set personal goals"] },
-        entrepreneurship: { percent: 0, notes: ["Not started yet"] }
-      }
+const defaultMentees = {
+  jeremiah: {
+    name: "Jeremiah Jones",
+    goals: [],
+    programs:{ academics:true, personal:true, entrepreneurship:true },
+    progress:{
+      academics:{ percent:0, notes:["Not started yet"] },
+      personal:{ percent:9, notes:["Working on boosting confidence"] },
+      entrepreneurship:{ percent:0, notes:["Not started yet"] }
     }
+  },
+  billy: {
+    name: "Billy Williams",
+    goals: [],
+    programs:{ academics:true, personal:true, entrepreneurship:true },
+    progress:{
+      academics:{ percent:0, notes:["Not started yet"] },
+      personal:{ percent:0, notes:["Not started yet"] },
+      entrepreneurship:{ percent:0, notes:["Not started yet"] }
+    }
+  },
+  leah: {
+    name: "Leah Jimerson",
+    goals: [],
+    programs:{ academics:true, personal:true },
+    progress:{
+      academics:{ percent:0, notes:["Not started yet"] },
+      personal:{ percent:0, notes:["Not started yet"] }
+    }
+  },
+  zion: {
+    name: "Zion Williams",
+    goals: [],
+    programs:{ academics:true, personal:true, entrepreneurship:true },
+    progress:{
+      academics:{ percent:0, notes:["Not started yet"] },
+      personal:{ percent:0, notes:["Not started yet"] },
+      entrepreneurship:{ percent:0, notes:["Not started yet"] }
+    }
+  },
+  derrick: {
+    name: "Derrick Flannel",
+    goals: [],
+    programs:{ academics:true, personal:true, entrepreneurship:true },
+    progress:{
+      academics:{ percent:0, notes:["Not started yet"] },
+      personal:{ percent:50, notes:["He is confident and aware of how to set personal goals"] },
+      entrepreneurship:{ percent:0, notes:["Not started yet"] }
+    }
+  }
+};
+
+/* SAFE MERGE */
+const stored = JSON.parse(localStorage.getItem("mentees") || "{}");
+const mentees = {};
+
+for (const key in defaultMentees) {
+  mentees[key] = {
+    ...defaultMentees[key],
+    ...stored[key],
+    progress: {
+      ...defaultMentees[key].progress,
+      ...(stored[key]?.progress || {})
+    },
+    goals: stored[key]?.goals || defaultMentees[key].goals
   };
+}
 
-  // Merge stored mentees with defaults so all five exist
-  let mentees = {...defaultMentees};
-  const stored = JSON.parse(localStorage.getItem("mentees") || "{}");
-  for(const key in stored) {
-    if(mentees[key]) {
-      mentees[key] = stored[key];
-    }
+let currentMentee = null;
+
+function saveMentees(){
+  localStorage.setItem("mentees", JSON.stringify(mentees));
+}
+
+function loadProgress(){
+  const name = document.getElementById("nameInput").value.trim().toLowerCase();
+  const key = Object.keys(mentees).find(
+    k => mentees[k].name.split(" ")[0].toLowerCase() === name
+  );
+
+  if(!key){
+    document.getElementById("errorMsg").textContent = "No progress found.";
+    return;
   }
 
-  let currentMentee = null;
+  currentMentee = key;
+  document.getElementById("lookup").style.display="none";
+  document.getElementById("progressCard").style.display="block";
+  document.getElementById("menteeName").textContent =
+    mentees[key].name + "'s Progress";
 
-  function saveMentees() {
-    localStorage.setItem("mentees", JSON.stringify(mentees));
+  const sections = document.getElementById("progressSections");
+  sections.innerHTML = "";
+
+  /* GOALS */
+  mentees[key].goals.forEach((g,i)=>{
+    const div = document.createElement("div");
+    div.className="goal";
+    div.innerHTML = `
+      <span class="${g.completed?'check':'unchecked'}">${g.completed?'✔':'○'}</span>
+      <span>${g.text}</span>
+      <button>X</button>
+    `;
+    div.onclick = e=>{
+      if(e.target.tagName==="BUTTON") return;
+      g.completed=!g.completed;
+      saveMentees();
+      loadProgress();
+    };
+    div.querySelector("button").onclick = e=>{
+      e.stopPropagation();
+      mentees[key].goals.splice(i,1);
+      saveMentees();
+      loadProgress();
+    };
+    sections.appendChild(div);
+  });
+
+  /* PROGRESS */
+  for(const p in mentees[key].progress){
+    const data = mentees[key].progress[p];
+    const card = document.createElement("div");
+    card.innerHTML = `
+      <h3>${p}</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:${data.percent}%"></div>
+      </div>
+      <ul>${data.notes.map(n=>`<li>${n}</li>`).join("")}</ul>
+    `;
+    sections.appendChild(card);
   }
+}
 
-  function loadProgress() {
-    const input = document.getElementById("nameInput").value.trim().toLowerCase();
-    let foundKey = null;
-
-    for (const key in mentees) {
-      if (mentees[key].name.split(" ")[0].toLowerCase() === input) {
-        foundKey = key;
-        break;
-      }
-    }
-
-    const error = document.getElementById("errorMsg");
-    const progressCard = document.getElementById("progressCard");
-    const lookupCard = document.getElementById("lookup");
-    const sections = document.getElementById("progressSections");
-
-    if (foundKey) {
-      currentMentee = foundKey;
-      lookupCard.style.display = "none";
-      progressCard.style.display = "block";
-      document.getElementById("menteeName").textContent =
-        mentees[foundKey].name + "'s Progress Overview";
-
-      sections.innerHTML = "";
-
-      // Goals Section
-      const goalSection = document.createElement("div");
-      goalSection.className = "pillar";
-
-      const goalTitle = document.createElement("h3");
-      goalTitle.textContent = "Goals Throughout the Program";
-      goalSection.appendChild(goalTitle);
-
-      mentees[foundKey].goals.forEach((goal, index) => {
-        const g = document.createElement("div");
-        g.className = "goal";
-
-        g.innerHTML = `
-          <span class="${goal.completed ? 'check' : 'unchecked'}">
-            ${goal.completed ? '✔' : '○'}
-          </span>
-          <span>${goal.text}</span>
-          <button class="delete-btn">X</button>
-        `;
-
-        // Toggle complete when clicking goal text
-        g.addEventListener("click", (e) => {
-          if (!e.target.classList.contains('delete-btn')) {
-            goal.completed = !goal.completed;
-            saveMentees();
-            loadProgress();
-          }
-        });
-
-        // Delete goal
-        g.querySelector(".delete-btn").addEventListener("click", (e) => {
-          e.stopPropagation();
-          mentees[currentMentee].goals.splice(index, 1);
-          saveMentees();
-          loadProgress();
-        });
-
-        goalSection.appendChild(g);
-      });
-
-      sections.appendChild(goalSection);
-
-      // Progress Sections
-      for (const program in mentees[foundKey].programs) {
-        if (mentees[foundKey].programs[program]) {
-          const data = mentees[foundKey].progress[program];
-          const section = document.createElement("div");
-          section.className = "pillar";
-
-          const title = document.createElement("h3");
-          title.textContent = program.charAt(0).toUpperCase() + program.slice(1);
-          section.appendChild(title);
-
-          const bar = document.createElement("div");
-          bar.className = "progress-bar";
-
-          const fill = document.createElement("div");
-          fill.className = "progress-fill";
-          fill.style.width = data.percent + "%";
-
-          bar.appendChild(fill);
-          section.appendChild(bar);
-
-          const list = document.createElement("ul");
-          if(data.notes) {
-            data.notes.forEach(note => {
-              const li = document.createElement("li");
-              li.textContent = note;
-              list.appendChild(li);
-            });
-          }
-
-          section.appendChild(list);
-          sections.appendChild(section);
-        }
-      }
-
-      error.textContent = "";
-    } else {
-      error.textContent = "No progress found for this first name.";
-    }
-  }
-
-  function addGoal() {
-    const input = document.getElementById("newGoalInput");
-    const text = input.value.trim();
-    if(!text || !currentMentee) return;
-
-    mentees[currentMentee].goals.push({ text, completed: false });
-    input.value = "";
-    saveMentees();
-    loadProgress();
-  }
+function addGoal(){
+  const input = document.getElementById("newGoalInput");
+  if(!input.value || !currentMentee) return;
+  mentees[currentMentee].goals.push({ text:input.value, completed:false });
+  input.value="";
+  saveMentees();
+  loadProgress();
+}
 </script>
 
 </body>
