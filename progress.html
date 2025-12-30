@@ -93,7 +93,6 @@
     .progress-fill{
       height:12px;
       background:var(--accent);
-      width:0%;
     }
 
     .goal{
@@ -104,8 +103,8 @@
       cursor:pointer;
     }
 
-    .check{ font-size:1.25rem; color:var(--success) }
-    .unchecked{ font-size:1.25rem; color:var(--muted) }
+    .check{ color:var(--success); font-size:1.2rem }
+    .unchecked{ color:var(--muted); font-size:1.2rem }
 
     .error{
       color:#ff6b6b;
@@ -115,10 +114,16 @@
 
     iframe{
       width:100%;
-      height:700px;
+      height:720px;
       border:none;
       border-radius:8px;
       margin-top:.5rem;
+    }
+
+    footer{
+      margin:2rem 0;
+      color:var(--muted);
+      font-size:.85rem;
     }
   </style>
 </head>
@@ -145,7 +150,7 @@
     <h2>View Your Progress</h2>
     <p style="color:var(--muted)">Enter your first name to view your mentorship progress.</p>
     <input id="nameInput" placeholder="Enter your first name" />
-    <br>
+    <br><br>
     <button onclick="loadProgress()">View Progress</button>
     <div class="error" id="errorMsg"></div>
   </div>
@@ -158,9 +163,7 @@
 
     <div class="pillar">
       <h3>Submit Weekly Progress Report</h3>
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?embedded=true">
-      </iframe>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?embedded=true"></iframe>
     </div>
   </div>
 
@@ -224,6 +227,8 @@ let currentMentee = null;
 
 function loadProgress(){
   const input = document.getElementById("nameInput").value.trim().toLowerCase();
+  document.getElementById("errorMsg").textContent = "";
+
   const key = Object.keys(mentees).find(
     k => mentees[k].name.split(" ")[0].toLowerCase() === input
   );
@@ -238,7 +243,7 @@ function loadProgress(){
   document.getElementById("lookup").style.display = "none";
   document.getElementById("progressCard").style.display = "block";
   document.getElementById("menteeName").textContent =
-    mentees[key].name + "'s Progress Overview";
+    mentees[key].name + " — Progress Overview";
 
   renderProgress();
 }
@@ -254,7 +259,7 @@ function renderProgress(){
   if(mentees[currentMentee].goals.length === 0){
     const p = document.createElement("p");
     p.style.color = "var(--muted)";
-    p.textContent = "Goals are not set yet.";
+    p.textContent = "Goals not set yet.";
     goalSection.appendChild(p);
   } else {
     mentees[currentMentee].goals.forEach(goal=>{
@@ -276,12 +281,12 @@ function renderProgress(){
 
   sections.appendChild(goalSection);
 
-  for(const program in mentees[currentMentee].progress){
-    const data = mentees[currentMentee].progress[program];
+  for(const area in mentees[currentMentee].progress){
+    const data = mentees[currentMentee].progress[area];
     const section = document.createElement("div");
     section.className = "pillar";
     section.innerHTML = `
-      <h3>${program.charAt(0).toUpperCase()+program.slice(1)}</h3>
+      <h3>${area.charAt(0).toUpperCase()+area.slice(1)}</h3>
       <div class="progress-bar">
         <div class="progress-fill" style="width:${data.percent}%"></div>
       </div>
