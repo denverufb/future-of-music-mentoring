@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mentee Progress — Future of Music</title>
-  <meta name="description" content="View mentee progress across academics, personal development, and entrepreneurship." />
 
   <style>
     :root{
@@ -80,27 +79,6 @@
       text-align:left;
     }
 
-    input, button{
-      padding:.75rem;
-      font-size:1rem;
-      border-radius:6px;
-      border:none;
-      margin-top:.5rem;
-    }
-
-    button{
-      background:var(--accent);
-      color:#fff;
-      cursor:pointer;
-      font-weight:600;
-    }
-
-    .error{
-      color:#ff6b6b;
-      margin-top:.75rem;
-      font-size:.9rem;
-    }
-
     .pillar{
       margin-top:1.25rem;
     }
@@ -124,11 +102,24 @@
       gap:.75rem;
       padding:.5rem 0;
       cursor:pointer;
-      position:relative;
     }
 
     .check{ font-size:1.25rem; color:var(--success) }
     .unchecked{ font-size:1.25rem; color:var(--muted) }
+
+    .error{
+      color:#ff6b6b;
+      margin-top:.75rem;
+      font-size:.9rem;
+    }
+
+    iframe{
+      width:100%;
+      height:700px;
+      border:none;
+      border-radius:8px;
+      margin-top:.5rem;
+    }
   </style>
 </head>
 
@@ -163,23 +154,13 @@
     <h2 id="menteeName"></h2>
     <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
 
-    <div id="addGoalSection">
-      <input id="newGoalInput" placeholder="Add a new goal from check-in" />
-      <button onclick="addGoal()">Add Goal</button>
-    </div>
-
     <div id="progressSections"></div>
 
     <div class="pillar">
       <h3>Submit Weekly Progress Report</h3>
-      <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?usp=publish-editor"
-        target="_blank"
-        class="nav-link"
-        style="display:inline-block;margin-top:.5rem"
-      >
-        Submit Progress Report
-      </a>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?embedded=true">
+      </iframe>
     </div>
   </div>
 
@@ -248,7 +229,8 @@ function loadProgress(){
   );
 
   if(!key){
-    document.getElementById("errorMsg").textContent = "No progress found for this first name.";
+    document.getElementById("errorMsg").textContent =
+      "No progress found for this first name.";
     return;
   }
 
@@ -269,21 +251,28 @@ function renderProgress(){
   goalSection.className = "pillar";
   goalSection.innerHTML = "<h3>Goals Throughout the Program</h3>";
 
-  mentees[currentMentee].goals.forEach(goal=>{
-    const g = document.createElement("div");
-    g.className = "goal";
-    g.innerHTML = `
-      <span class="${goal.completed ? "check" : "unchecked"}">
-        ${goal.completed ? "✔" : "○"}
-      </span>
-      <span>${goal.text}</span>
-    `;
-    g.onclick = ()=>{
-      goal.completed = !goal.completed;
-      renderProgress();
-    };
-    goalSection.appendChild(g);
-  });
+  if(mentees[currentMentee].goals.length === 0){
+    const p = document.createElement("p");
+    p.style.color = "var(--muted)";
+    p.textContent = "Goals are not set yet.";
+    goalSection.appendChild(p);
+  } else {
+    mentees[currentMentee].goals.forEach(goal=>{
+      const g = document.createElement("div");
+      g.className = "goal";
+      g.innerHTML = `
+        <span class="${goal.completed ? "check" : "unchecked"}">
+          ${goal.completed ? "✔" : "○"}
+        </span>
+        <span>${goal.text}</span>
+      `;
+      g.onclick = ()=>{
+        goal.completed = !goal.completed;
+        renderProgress();
+      };
+      goalSection.appendChild(g);
+    });
+  }
 
   sections.appendChild(goalSection);
 
@@ -300,14 +289,6 @@ function renderProgress(){
     `;
     sections.appendChild(section);
   }
-}
-
-function addGoal(){
-  const input = document.getElementById("newGoalInput");
-  if(!input.value || !currentMentee) return;
-  mentees[currentMentee].goals.push({text:input.value, completed:false});
-  input.value = "";
-  renderProgress();
 }
 </script>
 
