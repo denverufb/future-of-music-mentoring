@@ -127,12 +127,29 @@
       font-weight:600;
     }
 
-    iframe{
-      width:100%;
-      height:720px;
-      border:none;
-      border-radius:8px;
-      margin-top:.5rem;
+    .iframe-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-bottom: 140%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (min-width: 768px) {
+      .iframe-wrapper {
+        padding-bottom: 110%;
+      }
     }
 
     footer{
@@ -178,8 +195,22 @@
 
     <div class="pillar">
       <h3>Submit Weekly Progress Report</h3>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?embedded=true"></iframe>
+      <section class="iframe-wrapper" aria-label="Weekly progress report form">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?embedded=true"
+          title="Weekly Progress Report"
+          loading="lazy">
+        </iframe>
+      </section>
+      <p class="form-fallback" style="color:var(--muted)">
+        If the form does not appear above, open it in a new tab:
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?usp=publish-editor"
+           target="_blank" rel="noopener">
+           Open the Progress Report form
+        </a>
+      </p>
     </div>
+
   </div>
 
 </main>
@@ -192,50 +223,11 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const mentees = {
-  jeremiah:{
-    name:"Jeremiah Jones",
-    goals:[],
-    progress:{
-      academics:{percent:0, notes:["Not started yet"]},
-      personal:{percent:9, notes:["Working on boosting confidence"]},
-      entrepreneurship:{percent:0, notes:["Not started yet"]}
-    }
-  },
-  billy:{
-    name:"Billy Williams",
-    goals:[],
-    progress:{
-      academics:{percent:0, notes:["Not started yet"]},
-      personal:{percent:0, notes:["Not started yet"]},
-      entrepreneurship:{percent:0, notes:["Not started yet"]}
-    }
-  },
-  leah:{
-    name:"Leah Jimerson",
-    goals:[],
-    progress:{
-      academics:{percent:0, notes:["Not started yet"]},
-      personal:{percent:0, notes:["Not started yet"]}
-    }
-  },
-  zion:{
-    name:"Zion Williams",
-    goals:[],
-    progress:{
-      academics:{percent:0, notes:["Not started yet"]},
-      personal:{percent:0, notes:["Not started yet"]},
-      entrepreneurship:{percent:0, notes:["Not started yet"]}
-    }
-  },
-  derrick:{
-    name:"Derrick Flannel",
-    goals:[],
-    progress:{
-      academics:{percent:0, notes:["Not started yet"]},
-      personal:{percent:50, notes:["He is confident and aware of how to set personal goals"]},
-      entrepreneurship:{percent:0, notes:["Not started yet"]}
-    }
-  }
+  jeremiah:{name:"Jeremiah Jones",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:9,notes:["Working on boosting confidence"]},entrepreneurship:{percent:0,notes:["Not started yet"]}}},
+  billy:{name:"Billy Williams",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:0,notes:["Not started yet"]},entrepreneurship:{percent:0,notes:["Not started yet"]}}},
+  leah:{name:"Leah Jimerson",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:0,notes:["Not started yet"]}}},
+  zion:{name:"Zion Williams",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:0,notes:["Not started yet"]},entrepreneurship:{percent:0,notes:["Not started yet"]}}},
+  derrick:{name:"Derrick Flannel",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:50,notes:["He is confident and aware of how to set personal goals"]},entrepreneurship:{percent:0,notes:["Not started yet"]}}}
 };
 
 let currentMentee = null;
