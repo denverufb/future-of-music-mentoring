@@ -127,35 +127,23 @@
       font-weight:600;
     }
 
-    .iframe-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding-bottom: 140%;
-      height: 0;
-      overflow: hidden;
-    }
-
-    .iframe-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    @media (min-width: 768px) {
-      .iframe-wrapper {
-        padding-bottom: 110%;
-      }
-    }
-
     footer{
       margin:2rem 0;
       color:var(--muted);
       font-size:.85rem;
+    }
+
+    .progress-report-btn{
+      margin-top:1rem;
+      display:inline-block;
+      padding:.75rem 1.5rem;
+      font-size:1rem;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      text-decoration:none;
     }
   </style>
 </head>
@@ -195,20 +183,11 @@
 
     <div class="pillar">
       <h3>Submit Weekly Progress Report</h3>
-      <section class="iframe-wrapper" aria-label="Weekly progress report form">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?embedded=true"
-          title="Weekly Progress Report"
-          loading="lazy">
-        </iframe>
-      </section>
-      <p class="form-fallback" style="color:var(--muted)">
-        If the form does not appear above, open it in a new tab:
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?usp=publish-editor"
-           target="_blank" rel="noopener">
-           Open the Progress Report form
-        </a>
-      </p>
+      <a class="progress-report-btn" 
+         href="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?usp=publish-editor"
+         target="_blank" rel="noopener">
+         Submit Progress Report
+      </a>
     </div>
 
   </div>
@@ -223,11 +202,34 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const mentees = {
-  jeremiah:{name:"Jeremiah Jones",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:9,notes:["Working on boosting confidence"]},entrepreneurship:{percent:0,notes:["Not started yet"]}}},
+  jeremiah:{
+    name:"Jeremiah Jones",
+    goals:[
+      {text:"Achieve B's and A's during 2nd semester.", completed:false},
+      {text:"Get an after school job.", completed:false},
+      {text:"Follow daily routine for at least 4 days consistently.", completed:false},
+      {text:"Achieve better grades.", completed:false}
+    ],
+    progress:{
+      academics:{percent:0,notes:["Not started yet"]},
+      personal:{percent:9,notes:["Working on boosting confidence"]},
+      entrepreneurship:{percent:0,notes:["Not started yet"]}
+    }
+  },
   billy:{name:"Billy Williams",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:0,notes:["Not started yet"]},entrepreneurship:{percent:0,notes:["Not started yet"]}}},
   leah:{name:"Leah Jimerson",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:0,notes:["Not started yet"]}}},
   zion:{name:"Zion Williams",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:0,notes:["Not started yet"]},entrepreneurship:{percent:0,notes:["Not started yet"]}}},
-  derrick:{name:"Derrick Flannel",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]},personal:{percent:50,notes:["He is confident and aware of how to set personal goals"]},entrepreneurship:{percent:0,notes:["Not started yet"]}}}
+  derrick:{
+    name:"Derrick Flannel",
+    goals:[
+      {text:"Following instructions the first time they are given.", completed:false}
+    ],
+    progress:{
+      academics:{percent:0,notes:["Not started yet"]},
+      personal:{percent:50,notes:["He is confident and aware of how to set personal goals"]},
+      entrepreneurship:{percent:0,notes:["Not started yet"]}
+    }
+  }
 };
 
 let currentMentee = null;
