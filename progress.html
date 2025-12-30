@@ -129,26 +129,6 @@
 
     .check{ font-size:1.25rem; color:var(--success) }
     .unchecked{ font-size:1.25rem; color:var(--muted) }
-
-    .goal button.delete-btn{
-      position:absolute;
-      right:0;
-      background:red;
-      color:white;
-      border:none;
-      padding:2px 6px;
-      border-radius:4px;
-      opacity:0;
-    }
-
-    .goal:hover button.delete-btn{ opacity:1 }
-
-    footer{
-      margin-top:2rem;
-      padding:1rem 0;
-      color:var(--muted);
-      border-top:1px solid rgba(255,255,255,.15);
-    }
   </style>
 </head>
 
@@ -184,11 +164,23 @@
     <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
 
     <div id="addGoalSection">
-      <input id="newGoalInput" placeholder="Add a new goal" />
+      <input id="newGoalInput" placeholder="Add a new goal from check-in" />
       <button onclick="addGoal()">Add Goal</button>
     </div>
 
     <div id="progressSections"></div>
+
+    <div class="pillar">
+      <h3>Submit Weekly Progress Report</h3>
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?usp=publish-editor"
+        target="_blank"
+        class="nav-link"
+        style="display:inline-block;margin-top:.5rem"
+      >
+        Submit Progress Report
+      </a>
+    </div>
   </div>
 
 </main>
@@ -200,11 +192,10 @@
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-const defaultMentees = {
+const mentees = {
   jeremiah:{
     name:"Jeremiah Jones",
     goals:[],
-    programs:{academics:true, personal:true, entrepreneurship:true},
     progress:{
       academics:{percent:0, notes:["Not started yet"]},
       personal:{percent:9, notes:["Working on boosting confidence"]},
@@ -214,7 +205,6 @@ const defaultMentees = {
   billy:{
     name:"Billy Williams",
     goals:[],
-    programs:{academics:true, personal:true, entrepreneurship:true},
     progress:{
       academics:{percent:0, notes:["Not started yet"]},
       personal:{percent:0, notes:["Not started yet"]},
@@ -224,7 +214,6 @@ const defaultMentees = {
   leah:{
     name:"Leah Jimerson",
     goals:[],
-    programs:{academics:true, personal:true},
     progress:{
       academics:{percent:0, notes:["Not started yet"]},
       personal:{percent:0, notes:["Not started yet"]}
@@ -233,7 +222,6 @@ const defaultMentees = {
   zion:{
     name:"Zion Williams",
     goals:[],
-    programs:{academics:true, personal:true, entrepreneurship:true},
     progress:{
       academics:{percent:0, notes:["Not started yet"]},
       personal:{percent:0, notes:["Not started yet"]},
@@ -243,7 +231,6 @@ const defaultMentees = {
   derrick:{
     name:"Derrick Flannel",
     goals:[],
-    programs:{academics:true, personal:true, entrepreneurship:true},
     progress:{
       academics:{percent:0, notes:["Not started yet"]},
       personal:{percent:50, notes:["He is confident and aware of how to set personal goals"]},
@@ -252,27 +239,7 @@ const defaultMentees = {
   }
 };
 
-/* FIXED MERGE */
-const stored = JSON.parse(localStorage.getItem("mentees") || "{}");
-let mentees = {};
-
-for(const key in defaultMentees){
-  mentees[key] = {
-    ...defaultMentees[key],
-    ...stored[key],
-    progress:{
-      ...defaultMentees[key].progress,
-      ...(stored[key]?.progress || {})
-    },
-    goals: stored[key]?.goals || defaultMentees[key].goals
-  };
-}
-
 let currentMentee = null;
-
-function saveMentees(){
-  localStorage.setItem("mentees", JSON.stringify(mentees));
-}
 
 function loadProgress(){
   const input = document.getElementById("nameInput").value.trim().toLowerCase();
@@ -291,47 +258,37 @@ function loadProgress(){
   document.getElementById("menteeName").textContent =
     mentees[key].name + "'s Progress Overview";
 
+  renderProgress();
+}
+
+function renderProgress(){
   const sections = document.getElementById("progressSections");
   sections.innerHTML = "";
 
-  /* GOALS */
   const goalSection = document.createElement("div");
   goalSection.className = "pillar";
   goalSection.innerHTML = "<h3>Goals Throughout the Program</h3>";
 
-  mentees[key].goals.forEach((goal,i)=>{
+  mentees[currentMentee].goals.forEach(goal=>{
     const g = document.createElement("div");
     g.className = "goal";
     g.innerHTML = `
-      <span class="${goal.completed ? "check" : "unchecked"}">${goal.completed ? "✔" : "○"}</span>
+      <span class="${goal.completed ? "check" : "unchecked"}">
+        ${goal.completed ? "✔" : "○"}
+      </span>
       <span>${goal.text}</span>
-      <button class="delete-btn">X</button>
     `;
-
-    g.onclick = e=>{
-      if(e.target.tagName === "BUTTON") return;
+    g.onclick = ()=>{
       goal.completed = !goal.completed;
-      saveMentees();
-      loadProgress();
+      renderProgress();
     };
-
-    g.querySelector("button").onclick = e=>{
-      e.stopPropagation();
-      mentees[key].goals.splice(i,1);
-      saveMentees();
-      loadProgress();
-    };
-
     goalSection.appendChild(g);
   });
 
   sections.appendChild(goalSection);
 
-  /* PROGRESS */
-  for(const program in mentees[key].programs){
-    if(!mentees[key].programs[program]) continue;
-    const data = mentees[key].progress[program];
-
+  for(const program in mentees[currentMentee].progress){
+    const data = mentees[currentMentee].progress[program];
     const section = document.createElement("div");
     section.className = "pillar";
     section.innerHTML = `
@@ -343,17 +300,14 @@ function loadProgress(){
     `;
     sections.appendChild(section);
   }
-
-  document.getElementById("errorMsg").textContent = "";
 }
 
 function addGoal(){
   const input = document.getElementById("newGoalInput");
   if(!input.value || !currentMentee) return;
   mentees[currentMentee].goals.push({text:input.value, completed:false});
-  input.value="";
-  saveMentees();
-  loadProgress();
+  input.value = "";
+  renderProgress();
 }
 </script>
 
