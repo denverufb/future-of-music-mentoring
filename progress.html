@@ -38,16 +38,8 @@
       padding:1.5rem 0;
     }
 
-    .brand{
-      font-weight:800;
-      font-size:1.35rem;
-    }
-
-    .subtitle{
-      color:var(--muted);
-      font-size:.9rem;
-      margin-top:.25rem;
-    }
+    .brand{font-weight:800;font-size:1.35rem}
+    .subtitle{color:var(--muted);font-size:.9rem;margin-top:.25rem}
 
     .main-nav{
       margin-top:1rem;
@@ -67,9 +59,7 @@
       font-weight:600;
     }
 
-    .nav-link:hover{
-      background:var(--accent);
-    }
+    .nav-link:hover{background:var(--accent)}
 
     .card{
       background:var(--card);
@@ -79,9 +69,7 @@
       text-align:left;
     }
 
-    .pillar{
-      margin-top:1.25rem;
-    }
+    .pillar{margin-top:1.25rem}
 
     .progress-bar{
       background:#1E2238;
@@ -90,10 +78,7 @@
       margin:.5rem 0;
     }
 
-    .progress-fill{
-      height:12px;
-      background:var(--accent);
-    }
+    .progress-fill{height:12px;background:var(--accent)}
 
     .goal{
       display:flex;
@@ -103,65 +88,32 @@
       cursor:pointer;
     }
 
-    .check{ color:var(--success); font-size:1.2rem }
-    .unchecked{ color:var(--muted); font-size:1.2rem }
-
-    .error{
-      color:#ff6b6b;
-      margin-top:.75rem;
-      font-size:.9rem;
-    }
-
-    input, button{
-      padding:.75rem;
-      font-size:1rem;
-      border-radius:6px;
-      border:none;
-      margin-top:.5rem;
-    }
-
-    button{
-      background:var(--accent);
-      color:#fff;
-      cursor:pointer;
-      font-weight:600;
-    }
-
-    footer{
-      margin:2rem 0;
-      color:var(--muted);
-      font-size:.85rem;
-    }
-
-    .progress-report-btn{
-      margin-top:1rem;
-      display:inline-block;
-      padding:.75rem 1.5rem;
-      font-size:1rem;
-      background:var(--accent);
-      color:#fff;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      text-decoration:none;
-    }
+    .check{color:var(--success);font-size:1.2rem}
+    .unchecked{color:var(--muted);font-size:1.2rem}
 
     table{
       width:100%;
       border-collapse:collapse;
+      margin-top:.5rem;
     }
 
-    th, td{
-      padding:.5rem;
-    }
+    th,td{padding:.5rem}
+    th{text-align:left;color:var(--muted)}
+    td{text-align:center}
 
-    th{
-      text-align:left;
-      color:var(--muted);
-    }
+    .error{color:#ff6b6b;margin-top:.75rem;font-size:.9rem}
+    input,button{padding:.75rem;font-size:1rem;border-radius:6px;border:none;margin-top:.5rem}
+    button{background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
 
-    td{
-      text-align:center;
+    footer{margin:2rem 0;color:var(--muted);font-size:.85rem}
+    .progress-report-btn{
+      margin-top:1rem;
+      display:inline-block;
+      padding:.75rem 1.5rem;
+      background:var(--accent);
+      color:#fff;
+      border-radius:6px;
+      text-decoration:none;
     }
   </style>
 </head>
@@ -172,7 +124,6 @@
   <div class="container">
     <div class="brand">Future of Music & Youth Creator Launch</div>
     <div class="subtitle">Mentorship Progress Portal</div>
-
     <nav class="main-nav">
       <a href="index.html" class="nav-link">Home</a>
       <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
@@ -186,7 +137,6 @@
 
   <div class="card" id="lookup">
     <h2>View Your Progress</h2>
-    <p style="color:var(--muted)">Enter your first name to view your mentorship progress.</p>
     <input id="nameInput" placeholder="Enter your first name" />
     <br>
     <button onclick="loadProgress()">View Progress</button>
@@ -195,133 +145,110 @@
 
   <div class="card" id="progressCard" style="display:none;">
     <h2 id="menteeName"></h2>
-    <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
-
     <div id="progressSections"></div>
 
     <div class="pillar">
       <h3>Submit Progress Report</h3>
-      <a class="progress-report-btn"
-         href="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform?usp=publish-editor"
-         target="_blank" rel="noopener">
-         Submit Progress Report
+      <a class="progress-report-btn" target="_blank"
+         href="https://docs.google.com/forms/d/e/1FAIpQLSeA2AqRQACEKXB86sNJ6zKIvHC1DpgmWkXuC7DbfTawfCCoBg/viewform">
+        Submit Progress Report
       </a>
     </div>
   </div>
 
 </main>
 
-<footer>
-  © <span id="year"></span> Future of Music Mentoring
-</footer>
+<footer>© <span id="year"></span> Future of Music Mentoring</footer>
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const mentees = {
-  jeremiah:{name:"Jeremiah Jones"},
-  billy:{name:"Billy Williams"},
-  leah:{name:"Leah Jimerson"},
-  zion:{name:"Zion Williams"},
-  derrick:{name:"Derrick Flannel"}
+  jeremiah:{
+    name:"Jeremiah Jones",
+    goals:[
+      {text:"Achieve B's and A's during 2nd semester.",completed:false},
+      {text:"Get an after school job.",completed:false},
+      {text:"Follow daily routine consistently.",completed:false}
+    ],
+    progress:{
+      academics:{percent:0,notes:["Not started yet"]},
+      personal:{percent:9,notes:["Working on confidence"]},
+      entrepreneurship:{percent:0,notes:["Not started yet"]}
+    }
+  },
+  billy:{name:"Billy Williams",goals:[],progress:{academics:{percent:0,notes:["Not started yet"]}}},
+  leah:{name:"Leah Jimerson",goals:[],progress:{academics:{percent:90,notes:["Strong academic performance"]}}}
 };
 
-const gradesData = {
+const grades = {
   jeremiah:{
-    "World History":{s1:"D (68%)",s2:"C"},
-    "Physical Science":{s1:"C (69%)",s2:"B-"},
-    "Personal Finance":{s1:"C (69%)",s2:"B"},
-    "Literature":{s1:"D (67%)",s2:"C+"},
-    "Home Maintenance":{s1:"C (71%)",s2:"B"},
-    "Geometry":{s1:"D (64%)",s2:"C"},
-    "Biology":{s1:"D (67%)",s2:"C+"}
+    "World History":["D (68%)","C"],
+    "Physical Sci":["C (69%)","B-"],
+    "Geometry":["D (64%)","C"],
+    "Biology":["D (67%)","C+"]
   },
   billy:{
-    "AP Environmental Science":{s1:"B",s2:"A-"},
-    "AP Psychology":{s1:"B",s2:"A-"},
-    "Literature":{s1:"B",s2:"A"},
-    "Algebra 3":{s1:"C",s2:"B"},
-    "Art":{s1:"A",s2:"A"},
-    "Debate":{s1:"A",s2:"A"}
+    "AP Env Sci":["B","A-"],
+    "AP Psych":["B","A-"],
+    "Art":["A","A"]
   },
   leah:{
-    "Chemistry":{s1:"A (91%)",s2:"A"},
-    "Geometry":{s1:"A (90%)",s2:"A"},
-    "Honors World History":{s1:"A (90%)",s2:"A"},
-    "Business Communications":{s1:"A (93%)",s2:"A"},
-    "Child Development":{s1:"A (94%)",s2:"A"},
-    "Spanish 2":{s1:"A (90%)",s2:"A"},
-    "Honors English":{s1:"A (94%)",s2:"A"}
+    "Chemistry":["A (91%)","A"],
+    "Honors English":["A (94%)","A"]
   }
 };
 
-let currentMentee = null;
+let currentMentee=null;
 
 function loadProgress(){
-  const input = document.getElementById("nameInput").value.trim().toLowerCase();
-  document.getElementById("errorMsg").textContent = "";
-
-  const key = Object.keys(mentees).find(
-    k => mentees[k].name.split(" ")[0].toLowerCase() === input
-  );
-
-  if(!key){
-    document.getElementById("errorMsg").textContent =
-      "No progress found for this first name.";
-    return;
-  }
-
-  currentMentee = key;
-  document.getElementById("lookup").style.display = "none";
-  document.getElementById("progressCard").style.display = "block";
-  document.getElementById("menteeName").textContent =
-    mentees[key].name + " — Progress Overview";
-
-  renderGrades();
+  const name=document.getElementById("nameInput").value.toLowerCase();
+  const key=Object.keys(mentees).find(k=>mentees[k].name.split(" ")[0].toLowerCase()===name);
+  if(!key){document.getElementById("errorMsg").textContent="No record found.";return;}
+  currentMentee=key;
+  document.getElementById("lookup").style.display="none";
+  document.getElementById("progressCard").style.display="block";
+  document.getElementById("menteeName").textContent=mentees[key].name;
+  renderProgress();
 }
 
-function renderGrades(){
-  const sections = document.getElementById("progressSections");
-  sections.innerHTML = "";
+function renderProgress(){
+  const s=document.getElementById("progressSections");
+  s.innerHTML="";
 
-  const gradesSection = document.createElement("div");
-  gradesSection.className = "pillar";
-  gradesSection.innerHTML = "<h3>Academic Grades</h3>";
+  const goalBlock=document.createElement("div");
+  goalBlock.className="pillar";
+  goalBlock.innerHTML="<h3>Goals Throughout the Program</h3>";
+  mentees[currentMentee].goals.forEach(g=>{
+    const d=document.createElement("div");
+    d.className="goal";
+    d.innerHTML=`<span class="${g.completed?"check":"unchecked"}">${g.completed?"✔":"○"}</span><span>${g.text}</span>`;
+    d.onclick=()=>{g.completed=!g.completed;renderProgress();}
+    goalBlock.appendChild(d);
+  });
+  s.appendChild(goalBlock);
 
-  const menteeGrades = gradesData[currentMentee];
-
-  if(!menteeGrades){
-    const p = document.createElement("p");
-    p.style.color = "var(--muted)";
-    p.textContent = "No grades on file.";
-    gradesSection.appendChild(p);
-  } else {
-    const table = document.createElement("table");
-    table.innerHTML = `
-      <tr>
-        <th>Course</th>
-        <th>Semester 1 Grade</th>
-        <th>Semester 2 Goal Grade</th>
-      </tr>
-    `;
-
-    Object.keys(menteeGrades).forEach(course=>{
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td style="text-align:left">${course}</td>
-        <td>${menteeGrades[course].s1 || "No grade on file"}</td>
-        <td>${menteeGrades[course].s2 || "No grade on file"}</td>
-      `;
-      table.appendChild(row);
-    });
-
-    gradesSection.appendChild(table);
+  for(const p in mentees[currentMentee].progress){
+    const data=mentees[currentMentee].progress[p];
+    s.innerHTML+=`<div class="pillar"><h3>${p}</h3><div class="progress-bar"><div class="progress-fill" style="width:${data.percent}%"></div></div><ul>${data.notes.map(n=>`<li>${n}</li>`).join("")}</ul></div>`;
   }
 
-  sections.appendChild(gradesSection);
+  const gBlock=document.createElement("div");
+  gBlock.className="pillar";
+  gBlock.innerHTML="<h3>Academic Grades</h3>";
+  const t=document.createElement("table");
+  t.innerHTML="<tr><th>Course</th><th>Semester 1</th><th>Semester 2 Goal</th></tr>";
+  if(grades[currentMentee]){
+    Object.entries(grades[currentMentee]).forEach(([c,[s1,s2]])=>{
+      t.innerHTML+=`<tr><td style="text-align:left">${c}</td><td>${s1}</td><td>${s2}</td></tr>`;
+    });
+  } else {
+    t.innerHTML+=`<tr><td colspan="3">No grade on file</td></tr>`;
+  }
+  gBlock.appendChild(t);
+  s.appendChild(gBlock);
 }
 </script>
 
 </body>
 </html>
-
