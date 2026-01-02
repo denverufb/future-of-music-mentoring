@@ -193,55 +193,11 @@ th{
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const mentees = {
-  jeremiah:{
-    name:"Jeremiah Jones",
-    goals:[
-      {text:"Improve academic performance second semester.", completed:false},
-      {text:"Maintain consistent daily routine.", completed:false},
-      {text:"Increase engagement in mentorship activities.", completed:false}
-    ],
-    progress:{
-      "Academics":{percent:40,notes:["Needs improvement across core classes"]},
-      "Personal Development":{percent:30,notes:["Working on consistency and accountability"]},
-      "Entrepreneurship":{percent:20,notes:["Limited participation so far"]}
-    },
-    grades:[
-      ["World History","D (68%)","C"],
-      ["Physical Science","C (69%)","B"],
-      ["Personal Finance","C (69%)","B"],
-      ["Literature","D (67%)","C"],
-      ["Home Maintenance","C (71%)","B"],
-      ["Geometry","D (64%)","C"],
-      ["Biology","D (67%)","C+"]
-    ],
-    gpa:"2.1"
-  },
-  billy:{
-    name:"Billy Williams",
-    goals:[
-      {text:"Maintain B or higher in all courses.", completed:false},
-      {text:"Continue leadership growth.", completed:false}
-    ],
-    progress:{
-      "Academics":{percent:75,notes:["Solid academic standing"]},
-      "Personal Development":{percent:70,notes:["Positive attitude"]},
-      "Entrepreneurship":{percent:60,notes:["Shows initiative"]}
-    },
-    grades:[
-      ["AP Environmental Science","B","A"],
-      ["AP Psychology","B","A"],
-      ["Literature","B","A-"],
-      ["Algebra 3","C","B"],
-      ["Art","A","A"],
-      ["Debate","A","A"]
-    ],
-    gpa:"Calculate"
-  },
   leah:{
     name:"Leah Jimerson",
     goals:[
-      {text:"Maintain academic excellence.", completed:false},
-      {text:"Prepare for advanced coursework.", completed:false}
+      {text:"Graduate high school with a strong GPA and challenging classes that prepare for a competitive path, and put myself in a good position to apply for the U.S. Air Force Academy", completed:false},
+      {text:"Maintain a 3.8 GPA or higher by staying organized, turning in all assignments on time, and asking for help when concepts are confusing", completed:false}
     ],
     progress:{
       "Academics":{percent:95,notes:["Excellent performance"]},
@@ -256,6 +212,63 @@ const mentees = {
       ["Child Development","A (94%)","A"],
       ["Spanish II","A (90%)","A"],
       ["Honors English","A (94%)","A"]
+    ],
+    gpa:"Calculate"
+  },
+  jeremiah:{
+    name:"Jeremiah Jones",
+    goals:[
+      {text:"Achieve B's and A's during 2nd semester.", completed:false},
+      {text:"Get an after school job.", completed:false},
+      {text:"Follow daily routine for at least 4 days consistently.", completed:false},
+      {text:"Achieve better grades.", completed:false}
+    ],
+    progress:{
+      "Academics":{percent:0,notes:["Not started yet"]},
+      "Personal Development":{percent:9,notes:["Working on boosting confidence"]},
+      "Entrepreneurship":{percent:0,notes:["Not started yet"]}
+    },
+    grades:[
+      ["World History","D (68%)","C"],
+      ["Physical Science","C (69%)","B"],
+      ["Personal Finance","C (69%)","B"],
+      ["Literature","D (67%)","C"],
+      ["Home Maintenance","C (71%)","B"],
+      ["Geometry","D (64%)","C"],
+      ["Biology","D (67%)","C+"]
+    ],
+    gpa:"2.1"
+  },
+  derrick:{
+    name:"Derrick Flannel",
+    goals:[
+      {text:"Following instructions the first time they are given.", completed:false}
+    ],
+    progress:{
+      "Academics":{percent:0,notes:["Not started yet"]},
+      "Personal Development":{percent:50,notes:["He is confident and aware of how to set personal goals"]},
+      "Entrepreneurship":{percent:0,notes:["Not started yet"]}
+    },
+    grades:[],
+    gpa:"No grade on file"
+  },
+  billy:{
+    name:"Billy Williams",
+    goals:[
+      {text:"Get an oil change on car (lol)", completed:false}
+    ],
+    progress:{
+      "Academics":{percent:0,notes:["Not started yet"]},
+      "Personal Development":{percent:0,notes:["Not started yet"]},
+      "Entrepreneurship":{percent:0,notes:["Not started yet"]}
+    },
+    grades:[
+      ["AP Environmental Science","B","A"],
+      ["AP Psychology","B","A"],
+      ["Literature","B","A-"],
+      ["Algebra 3","C","B"],
+      ["Art","A","A"],
+      ["Debate","A","A"]
     ],
     gpa:"Calculate"
   }
@@ -281,20 +294,27 @@ function renderProgress(){
   const sections=document.getElementById("progressSections");
   sections.innerHTML="";
 
-  // Goals
+  // Goals Section
   const goalSection=document.createElement("div");
   goalSection.className="pillar";
-  goalSection.innerHTML="<h3>Goals</h3>";
-  mentees[currentMentee].goals.forEach(goal=>{
-    const g=document.createElement("div");
-    g.className="goal";
-    g.innerHTML=`<span class="unchecked">○</span><span>${goal.text}</span>`;
-    g.onclick=()=>{goal.completed=!goal.completed; renderProgress();}
-    goalSection.appendChild(g);
-  });
+  goalSection.innerHTML="<h3>Goals Throughout the Program</h3>";
+  if(mentees[currentMentee].goals.length===0){
+    const p=document.createElement("p");
+    p.style.color="var(--muted)";
+    p.textContent="Goals not set yet.";
+    goalSection.appendChild(p);
+  } else {
+    mentees[currentMentee].goals.forEach(goal=>{
+      const g=document.createElement("div");
+      g.className="goal";
+      g.innerHTML=`<span class="${goal.completed?"check":"unchecked"}">${goal.completed?"✔":"○"}</span><span>${goal.text}</span>`;
+      g.onclick=()=>{goal.completed=!goal.completed; renderProgress();}
+      goalSection.appendChild(g);
+    });
+  }
   sections.appendChild(goalSection);
 
-  // Pillars
+  // Pillars Section
   for(const p in mentees[currentMentee].progress){
     const data=mentees[currentMentee].progress[p];
     const section=document.createElement("div");
@@ -307,13 +327,13 @@ function renderProgress(){
     sections.appendChild(section);
   }
 
-  // Grades
+  // Grades Section
   const gradeSection=document.createElement("div");
   gradeSection.className="pillar";
   gradeSection.innerHTML="<h3>Grades</h3>";
   gradeSection.innerHTML+=`<table>
     <tr><th>Course</th><th>Semester 1</th><th>Semester 2 Goal</th></tr>
-    ${mentees[currentMentee].grades.map(g=>`<tr><td>${g[0]}</td><td>${g[1]}</td><td>${g[2]}</td></tr>`).join("")}
+    ${mentees[currentMentee].grades.map(g=>`<tr><td>${g[0]}</td><td>${g[1]}</td><td>${g[2]||"No grade on file"}</td></tr>`).join("")}
     <tr><td><strong>GPA</strong></td><td colspan="2">${mentees[currentMentee].gpa}</td></tr>
   </table>`;
   sections.appendChild(gradeSection);
