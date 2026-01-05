@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Weekly Check-In — Future of Music Mentoring</title>
   <meta name="description" content="Schedule your weekly check-in with your mentor." />
   <link rel="stylesheet" href="style.css" />
@@ -12,15 +12,16 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
-        <strong>Future of Music &amp; Youth Creator Launch</strong><br>
+        <strong>Future of Music &amp; Youth Creator Launch</strong><br />
         <span class="tagline">Youth Mentoring Program</span>
       </a>
-     <nav class="main-nav">
-  <a href="index.html" class="nav-link">Home</a>
-  <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-  <a href="survey.html" class="nav-link">Weekly Check-In</a>
-  <a href="progress.html" class="nav-link">Progress</a>
-</nav>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+        <a href="survey.html" class="nav-link">Weekly Check-In</a>
+        <a href="progress.html" class="nav-link">Progress</a>
+      </nav>
     </div>
   </header>
 
@@ -28,21 +29,28 @@
     <article class="form-page">
       <h1>Schedule Your Weekly Check-In</h1>
       <p class="lede">
-        Select your mentor below and schedule your 5–10 minute check-in.
+        Select your mentor below and schedule your 5–10 minute weekly check-in.
       </p>
 
       <label for="mentor-select">Who is your mentor?</label>
       <select id="mentor-select">
         <option value="">-- Select Mentor --</option>
-        <option value="https://calendly.com/aereon-fomusic/30min">Aereon</option>
-        <option value="">Gabriel (coming soon)</option>
-        <option value="https://calendly.com/qwentin-fomusic/mentoring">
-          Qwentin
+        <option value="https://calendly.com/aereon-fomusic/30min">
+          Aereon Robinson
         </option>
-
+        <option value="https://calendly.com/gabriel-e-walker2008/30min">
+          Gabriel Walker
+        </option>
+        <option value="https://calendly.com/qwentin-fomusic/mentoring">
+          Qwentin Blassingame
+        </option>
       </select>
 
-      <section class="iframe-wrapper" aria-label="Weekly check-in scheduling" style="margin-top:20px;">
+      <section
+        class="iframe-wrapper"
+        aria-label="Weekly check-in scheduling"
+        style="margin-top: 20px;"
+      >
         <iframe
           id="mentor-calendar"
           src=""
@@ -51,12 +59,18 @@
           height="800"
           frameborder="0"
           scrolling="no"
-          style="display:none;"
+          style="display: none;"
         ></iframe>
       </section>
 
       <p class="form-fallback">
-        <a id="fallback-link" href="" target="_blank" rel="noopener" style="display:none;">
+        <a
+          id="fallback-link"
+          href=""
+          target="_blank"
+          rel="noopener"
+          style="display: none;"
+        >
           Open Mentor Calendar
         </a>
       </p>
@@ -70,31 +84,33 @@
   </footer>
 
   <script>
-    document.getElementById('year-survey').textContent = new Date().getFullYear();
+    document.getElementById("year-survey").textContent =
+      new Date().getFullYear();
 
-    const select = document.getElementById('mentor-select');
-    const iframe = document.getElementById('mentor-calendar');
-    const fallback = document.getElementById('fallback-link');
+    const select = document.getElementById("mentor-select");
+    const iframe = document.getElementById("mentor-calendar");
+    const fallback = document.getElementById("fallback-link");
 
-    select.addEventListener('change', function () {
+    select.addEventListener("change", function () {
       const url = this.value;
+
       if (url) {
         iframe.src = url;
-        iframe.style.display = 'block';
+        iframe.style.display = "block";
         fallback.href = url;
-        fallback.style.display = 'inline';
+        fallback.style.display = "inline";
       } else {
-        iframe.style.display = 'none';
-        fallback.style.display = 'none';
+        iframe.src = "";
+        iframe.style.display = "none";
+        fallback.style.display = "none";
       }
     });
 
-    // Set active nav link
     (function () {
-      const links = document.querySelectorAll('.main-nav .nav-link');
+      const links = document.querySelectorAll(".main-nav .nav-link");
       links.forEach(link => {
-        if (location.pathname.endsWith(link.getAttribute('href'))) {
-          link.classList.add('active');
+        if (location.pathname.endsWith(link.getAttribute("href"))) {
+          link.classList.add("active");
         }
       });
     })();
