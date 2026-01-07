@@ -173,44 +173,29 @@
       text-align:center;
     }
 
-    .announcement-section {
-        margin-top: 3rem;
-        text-align: center;
+    .divider{
+      border-top:1px solid rgba(255,255,255,.3);
+      margin:2rem 0;
     }
 
-    .announcement-section h2 {
-        font-size: 1.75rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .canva-embed-container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .canva-embed-container > div:first-child {
-      padding-top: 56.25%;
-    }
-
-    .program-buttons{
+    .timeline-month-buttons, .program-buttons{
       display:flex;
       justify-content:center;
       gap:.5rem;
-      flex-wrap:wrap;
       margin-bottom:1rem;
+      flex-wrap:wrap;
     }
 
-    .program-buttons button{
-      padding:.5rem 1rem;
-      border-radius:8px;
+    .timeline-month-buttons button, .program-buttons button{
+      padding:.4rem .8rem;
+      border-radius:6px;
       border:none;
       background:#1E2238;
       color:#fff;
-      font-weight:600;
       cursor:pointer;
     }
 
-    .program-buttons button.active{
+    .timeline-month-buttons button.active, .program-buttons button.active{
       background:var(--accent);
     }
 
@@ -236,31 +221,6 @@
       padding:1rem 0;
       color:var(--muted);
       border-top:1px solid rgba(255,255,255,.15);
-    }
-
-    .divider{
-      border-top:1px solid rgba(255,255,255,.3);
-      margin:2rem 0;
-    }
-
-    .timeline-month-buttons{
-      display:flex;
-      justify-content:center;
-      gap:.5rem;
-      margin-bottom:1rem;
-    }
-
-    .timeline-month-buttons button{
-      padding:.4rem .8rem;
-      border-radius:6px;
-      border:none;
-      background:#1E2238;
-      color:#fff;
-      cursor:pointer;
-    }
-
-    .timeline-month-buttons button.active{
-      background:var(--accent);
     }
 
     /* Admin Section Styles */
@@ -313,7 +273,6 @@
   </header>
 
   <main class="container">
-    <!-- HERO & ACTIONS -->
     <section class="hero">
       <h1>Welcome to the Future of Music Mentorship Portal</h1>
       <p class="lede">
@@ -321,51 +280,32 @@
         supporting youth ages 13–18 in St. Louis through entrepreneurship,
         academics, and personal growth.
       </p>
-
       <div class="actions">
         <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
         <a class="btn" href="survey.html">Schedule Weekly Check-In</a>
       </div>
     </section>
 
-    <!-- ANNOUNCEMENTS -->
-    <section class="announcement-section">
-        <div class="divider"></div>
-        <h2>📢 Mentor Announcements</h2>
-        <div class="canva-embed-container">
-            <div style="position: relative; width: 100%; height: 0; 
-            padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
-            border-radius: 8px; will-change: transform;">
-              <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-                src="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-              </iframe>
-            </div>
-            <a href="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?utm_content=DAG7c71XU2U&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">View Full Announcement Board on Canva</a>
-        </div>
-        <div class="divider"></div>
-    </section>
-
-    <!-- Original Mentee Timeline -->
+    <!-- Original Timeline Section for Mentees -->
     <section class="timeline-section">
       <h3>View Timeline</h3>
       <div class="timeline-month-buttons">
-        <button>January</button>
-        <button>February</button>
-        <button>March</button>
+        <button data-month="January">January</button>
+        <button data-month="February">February</button>
+        <button data-month="March">March</button>
       </div>
       <div class="program-buttons">
         <button data-program="personal">Personal Development</button>
         <button data-program="entrepreneurship">Entrepreneurship</button>
         <button data-program="academic">Academic</button>
       </div>
-      <div id="timelineDisplay">
-        <!-- Original mentee timeline table appears here dynamically -->
-      </div>
+      <div id="timelineDisplay"></div>
     </section>
 
-    <!-- ADMIN SECTION -->
     <div class="divider"></div>
-    <section id="adminSection" style="text-align:left; max-width:800px; margin:0 auto;">
+
+    <!-- Admin Section -->
+    <section id="adminSection" style="text-align:left; max-width:900px; margin:0 auto;">
       <h2>Admin Weekly Check-In Resources</h2>
       <p>Type the password to unlock admin content:</p>
       <input type="password" id="adminPasswordInput" placeholder="Enter admin password">
@@ -416,7 +356,7 @@
   </footer>
 
   <script>
-    // Portal password
+    // Mentee portal password
     function checkPassword(){
       const input = document.getElementById("password-input").value;
       if(input === "YCLMentee" || input === "FOMMentee"){
@@ -427,21 +367,53 @@
       }
     }
 
-    // Admin password
+    // Admin data including all 12 weeks
     const adminData = {
       personal:[
         {week:1,topic:"Self-Confidence",benchmark:"Shift to 'more self-assured.'",activity:"The Wins Note: List 3 things you are objectively good at in a shared note.",questions:"What’s a talent you have that people usually miss?"},
-        {week:2,topic:"Initiative",benchmark:"Consistent independence.",activity:"The 'Do It Now' Check: Identify one thing you’ve been putting off; do it during the call.",questions:"What is stopping you from starting that one task?"}
-        // Add all 12 weeks here similarly...
+        {week:2,topic:"Initiative",benchmark:"Consistent independence.",activity:"The 'Do It Now' Check: Identify one thing you’ve been putting off; do it during the call.",questions:"What is stopping you from starting that one task?"},
+        {week:3,topic:"Feedback",benchmark:"Accepting critique.",activity:"The Script: Write a 2-sentence reply to a 'boss' who just told you your work was sloppy.",questions:"Why does it feel personal when someone corrects you?"},
+        {week:4,topic:"Networking",benchmark:"Social/Social Media confidence.",activity:"LinkedIn/Social Audit: Update one 'Bio' section to sound more professional.",questions:"If you met a CEO today, what’s the first thing you’d say?"},
+        {week:5,topic:"Reflection",benchmark:"Self-reflection habits.",activity:"Stop/Start/Keep: Type 1 thing to stop doing, 1 to start, and 1 to keep doing.",questions:"What’s the biggest lesson you learned this month?"},
+        {week:6,topic:"Personal Leadership",benchmark:"Goal-driven mindset.",activity:"The 'Why' Drill: State a goal. Mentor asks 'Why?' 3 times in chat; mentee types answers.",questions:"Who are you leading right now, even if you don't realize it?"},
+        {week:7,topic:"Time Management",benchmark:"Task prioritization.",activity:"Top 3: Look at your to-do list; bold the top 3 that must be done today.",questions:"Is your time being spent or is it being invested?"},
+        {week:8,topic:"Collaboration",benchmark:"Teamwork skills.",activity:"The Delegation Note: Write instructions for a simple task so someone else could do it.",questions:"What makes a person easy or hard to work with?"},
+        {week:9,topic:"Goal Setting",benchmark:"Tracking progress.",activity:"SMART Goal: Write one goal for next month that is Specific and Timed.",questions:"Where do you want to be exactly 90 days from now?"},
+        {week:10,topic:"Resilience",benchmark:"Persistence.",activity:"The Pivot Plan: Write a 'Plan B' for a goal that might fail.",questions:"What’s the first thing you do when a plan goes wrong?"},
+        {week:11,topic:"Decision Making",benchmark:"Informed choices.",activity:"Pro/Con Weighting: List a choice you’re facing; give each pro/con a score of 1–5.",questions:"Do you make decisions with your head or your heart?"},
+        {week:12,topic:"Leadership Project",benchmark:"Real-life application.",activity:"The Impact Summary: Write 3 sentences on how you helped someone this week.",questions:"How will you keep this momentum after the program?"}
       ],
       entrepreneurship:[
-        {week:1,topic:"Brainstorming",benchmark:"Creative thinking.",activity:"The Problem List: List 5 annoyances a product could fix.",questions:"What is a product you use every day that could be better?"}
+        {week:1,topic:"Brainstorming",benchmark:"Creative thinking.",activity:"The Problem List: List 5 'annoyances' in your life that a product could fix.",questions:"What is a product you use every day that could be better?"},
+        {week:2,topic:"Target Market",benchmark:"Market awareness.",activity:"The Customer Bio: Describe your ideal customer's age, job, and biggest problem.",questions:"Who is the one person most likely to buy from you?"},
+        {week:3,topic:"Budgeting",benchmark:"Financial thinking.",activity:"The $500 Budget: List everything you’d buy to start this business for $500.",questions:"What's the difference between a 'need' and a 'want' in business?"},
+        {week:4,topic:"Branding",benchmark:"Presentation skills.",activity:"Canva Sprint: Pick 2 brand colors and 1 font that represent 'trust.'",questions:"When people see your brand, how should they feel?"},
+        {week:5,topic:"Customer Service",benchmark:"Empathy & Problem Solving.",activity:"The Response Draft: Draft an email to a customer whose package was stolen.",questions:"How do you turn an angry customer into a loyal one?"},
+        {week:6,topic:"Pitch & Confidence",benchmark:"Full confidence.",activity:"The 30-Sec Pitch: Record a voice memo of your pitch and send it to the mentor.",questions:"Why should I give you my money instead of your competitor?"},
+        {week:7,topic:"Market Research",benchmark:"Understanding trends.",activity:"Competitor Search: Find 2 businesses doing what you want to do. List their prices.",questions:"What is your competitor doing better than you right now?"},
+        {week:8,topic:"Budget Planning",benchmark:"Refining finances.",activity:"The Profit Note: Calculate: (Price) - (Cost of Materials) = Your Profit.",questions:"How many sales do you need to pay your phone bill?"},
+        {week:9,topic:"Brand Strategy",benchmark:"Consistent identity.",activity:"The Mission Tweet: Write your business purpose in 280 characters or less.",questions:"What does your business stand for besides just money?"},
+        {week:10,topic:"Promotion",benchmark:"Marketing techniques.",activity:"Social Hook: Write 3 'hooks' (first lines) for an Instagram caption.",questions:"Where does your target customer hang out online?"},
+        {week:11,topic:"Engagement",benchmark:"Customer relationships.",activity:"Loyalty Idea: Brainstorm a simple way to reward a repeat customer.",questions:"How do you make a customer feel like a VIP?"},
+        {week:12,topic:"Final Pitch",benchmark:"Professional delivery.",activity:"The Deck Review: Share your screen and walk through your 3-slide final pitch.",questions:"What are the next 3 steps for this business?"}
       ],
       academic:[
-        {week:1,topic:"Study Skills",benchmark:"Organization.",activity:"Folder Cleanup: Rename school files so they are easy to find.",questions:"Which subject is currently your biggest headache?"}
+        {week:1,topic:"Study Skills",benchmark:"Organization.",activity:"Folder Cleanup: Rename school files so they are easy to find.",questions:"Which subject is currently your biggest headache?"},
+        {week:2,topic:"Time Management",benchmark:"Homework efficiency.",activity:"The 50/10 Rule: Set a timer for 50 mins of work and 10 mins of rest.",questions:"How much time do you lose to your phone during homework?"},
+        {week:3,topic:"Active Listening",benchmark:"Comprehension.",activity:"The 3-Bullet Recap: After I speak for 2 mins, type the 3 main points I made.",questions:"Do you find it harder to listen in class or on Zoom?"},
+        {week:4,topic:"Reading Strategies",benchmark:"Speed & Understanding.",activity:"The Scan Challenge: Find 3 specific facts in a link in under 60 seconds.",questions:"Do you read the headings and bold words first, or just start?"},
+        {week:5,topic:"Critical Thinking",benchmark:"Analyze information.",activity:"The Fact Checker: Find a 'news' post online; find 2 sources that prove it.",questions:"How do you know if a website is lying to you?"},
+        {week:6,topic:"Note Taking",benchmark:"Retention.",activity:"Cornell Notes: Take notes from a short video using Cornell method.",questions:"Which note-taking method works best for you?"},
+        {week:7,topic:"Memory Techniques",benchmark:"Recall.",activity:"Flash Cards: Create 5 flashcards for upcoming quiz.",questions:"Do you remember better by writing, speaking, or reading?"},
+        {week:8,topic:"Test Prep",benchmark:"Confidence.",activity:"Mini-Quiz: Create 5 questions from last week’s material and answer them.",questions:"Which test-taking strategy reduces stress for you?"},
+        {week:9,topic:"Presentation Skills",benchmark:"Public speaking.",activity:"5-Minute Talk: Record yourself explaining a topic you learned.",questions:"Do you feel nervous when presenting? Why?"},
+        {week:10,topic:"Collaboration",benchmark:"Group work.",activity:"Group Task: Share one solution to a problem in a breakout room.",questions:"How do you handle group disagreements?"},
+        {week:11,topic:"Research Skills",benchmark:"Data evaluation.",activity:"Mini-Project: Find 3 articles that support an argument you want to make.",questions:"What’s a credible source vs a biased source?"},
+        {week:12,topic:"Final Assessment",benchmark:"Application.",activity:"The Summary Report: Write a 1-page summary of the month.",questions:"How will you apply what you learned next month?"}
       ]
     };
 
+    // Admin password
     document.getElementById("adminUnlockBtn").addEventListener("click", function(){
       const pass = document.getElementById("adminPasswordInput").value;
       if(pass === "ADMIN"){
@@ -470,7 +442,56 @@
 
     document.getElementById("programSelect").addEventListener("change", loadAdminContent);
     document.getElementById("weekSelect").addEventListener("change", loadAdminContent);
-  </script>
 
+    // Mentee timeline selection logic
+    const menteeTimelineData = {
+      January:{
+        personal:[/* insert month-specific personal dev data */],
+        entrepreneurship:[/* ... */],
+        academic:[/* ... */]
+      },
+      February:{/* same structure */},
+      March:{/* same structure */}
+    };
+
+    const monthButtons = document.querySelectorAll(".timeline-month-buttons button");
+    const programButtons = document.querySelectorAll(".program-buttons button");
+    const timelineDisplay = document.getElementById("timelineDisplay");
+    let selectedMonth = "January";
+    let selectedProgram = "personal";
+
+    function renderTimeline(){
+      const data = menteeTimelineData[selectedMonth][selectedProgram] || [];
+      let html = "<table><thead><tr><th>Week</th><th>Topic</th><th>Activity</th></tr></thead><tbody>";
+      data.forEach(d=>{
+        html+=`<tr><td>${d.week}</td><td>${d.topic}</td><td>${d.activity}</td></tr>`;
+      });
+      html+="</tbody></table>";
+      timelineDisplay.innerHTML = html;
+    }
+
+    monthButtons.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        monthButtons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedMonth = btn.getAttribute("data-month");
+        renderTimeline();
+      });
+    });
+
+    programButtons.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        programButtons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedProgram = btn.getAttribute("data-program");
+        renderTimeline();
+      });
+    });
+
+    // Initialize
+    monthButtons[0].classList.add("active");
+    programButtons[0].classList.add("active");
+    renderTimeline();
+  </script>
 </body>
 </html>
