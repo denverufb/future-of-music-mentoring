@@ -266,6 +266,23 @@
     .admin-panel {display: none;}
     .admin-panel.active {display: block;}
     .guide-table {font-size: 0.85rem;}
+
+    /* Admin Quick Links Board */
+    .admin-link-board {
+      background: rgba(255,255,255,0.05);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      border-left: 4px solid var(--accent);
+    }
+    .admin-link-board a {
+      display: block;
+      color: var(--accent);
+      text-decoration: none;
+      margin: 8px 0;
+      font-weight: 600;
+    }
+    .admin-link-board a:hover { text-decoration: underline; }
   </style>
 </head>
 
@@ -422,7 +439,15 @@
       <button onclick="checkAdmin()" style="padding:5px 15px; background:var(--accent); border:none; color:white; cursor:pointer; border-radius:4px;">Login</button>
 
       <div id="admin-content">
-        <h2 style="color:var(--accent); margin-top:0;">Mentor Strategy Guide</h2>
+        
+        <h3 style="color:var(--accent); margin-top:0;">📊 Centralized Admin Board</h3>
+        <div class="admin-link-board">
+          <a href="https://docs.google.com/spreadsheets/d/1350LkMJbshMh1EHKuMyJAF9Bim0r13guq2e875IS5mQ/edit?usp=sharing" target="_blank">🔗 Mentorship Program Sheet</a>
+          <a href="https://docs.google.com/forms/d/1b2xkYUb2cJTCGpTTOiSEDdPJstM9otA2f-Yrccv40NA/edit" target="_blank">🔗 Weekly Goal Setting Form</a>
+          <a href="https://docs.google.com/forms/d/1Or-b0cxiLnV7IY--1fAqSn-uQ204AdLDOm2iFp7G4aA/edit" target="_blank">🔗 Progress Report Submission</a>
+        </div>
+
+        <h3 style="color:var(--accent);">📖 Mentor Strategy Guide</h3>
         <div class="admin-tabs">
           <button class="tab-btn active" onclick="openAdminTab(event, 'g1')">1. Personal</button>
           <button class="tab-btn" onclick="openAdminTab(event, 'g2')">2. Entrepreneur</button>
