@@ -1,371 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Future of Music Mentorship Portal</title>
-  <style>
-    :root{
-      --bg:#141729;
-      --card:#1c2040;
-      --text:#ffffff;
-      --muted:#9199CA;
-      --accent:#76ADCB;
-      --max:980px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.45;
-      text-align:center;
-    }
-    .container{max-width:var(--max); margin:0 auto; padding:1rem;}
-    
-    /* Password Protection */
-    body.locked header, body.locked main, body.locked footer{display:none;}
-    #password-screen{position:fixed; inset:0; background:var(--bg); display:flex; align-items:center; justify-content:center; z-index:9999; padding: 20px;}
-    .password-box{background:var(--card); padding:2rem; border-radius:10px; width:100%; max-width:380px;}
-    .password-box input{width:100%; padding:.75rem; border-radius:6px; border:none; margin-bottom:.75rem; font-size: 1rem;}
-    .password-box button{width:100%; padding:.75rem; border-radius:6px; border:none; background:var(--accent); color:#fff; cursor:pointer; font-weight: bold;}
-    
-    /* Header & Nav */
-    .site-header{border-bottom:1px solid rgba(255,255,255,.15); padding:1.5rem 0;}
-    .brand{font-weight:800; font-size:1.35rem; display: block; margin-bottom: 5px;}
-    .subtitle { color: var(--muted); font-size: 0.9rem; }
-    .main-nav{margin-top:1.5rem; display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap;}
-    .nav-link{text-decoration:none; padding:.5rem 1.2rem; border-radius:999px; background:#1E2238; border:2px solid var(--accent); color:#fff; font-weight:600; transition: 0.3s;}
-    .nav-link:hover { background: var(--accent); }
-    
-    /* Content Sections */
-    .hero{padding:3rem 0 2rem;}
-    .lede{color:var(--muted); max-width:60ch; margin:.75rem auto 1.5rem; font-size: 1.1rem;}
-    .actions{display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom: 3rem;}
-    .btn{text-decoration:none; padding:.8rem 1.5rem; border-radius:8px; font-weight:600; border:2px solid var(--accent); color:var(--accent); cursor:pointer; transition: 0.3s;}
-    .btn-primary{background:var(--accent); color:#fff;}
-    .btn:hover { opacity: 0.8; }
-    
-    /* Announcement */
-    .announcement-section {margin-top: 1rem; text-align: center;}
-    .canva-embed-container {max-width: 850px; margin: 0 auto;}
-    .divider{border-top:1px solid rgba(255,255,255,.2); margin:2.5rem 0;}
-    
-    /* Interactive Timelines */
-    .timeline-section{margin-top:2rem; display:none; animation: fadeIn 0.4s ease-in;}
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    
-    .program-buttons, .timeline-month-buttons{display:flex; justify-content:center; gap:.5rem; margin-bottom:1.5rem; flex-wrap:wrap;}
-    .program-buttons button, .timeline-month-buttons button{padding:.6rem 1.2rem; border-radius:8px; border:none; background:#1E2238; color:#fff; cursor:pointer; font-weight:bold; transition: 0.2s;}
-    .program-buttons button.active, .timeline-month-buttons button.active{background:var(--accent); color: #fff;}
-    
-    table{width:100%; max-width:900px; margin:1rem auto; border-collapse:collapse; text-align:left; background: rgba(255,255,255,0.03);}
-    th, td{border:1px solid rgba(255,255,255,.1); padding:1rem;}
-    th{background:#1E2238; color: var(--accent); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;}
-    
-    /* Admin Area */
-    #admin-login-area {margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2);}
-    #admin-content {display:none; text-align: left; background: var(--card); padding: 30px; border-radius: 12px; margin-top: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
-    .admin-tabs {display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #2a2f4e; padding-bottom: 15px;}
-    .admin-tabs button {background: #1E2238; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold;}
-    .admin-tabs button.active {background: var(--accent);}
-    .admin-panel {display: none;}
-    .admin-panel.active {display: block;}
-    .guide-table {font-size: 0.85rem; width: 100%;}
-    
-    footer { padding: 3rem 0; color: var(--muted); font-size: 0.9rem; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weekly Check-In — Future of Music Mentoring</title>
+  <meta name="description" content="Schedule your weekly check-in with your mentor." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="locked">
-
-  <div id="password-screen">
-    <div class="password-box">
-      <div class="brand">Future of Music</div>
-      <p>Youth Mentorship Portal</p>
-      <input type="password" id="password-input" placeholder="Enter Portal Password">
-      <button onclick="checkPassword()">Enter Portal</button>
-      <div id="error-msg" style="color:#ff6b6b; margin-top:10px; font-size: 0.9rem;"></div>
-    </div>
-  </div>
-
+<body>
   <header class="site-header">
-    <div class="container">
-      <span class="brand">Future of Music & Youth Creator Launch</span>
-      <span class="subtitle">Official Mentorship Hub</span>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
+        <strong>Future of Music &amp; Youth Creator Launch</strong><br />
+        <span class="tagline">Youth Mentoring Program</span>
+      </a>
+
       <nav class="main-nav">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="personal.html" class="nav-link">Personal Dev</a>
-        <a href="entrepreneurship.html" class="nav-link">Entrepreneurship</a>
-        <a href="academic.html" class="nav-link">Academic</a>
+        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+        <a href="survey.html" class="nav-link">Weekly Check-In</a>
+        <a href="progress.html" class="nav-link">Progress</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    
-    <section class="hero">
-      <h1>Your Growth Journey Starts Here</h1>
-      <p class="lede">Track your weekly focus, set growth goals, and access mentor resources all in one place.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="https://forms.google.com" target="_blank">Submit Weekly Log</a>
-        <a class="btn" href="#timeline-anchor">View My Roadmap</a>
-      </div>
-    </section>
+    <article class="form-page">
+      <h1>Schedule Your Weekly Check-In</h1>
+      <p class="lede">
+        Select your mentor below and schedule your 5–10 minute weekly check-in.
+      </p>
 
-    <section class="announcement-section">
-      <div class="divider"></div>
-      <h2>📢 Program Announcements</h2>
-      <div class="canva-embed-container">
-          <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
-            <iframe src="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?embed" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none;"></iframe>
-          </div>
-      </div>
-      <div class="divider"></div>
-    </section>
+      <label for="mentor-select">Who is your mentor?</label>
+      <select id="mentor-select">
+        <option value="">-- Select Mentor --</option>
+        <option value="https://calendly.com/aereon-fomusic/30min">
+          Aereon Robinson
+        </option>
+        <option value="https://calendly.com/gabriel-e-walker2008/30min">
+          Gabriel Walker
+        </option>
+        <option value="https://calendly.com/qwentin-fomusic/mentoring">
+          Qwentin Blassingame
+        </option>
+      </select>
 
-    <div id="timeline-anchor">
-      <h3>Mentee 12-Week Timelines</h3>
-      <p style="color: var(--muted); margin-bottom: 1.5rem;">Select a program to reveal your focus topics and growth goals.</p>
-      
-      <div class="program-buttons">
-        <button data-program="personal">Personal Development</button>
-        <button data-program="entrepreneurship">Entrepreneurship</button>
-        <button data-program="academic">Academic</button>
-      </div>
-    </div>
+      <section
+        class="iframe-wrapper"
+        aria-label="Weekly check-in scheduling"
+        style="margin-top: 20px;"
+      >
+        <iframe
+          id="mentor-calendar"
+          src=""
+          title="Schedule Check-In"
+          width="100%"
+          height="800"
+          frameborder="0"
+          scrolling="no"
+          style="display: none;"
+        ></iframe>
+      </section>
 
-    <div class="timeline-section" id="personal">
-      <div class="timeline-month-buttons">
-        <button class="active" data-month="1">Month 1</button>
-        <button data-month="2">Month 2</button>
-        <button data-month="3">Month 3</button>
-      </div>
-      <table>
-        <thead><tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr></thead>
-        <tbody data-month="1">
-          <tr><td>1</td><td>Building Self-Confidence</td><td>Move from “somewhat confident” to “more self-assured.”</td></tr>
-          <tr><td>2</td><td>Taking Initiative</td><td>Encourage consistent independence.</td></tr>
-          <tr><td>3</td><td>Handling Feedback</td><td>Become comfortable accepting and using critique.</td></tr>
-          <tr><td>4</td><td>Networking & Communication</td><td>Build confidence in social and networking settings.</td></tr>
-        </tbody>
-        <tbody data-month="2" style="display:none;">
-          <tr><td>5</td><td>Reflection & Growth</td><td>Develop consistent self-reflection habits.</td></tr>
-          <tr><td>6</td><td>Personal Leadership</td><td>Solidify self-leadership and goal-driven mindset.</td></tr>
-          <tr><td>7</td><td>Time Management</td><td>Learn to prioritize tasks effectively.</td></tr>
-          <tr><td>8</td><td>Collaboration</td><td>Improve teamwork and interpersonal skills.</td></tr>
-        </tbody>
-        <tbody data-month="3" style="display:none;">
-          <tr><td>9</td><td>Goal Setting</td><td>Set and track achievable personal goals.</td></tr>
-          <tr><td>10</td><td>Resilience</td><td>Develop persistence in challenges.</td></tr>
-          <tr><td>11</td><td>Decision Making</td><td>Make informed and confident choices.</td></tr>
-          <tr><td>12</td><td>Leadership Project</td><td>Apply leadership in a real-life task.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="timeline-section" id="entrepreneurship">
-      <div class="timeline-month-buttons">
-        <button class="active" data-month="1">Month 1</button>
-        <button data-month="2">Month 2</button>
-        <button data-month="3">Month 3</button>
-      </div>
-      <table>
-        <thead><tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr></thead>
-        <tbody data-month="1">
-          <tr><td>1</td><td>Idea Brainstorming</td><td>Build creative thinking and confidence.</td></tr>
-          <tr><td>2</td><td>Problem Solving / Target Market</td><td>Strengthen market awareness.</td></tr>
-          <tr><td>3</td><td>Budgeting & Startup Costs</td><td>Develop financial thinking.</td></tr>
-          <tr><td>4</td><td>Branding & Promotion</td><td>Build marketing and presentation skills.</td></tr>
-        </tbody>
-        <tbody data-month="2" style="display:none;">
-          <tr><td>5</td><td>Customer Service & Growth</td><td>Learn empathy and problem-solving for clients.</td></tr>
-          <tr><td>6</td><td>Pitch & Confidence</td><td>Achieve full entrepreneurial confidence.</td></tr>
-          <tr><td>7</td><td>Market Research</td><td>Understand customer needs and trends.</td></tr>
-          <tr><td>8</td><td>Budget Planning</td><td>Refine business financial plans.</td></tr>
-        </tbody>
-        <tbody data-month="3" style="display:none;">
-          <tr><td>9</td><td>Brand Strategy</td><td>Create a consistent business identity.</td></tr>
-          <tr><td>10</td><td>Promotion Techniques</td><td>Effectively market products/services.</td></tr>
-          <tr><td>11</td><td>Customer Engagement</td><td>Build strong customer relationships.</td></tr>
-          <tr><td>12</td><td>Final Pitch</td><td>Deliver confident business presentation.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="timeline-section" id="academic">
-      <div class="timeline-month-buttons">
-        <button class="active" data-month="1">Month 1</button>
-        <button data-month="2">Month 2</button>
-        <button data-month="3">Month 3</button>
-      </div>
-      <table>
-        <thead><tr><th>Week</th><th>Focus Topic</th><th>Growth Goal</th></tr></thead>
-        <tbody data-month="1">
-          <tr><td>1</td><td>Study Skills</td><td>Improve organization and note-taking.</td></tr>
-          <tr><td>2</td><td>Time Management</td><td>Manage homework and assignments efficiently.</td></tr>
-          <tr><td>3</td><td>Active Listening</td><td>Enhance comprehension and retention in class.</td></tr>
-          <tr><td>4</td><td>Reading Strategies</td><td>Increase reading speed and understanding.</td></tr>
-        </tbody>
-        <tbody data-month="2" style="display:none;">
-          <tr><td>5</td><td>Critical Thinking</td><td>Analyze information effectively.</td></tr>
-          <tr><td>6</td><td>Note Review</td><td>Improve retention through revision.</td></tr>
-          <tr><td>7</td><td>Test Preparation</td><td>Develop study plans for exams.</td></tr>
-          <tr><td>8</td><td>Research Skills</td><td>Conduct research efficiently and accurately.</td></tr>
-        </tbody>
-        <tbody data-month="3" style="display:none;">
-          <tr><td>9</td><td>Essay Writing</td><td>Produce clear, well-structured essays.</td></tr>
-          <tr><td>10</td><td>Presentation Skills</td><td>Confidently present projects in class.</td></tr>
-          <tr><td>11</td><td>Collaboration</td><td>Work effectively in group assignments.</td></tr>
-          <tr><td>12</td><td>Self-Assessment</td><td>Evaluate and track academic growth.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div id="admin-login-area">
-      <h3 style="margin: 0; color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Admin Management</h3>
-      <div style="margin-top: 15px;">
-        <input type="password" id="admin-pass-input" placeholder="Admin Password" style="padding:10px; border-radius: 5px; border: 1px solid #333; background: #000; color: #fff;">
-        <button onclick="checkAdmin()" style="padding:10px 20px; background:var(--accent); border:none; color:white; cursor:pointer; border-radius:5px; font-weight: bold;">Login</button>
-      </div>
-
-      <div id="admin-content">
-        <h2 style="color:var(--accent); margin-top:0;">Mentor Strategy Guides</h2>
-        <p style="margin-bottom: 20px; color: var(--muted);">Select a track to view 12-week virtual activities and conversational questions.</p>
-        
-        <div class="admin-tabs">
-          <button class="tab-btn active" onclick="openAdminTab(event, 'g1')">Personal Track</button>
-          <button class="tab-btn" onclick="openAdminTab(event, 'g2')">Entrepreneur Track</button>
-          <button class="tab-btn" onclick="openAdminTab(event, 'g3')">Academic Track</button>
-        </div>
-
-        <div id="g1" class="admin-panel active">
-          <table class="guide-table">
-            <thead><tr><th>Wk</th><th>Focus</th><th>Virtual Activity</th><th>Conversational Questions</th></tr></thead>
-            <tr><td>1</td><td>Confidence</td><td>The Wins Note: List 3 strengths.</td><td>"What’s a talent you have that people miss?"</td></tr>
-            <tr><td>2</td><td>Initiative</td><td>"Do It Now" Check: Start a task now.</td><td>"What is stopping you from starting?"</td></tr>
-            <tr><td>3</td><td>Feedback</td><td>The Script: Write professional reply to critique.</td><td>"Why does critique feel personal?"</td></tr>
-            <tr><td>4</td><td>Networking</td><td>Bio Audit: Professionalize a social bio.</td><td>"What’s the first thing you'd say to a CEO?"</td></tr>
-            <tr><td>5</td><td>Reflection</td><td>Stop/Start/Keep: Identify 1 for each.</td><td>"Biggest lesson learned this month?"</td></tr>
-            <tr><td>6</td><td>Leadership</td><td>The "Why" Drill: State goal; mentor asks 'Why?' 3x.</td><td>"Who are you leading right now?"</td></tr>
-            <tr><td>7</td><td>Time Mgmt</td><td>Top 3: Bold the top 3 must-do's today.</td><td>"Is your time spent or invested?"</td></tr>
-            <tr><td>8</td><td>Collaboration</td><td>Delegation Note: Write instructions for a task.</td><td>"What makes someone easy to work with?"</td></tr>
-            <tr><td>9</td><td>Goal Setting</td><td>SMART Goal: Write one timed goal.</td><td>"Where do you want to be in 90 days?"</td></tr>
-            <tr><td>10</td><td>Resilience</td><td>The Pivot Plan: Write a Plan B for a goal.</td><td>"What's your move when a plan fails?"</td></tr>
-            <tr><td>11</td><td>Decisions</td><td>Pro/Con Weighting: Score a choice 1–5.</td><td>"Do you decide with head or heart?"</td></tr>
-            <tr><td>12</td><td>Project</td><td>Impact Summary: Help someone this week.</td><td>"How will you keep this momentum?"</td></tr>
-          </table>
-        </div>
-
-        <div id="g2" class="admin-panel">
-          <table class="guide-table">
-            <thead><tr><th>Wk</th><th>Focus</th><th>Virtual Activity</th><th>Conversational Questions</th></tr></thead>
-            <tr><td>1</td><td>Brainstorm</td><td>Problem List: 5 life annoyances.</td><td>"What product could be better?"</td></tr>
-            <tr><td>2</td><td>Market</td><td>Customer Bio: Age, job, problem.</td><td>"Who is most likely to buy from you?"</td></tr>
-            <tr><td>3</td><td>Budget</td><td>$500 Budget: List items to start.</td><td>"Need vs. Want in business?"</td></tr>
-            <tr><td>4</td><td>Branding</td><td>Canva Sprint: Pick colors and 1 font.</td><td>"How should people feel seeing your brand?"</td></tr>
-            <tr><td>5</td><td>Customer Service</td><td>Response Draft: Handle stolen package email.</td><td>"How to turn an angry customer loyal?"</td></tr>
-            <tr><td>6</td><td>Pitch</td><td>Voice Memo: 30-sec pitch recording.</td><td>"Why you instead of your competitor?"</td></tr>
-            <tr><td>7</td><td>Research</td><td>Competitor Search: Find 2 biz and prices.</td><td>"What is your competitor doing better?"</td></tr>
-            <tr><td>8</td><td>Budget Plan</td><td>Profit Note: Price - Cost = Profit.</td><td>"How many sales to pay your phone bill?"</td></tr>
-            <tr><td>9</td><td>Strategy</td><td>Mission Tweet: Purpose in <280 chars.</td><td>"What do you stand for besides money?"</td></tr>
-            <tr><td>10</td><td>Promotion</td><td>Social Hook: Write 3 IG caption hooks.</td><td>"Where does your customer hang out online?"</td></tr>
-            <tr><td>11</td><td>Engagement</td><td>Loyalty Idea: Reward a repeat customer.</td><td>"How to make a customer feel like a VIP?"</td></tr>
-            <tr><td>12</td><td>Final Pitch</td><td>Deck Review: Screen share 3-slide pitch.</td><td>"What are the next 3 steps?"</td></tr>
-          </table>
-        </div>
-
-        <div id="g3" class="admin-panel">
-          <table class="guide-table">
-            <thead><tr><th>Wk</th><th>Focus</th><th>Virtual Activity</th><th>Conversational Questions</th></tr></thead>
-            <tr><td>1</td><td>Organization</td><td>Folder Cleanup: Rename school files.</td><td>"Which subject is your biggest headache?"</td></tr>
-            <tr><td>2</td><td>Time Mgmt</td><td>50/10 Rule: Set 50m work/10m rest.</td><td>"Time lost to phone during homework?"</td></tr>
-            <tr><td>3</td><td>Listening</td><td>3-Bullet Recap: Recap 2m of speaking.</td><td>"Harder to listen in class or on Zoom?"</td></tr>
-            <tr><td>4</td><td>Reading</td><td>Scan Challenge: 3 facts in <60s.</td><td>"Read headings first or just start?"</td></tr>
-            <tr><td>5</td><td>Thinking</td><td>Fact Checker: Verify 1 news post.</td><td>"How do you know if a site is lying?"</td></tr>
-            <tr><td>6</td><td>Review</td><td>Blurting: Type everything remembered.</td><td>"Why do we forget 70% of lessons?"</td></tr>
-            <tr><td>7</td><td>Test Prep</td><td>Reverse Calendar: Map 3 study dates.</td><td>"What is your exam danger zone?"</td></tr>
-            <tr><td>8</td><td>Research</td><td>Keywords: 5 terms for research.</td><td>"Google vs. a Database?"</td></tr>
-            <tr><td>9</td><td>Writing</td><td>Skeleton Outline: 3 Topic Sentences.</td><td>"Hardest part of writing for you?"</td></tr>
-            <tr><td>10</td><td>Presentation</td><td>Slide Audit: Remove 50% of text.</td><td>"Handling forgetting mid-speech?"</td></tr>
-            <tr><td>11</td><td>Collaboration</td><td>Chat Script: Message a slacker partner.</td><td>"Lead without being bossy?"</td></tr>
-            <tr><td>12</td><td>Assessment</td><td>Grade Compare: Wk 1 vs Now.</td><td>"Habit you will never go back to?"</td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
+      <p class="form-fallback">
+        <a
+          id="fallback-link"
+          href=""
+          target="_blank"
+          rel="noopener"
+          style="display: none;"
+        >
+          Open Mentor Calendar
+        </a>
+      </p>
+    </article>
   </main>
 
-  <footer>
-    <div class="container">
-      &copy; 2026 Future of Music & Youth Creator Launch. All Rights Reserved.
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year-survey"></span> Future of Music Mentoring</p>
     </div>
   </footer>
 
   <script>
-    // Password Logic
-    function checkPassword(){
-      const p = document.getElementById("password-input").value;
-      if(p==="YCLMentee"||p==="FOMMentee"||p==="admin"){
-        localStorage.setItem("fomAccess","true");
-        document.body.classList.remove("locked");
-        document.getElementById("password-screen").style.display="none";
-      } else { document.getElementById("error-msg").textContent="Incorrect password. Please try again."; }
-    }
-    
-    // Auto-unlock if already logged in
-    if(localStorage.getItem("fomAccess")==="true"){
-        document.body.classList.remove("locked");
-        document.getElementById("password-screen").style.display="none";
-    }
+    document.getElementById("year-survey").textContent =
+      new Date().getFullYear();
 
-    // Admin Login Logic
-    function checkAdmin(){
-      if(document.getElementById("admin-pass-input").value==="admin"){
-        document.getElementById("admin-content").style.display="block";
-        document.getElementById("admin-content").scrollIntoView({behavior: 'smooth'});
-      } else { alert("Access Denied: Incorrect Admin Password"); }
-    }
+    const select = document.getElementById("mentor-select");
+    const iframe = document.getElementById("mentor-calendar");
+    const fallback = document.getElementById("fallback-link");
 
-    // Admin Tabs Logic
-    function openAdminTab(e, id){
-      document.querySelectorAll(".admin-panel").forEach(p=>p.classList.remove("active"));
-      document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      e.currentTarget.classList.add("active");
-    }
+    select.addEventListener("change", function () {
+      const url = this.value;
 
-    // Mentee Program Selection Logic
-    document.querySelectorAll(".program-buttons button").forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        const targetId = btn.dataset.program;
-        const targetSection = document.getElementById(targetId);
-        
-        // Toggle Active Classes
-        btn.classList.toggle("active");
-        
-        // Toggle Visibility
-        if(targetSection.style.display === "block") {
-            targetSection.style.display = "none";
-        } else {
-            targetSection.style.display = "block";
+      if (url) {
+        iframe.src = url;
+        iframe.style.display = "block";
+        fallback.href = url;
+        fallback.style.display = "inline";
+      } else {
+        iframe.src = "";
+        iframe.style.display = "none";
+        fallback.style.display = "none";
+      }
+    });
+
+    (function () {
+      const links = document.querySelectorAll(".main-nav .nav-link");
+      links.forEach(link => {
+        if (location.pathname.endsWith(link.getAttribute("href"))) {
+          link.classList.add("active");
         }
       });
-    });
-
-    // Mentee Month Toggles
-    document.querySelectorAll(".timeline-month-buttons button").forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        const container = btn.closest(".timeline-section");
-        container.querySelectorAll(".timeline-month-buttons button").forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        const month = btn.dataset.month;
-        container.querySelectorAll("tbody").forEach(t=>{
-            t.style.display = (t.dataset.month === month) ? "table-row-group" : "none";
-        });
-      });
-    });
+    })();
   </script>
 </body>
 </html>
