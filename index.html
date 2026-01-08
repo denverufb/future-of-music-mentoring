@@ -170,7 +170,7 @@
       margin-top:2rem;
       text-align:center;
     }
-    
+
     .announcement-section {
         margin-top: 3rem;
         text-align: center;
@@ -185,7 +185,7 @@
         max-width: 800px;
         margin: 0 auto;
     }
-    
+
     .canva-embed-container > div:first-child {
       padding-top: 56.25%;
     }
@@ -274,168 +274,230 @@
 
 <body class="locked">
 
-  <div id="password-screen">
-    <div class="password-box">
-      <h1>Future of Music</h1>
-      <p>Youth Creator Launch<br>Youth Mentorship Portal</p>
-      <input type="password" id="password-input" placeholder="Enter password">
-      <button onclick="checkPassword()">Enter</button>
-      <div id="error-msg"></div>
+<div id="password-screen">
+  <div class="password-box">
+    <h1>Future of Music</h1>
+    <p>Youth Creator Launch<br>Youth Mentorship Portal</p>
+    <input type="password" id="password-input" placeholder="Enter password">
+    <button onclick="checkPassword()">Enter</button>
+    <div id="error-msg"></div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <div class="brand">Future of Music & Youth Creator Launch</div>
+    <div class="subtitle">Youth Mentoring Program</div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+      <a href="survey.html" class="nav-link">Weekly Check-In</a>
+      <a href="progress.html" class="nav-link">Progress</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Welcome to the Future of Music Mentorship Portal</h1>
+    <p class="lede">
+      This is the central portal for the Future of Music Mentorship Program,
+      supporting youth ages 13–18 in St. Louis through entrepreneurship,
+      academics, and personal growth.
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
+      <a class="btn" href="survey.html">Schedule Weekly Check-In</a>
     </div>
+  </section>
+
+  <section class="announcement-section">
+    <div class="divider"></div>
+    <h2>📢 Mentor Announcements</h2>
+    <div class="canva-embed-container">
+      <div style="position: relative; width: 100%; height: 0; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
+        <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+          src="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+        </iframe>
+      </div>
+      <a href="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?utm_content=DAG7c71XU2U&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">View Full Announcement Board on Canva</a>
+    </div>
+    <div class="divider"></div>
+  </section>
+
+  <h3>Select which programs you are enrolled in to view timeline</h3>
+  <div class="program-buttons">
+    <button data-program="personal">Personal Development</button>
+    <button data-program="entrepreneurship">Entrepreneurship</button>
+    <button data-program="academic">Academic</button>
   </div>
 
-  <header class="site-header">
-    <div class="container">
-      <div class="brand">Future of Music & Youth Creator Launch</div>
-      <div class="subtitle">Youth Mentoring Program</div>
-      <nav class="main-nav">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-        <a href="survey.html" class="nav-link">Weekly Check-In</a>
-        <a href="progress.html" class="nav-link">Progress</a>
-      </nav>
+  <!-- PERSONAL TIMELINE -->
+  <section class="timeline-section" id="personal" style="display:none">
+    <h3>Personal Development Timeline</h3>
+    <div class="timeline-month-buttons">
+      <button data-month="january" class="active">January</button>
+      <button data-month="february">February</button>
     </div>
-  </header>
+    <table>
+      <thead>
+        <tr><th>Week</th><th>Topic</th><th>Activity</th></tr>
+      </thead>
+      <tbody data-month="january">
+        <tr><td>1</td><td>Goal Setting</td><td>Create vision board</td></tr>
+        <tr><td>2</td><td>Self-Awareness</td><td>Reflection journal</td></tr>
+      </tbody>
+      <tbody data-month="february" style="display:none">
+        <tr><td>3</td><td>Time Management</td><td>Weekly planner</td></tr>
+        <tr><td>4</td><td>Self-Care</td><td>Mindfulness exercise</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Welcome to the Future of Music Mentorship Portal</h1>
-      <p class="lede">
-        This is the central portal for the Future of Music Mentorship Program,
-        supporting youth ages 13–18 in St. Louis through entrepreneurship,
-        academics, and personal growth.
-      </p>
-
-      <div class="actions">
-        <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
-        <a class="btn" href="survey.html">Schedule Weekly Check-In</a>
-      </div>
-    </section>
-    
-    <section class="announcement-section">
-      <div class="divider"></div>
-      <h2>📢 Mentor Announcements</h2>
-      <div class="canva-embed-container">
-        <div style="position: relative; width: 100%; height: 0; 
-        padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
-        border-radius: 8px; will-change: transform;">
-          <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-            src="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-          </iframe>
-        </div>
-        <a href="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?utm_content=DAG7c71XU2U&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">View Full Announcement Board on Canva</a>
-      </div>
-      <div class="divider"></div>
-    </section>
-
-    <h3>Select which programs you are enrolled in to view timeline</h3>
-    <div class="program-buttons">
-      <button data-program="personal">Personal Development</button>
-      <button data-program="entrepreneurship">Entrepreneurship</button>
-      <button data-program="academic">Academic</button>
+  <!-- ENTREPRENEURSHIP TIMELINE -->
+  <section class="timeline-section" id="entrepreneurship" style="display:none">
+    <h3>Entrepreneurship Timeline</h3>
+    <div class="timeline-month-buttons">
+      <button data-month="january" class="active">January</button>
+      <button data-month="february">February</button>
     </div>
+    <table>
+      <thead>
+        <tr><th>Week</th><th>Topic</th><th>Activity</th></tr>
+      </thead>
+      <tbody data-month="january">
+        <tr><td>1</td><td>Business Idea</td><td>Brainstorm session</td></tr>
+        <tr><td>2</td><td>Market Research</td><td>Survey target audience</td></tr>
+      </tbody>
+      <tbody data-month="february" style="display:none">
+        <tr><td>3</td><td>Branding</td><td>Logo & social media</td></tr>
+        <tr><td>4</td><td>Pitch Practice</td><td>Present to peers</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-    <!-- TIMELINE SECTIONS (unchanged) -->
-    <!-- PERSONAL, ENTREPRENEURSHIP, ACADEMIC sections go here exactly as in your original paste -->
+  <!-- ACADEMIC TIMELINE -->
+  <section class="timeline-section" id="academic" style="display:none">
+    <h3>Academic Timeline</h3>
+    <div class="timeline-month-buttons">
+      <button data-month="january" class="active">January</button>
+      <button data-month="february">February</button>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Week</th><th>Subject</th><th>Activity</th></tr>
+      </thead>
+      <tbody data-month="january">
+        <tr><td>1</td><td>Math Skills</td><td>Problem sets</td></tr>
+        <tr><td>2</td><td>Reading</td><td>Book summary</td></tr>
+      </tbody>
+      <tbody data-month="february" style="display:none">
+        <tr><td>3</td><td>Science Project</td><td>Experiment report</td></tr>
+        <tr><td>4</td><td>Writing</td><td>Essay draft</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-    <!-- ADMIN RESOURCES -->
-    <section class="admin-only" id="admin-resources">
-      <div class="divider"></div>
-      <h2>Mentor / Admin Resources</h2>
-      <p class="lede">Visible to mentors only.</p>
+  <!-- ADMIN RESOURCES -->
+  <section class="admin-only" id="admin-resources">
+    <div class="divider"></div>
+    <h2>Mentor / Admin Resources</h2>
+    <p class="lede">Visible to mentors only.</p>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Week</th>
-            <th>Check-In Focus</th>
-            <th>Conversation Pointers</th>
-            <th>Resources</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Confidence</td><td>Discuss comfort speaking up</td><td>Reflection worksheet</td></tr>
-          <tr><td>2</td><td>Initiative</td><td>Examples of self-starting</td><td>Goal tracker</td></tr>
-          <tr><td>3</td><td>Feedback</td><td>How they handle critique</td><td>Feedback rubric</td></tr>
-          <tr><td>4</td><td>Communication</td><td>Networking growth</td><td>Role-play guide</td></tr>
-          <tr><td>5</td><td>Reflection</td><td>Self-awareness check</td><td>Journal prompts</td></tr>
-          <tr><td>6</td><td>Leadership</td><td>Ownership mindset</td><td>Leadership worksheet</td></tr>
-          <tr><td>7</td><td>Time</td><td>Scheduling struggles</td><td>Planner template</td></tr>
-          <tr><td>8</td><td>Collaboration</td><td>Group dynamics</td><td>Team checklist</td></tr>
-          <tr><td>9</td><td>Goals</td><td>Tracking progress</td><td>SMART goals doc</td></tr>
-          <tr><td>10</td><td>Resilience</td><td>Handling setbacks</td><td>Coping strategies</td></tr>
-          <tr><td>11</td><td>Decisions</td><td>Choice-making</td><td>Decision matrix</td></tr>
-          <tr><td>12</td><td>Capstone</td><td>Reflection + outcomes</td><td>Final rubric</td></tr>
-        </tbody>
-      </table>
-    </section>
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Check-In Focus</th>
+          <th>Conversation Pointers</th>
+          <th>Resources</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Confidence</td><td>Discuss comfort speaking up</td><td>Reflection worksheet</td></tr>
+        <tr><td>2</td><td>Initiative</td><td>Examples of self-starting</td><td>Goal tracker</td></tr>
+        <tr><td>3</td><td>Feedback</td><td>How they handle critique</td><td>Feedback rubric</td></tr>
+        <tr><td>4</td><td>Communication</td><td>Networking growth</td><td>Role-play guide</td></tr>
+        <tr><td>5</td><td>Reflection</td><td>Self-awareness check</td><td>Journal prompts</td></tr>
+        <tr><td>6</td><td>Leadership</td><td>Ownership mindset</td><td>Leadership worksheet</td></tr>
+        <tr><td>7</td><td>Time</td><td>Scheduling struggles</td><td>Planner template</td></tr>
+        <tr><td>8</td><td>Collaboration</td><td>Group dynamics</td><td>Team checklist</td></tr>
+        <tr><td>9</td><td>Goals</td><td>Tracking progress</td><td>SMART goals doc</td></tr>
+        <tr><td>10</td><td>Resilience</td><td>Handling setbacks</td><td>Coping strategies</td></tr>
+        <tr><td>11</td><td>Decisions</td><td>Choice-making</td><td>Decision matrix</td></tr>
+        <tr><td>12</td><td>Capstone</td><td>Reflection + outcomes</td><td>Final rubric</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-  </main>
+</main>
 
-  <footer>
-    © <span id="year"></span> Future of Music Mentoring
-  </footer>
+<footer>
+  © <span id="year"></span> Future of Music Mentoring
+</footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    if(localStorage.getItem("fomAccess") === "true") unlockSite();
-    if(localStorage.getItem("fomAdmin") === "true") unlockAdmin();
+// Unlock site if password already entered
+if(localStorage.getItem("fomAccess") === "true") unlockSite();
+if(localStorage.getItem("fomAdmin") === "true") unlockAdmin();
 
-    function checkPassword(){
-      const pass = document.getElementById("password-input").value;
-      const error = document.getElementById("error-msg");
+function checkPassword(){
+  const pass = document.getElementById("password-input").value;
+  const error = document.getElementById("error-msg");
 
-      if(pass === "YCLMentee" || pass === "FOMMentee"){
-        localStorage.setItem("fomAccess","true");
-        unlockSite();
-      } else if(pass === "ADMIN"){
-        localStorage.setItem("fomAccess","true");
-        localStorage.setItem("fomAdmin","true");
-        unlockSite();
-        unlockAdmin();
-      } else {
-        error.textContent = "Incorrect password";
-      }
+  if(pass === "YCLMentee" || pass === "FOMMentee"){
+    localStorage.setItem("fomAccess","true");
+    unlockSite();
+  } else if(pass === "ADMIN"){
+    localStorage.setItem("fomAccess","true");
+    localStorage.setItem("fomAdmin","true");
+    unlockSite();
+    unlockAdmin();
+  } else {
+    error.textContent = "Incorrect password";
+  }
+}
+
+function unlockSite(){
+  document.body.classList.remove("locked");
+  document.getElementById("password-screen").style.display="none";
+}
+
+function unlockAdmin(){
+  document.body.classList.add("admin");
+}
+
+// Program multi-select
+const programButtons = document.querySelectorAll(".program-buttons button");
+programButtons.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    btn.classList.toggle("active");
+    const program = document.getElementById(btn.dataset.program);
+    if(btn.classList.contains("active")){
+      program.style.display="block";
+    } else {
+      program.style.display="none";
     }
+  });
+});
 
-    function unlockSite(){
-      document.body.classList.remove("locked");
-      document.getElementById("password-screen").style.display="none";
-    }
-
-    function unlockAdmin(){
-      document.body.classList.add("admin");
-    }
-
-    // Program multi-select
-    const programButtons = document.querySelectorAll(".program-buttons button");
-    programButtons.forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        btn.classList.toggle("active");
-        const program = document.getElementById(btn.dataset.program);
-        if(btn.classList.contains("active")){
-          program.style.display="block";
-        } else {
-          program.style.display="none";
-        }
-      });
-    });
-
-    // Month selection for timelines
-    const allMonthButtons = document.querySelectorAll(".timeline-month-buttons button");
-    allMonthButtons.forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        const container = btn.closest(".timeline-section");
-        const monthButtons = container.querySelectorAll(".timeline-month-buttons button");
-        monthButtons.forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        const month = btn.dataset.month;
-        const tbodies = container.querySelectorAll("tbody");
-        tbodies.forEach(t=>t.style.display = t.dataset.month===month ? "table-row-group":"none");
-      });
-    });
-  </script>
+// Month selection for timelines
+const allMonthButtons = document.querySelectorAll(".timeline-month-buttons button");
+allMonthButtons.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const container = btn.closest(".timeline-section");
+    const monthButtons = container.querySelectorAll(".timeline-month-buttons button");
+    monthButtons.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const month = btn.dataset.month;
+    const tbodies = container.querySelectorAll("tbody");
+    tbodies.forEach(t=>t.style.display = t.dataset.month===month ? "table-row-group":"none");
+  });
+});
+</script>
 
 </body>
 </html>
