@@ -14,7 +14,6 @@
       --muted:#9199CA;
       --accent:#76ADCB;
       --max:980px;
-      --street-tax: #ff6b6b;
     }
 
     *{box-sizing:border-box}
@@ -215,11 +214,10 @@
 
     table{
       width:100%;
-      max-width:900px;
+      max-width:850px;
       margin:1rem auto;
       border-collapse:collapse;
       text-align:left;
-      font-size: 0.9rem;
     }
 
     th, td{
@@ -234,7 +232,7 @@
 
     footer{
       margin-top:2rem;
-      padding:2rem 0;
+      padding:1rem 0;
       color:var(--muted);
       border-top:1px solid rgba(255,255,255,.15);
     }
@@ -265,41 +263,21 @@
     }
 
     /* Admin Styles */
-    #admin-access-section {
-      background: #0f1221;
-      padding: 2rem;
-      margin-top: 3rem;
-      border-radius: 12px;
-      border: 1px dashed var(--accent);
+    #admin-login-area {
+      margin-top: 50px; 
+      padding: 20px; 
+      border-top: 1px dashed rgba(255,255,255,0.2);
     }
-    
-    .admin-input-group {
-        max-width: 300px;
-        margin: 1rem auto;
-    }
-
-    .mentor-guide {
-        display: none;
-        text-align: left;
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 1.5rem;
-        background: var(--card);
-        border-radius: 8px;
-    }
-
-    .points-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-
-    .point-card {
-        background: #141729;
-        padding: 1rem;
-        border-radius: 6px;
-        border-left: 4px solid var(--accent);
+    #admin-content {
+      display:none; 
+      margin-top: 20px; 
+      text-align: left; 
+      background: var(--card); 
+      padding: 20px; 
+      border-radius: 10px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
@@ -320,7 +298,8 @@
     <div class="container">
       <div class="brand">Future of Music & Youth Creator Launch</div>
       <div class="subtitle">Youth Mentoring Program</div>
-     <nav class="main-nav">
+
+      <nav class="main-nav">
         <a href="#" class="nav-link">Home</a>
         <a href="#" class="nav-link">Submit Weekly Goals</a>
         <a href="#" class="nav-link">Weekly Check-In</a>
@@ -333,7 +312,7 @@
     <section class="hero">
       <h1>Welcome to the Future of Music Mentorship Portal</h1>
       <p class="lede">
-        This is the central portal for the Future of Music Mentorship Program, supporting youth ages 13–18 in St. Louis. This guide is designed for virtual-first mentorship: screen shares, shared docs, and chat-based growth.
+        This guide is designed for virtual-first mentorship, meaning every activity can be done via screen share, a shared Google Doc, or a quick chat on a phone/computer.
       </p>
 
       <div class="actions">
@@ -346,21 +325,21 @@
         <div class="divider"></div>
         <h2>📢 Mentor Announcements</h2>
         <div class="canva-embed-container">
-            <div style="position: relative; width: 100%; height: 0; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px;">
+            <div style="position: relative; width: 100%; height: 0; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
               <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
                 src="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
               </iframe>
             </div>
-            <a href="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view" target="_blank" rel="noopener">View Full Announcement Board</a>
+            <a href="https://www.canva.com/design/DAG7c71XU2U/RBVWBRAcOLUfRT2-8H0jwA/view" target="_blank" rel="noopener">View Full Announcement Board on Canva</a>
         </div>
         <div class="divider"></div>
     </section>
 
-    <h3>Select a program to view the timeline</h3>
+    <h3>Select which programs you are enrolled in to view timeline</h3>
     <div class="program-buttons">
-      <button data-program="personal">🟢 Personal Development</button>
-      <button data-program="entrepreneurship">🔵 Entrepreneurship</button>
-      <button data-program="academic">🔴 Academic</button>
+      <button data-program="personal">Personal Development</button>
+      <button data-program="entrepreneurship">Entrepreneurship</button>
+      <button data-program="academic">Academic</button>
     </div>
 
     <div class="timeline-section" id="personal" style="display:none;">
@@ -374,110 +353,107 @@
           <tr><th>Week</th><th>Virtual Activity (Small & Quick)</th><th>Benchmark Points to Hit</th></tr>
         </thead>
         <tbody data-month="1">
-          <tr><td>1</td><td><strong>The Wins Folder:</strong> Create a desktop folder/Notes page. List 3 wins.</td><td>Identify 3 core strengths.</td></tr>
-          <tr><td>2</td><td><strong>"The 1% Rule":</strong> In chat, identify one <2 min habit for easier life.</td><td>Commit to 1 daily action.</td></tr>
-          <tr><td>3</td><td><strong>Feedback Flip:</strong> Mentor gives "tough" critique. Mentee types professional reply.</td><td>Use critique to improve task.</td></tr>
-          <tr><td>4</td><td><strong>Social Audit:</strong> Screen share profile. Identify 3 things to "clean up."</td><td>Understand Digital First Impressions.</td></tr>
+          <tr><td>1</td><td><strong>The Wins Folder:</strong> Create a folder on desktop or Notes. List 3 wins.</td><td>Identify 3 core strengths.</td></tr>
+          <tr><td>2</td><td><strong>"The 1% Rule":</strong> In chat, identify one small habit (<2 min) that makes life easier.</td><td>Commit to 1 daily independent action.</td></tr>
+          <tr><td>3</td><td><strong>Feedback Flip:</strong> Mentor gives "tough" critique. Mentee types professional reply.</td><td>Use critique to improve a specific task.</td></tr>
+          <tr><td>4</td><td><strong>Social Audit:</strong> Screen share profile. Identify 3 things to "clean up" or add.</td><td>Understand "Digital First Impressions."</td></tr>
         </tbody>
         <tbody data-month="2" style="display:none;">
-          <tr><td>5</td><td><strong>The Reflection GIF:</strong> Send a GIF representing mood/growth. Explain why.</td><td>Habit of self-evaluation.</td></tr>
-          <tr><td>6</td><td><strong>The "Why" Drill:</strong> Mentor asks "Why?" 3 times about a specific goal.</td><td>Connect values to goals.</td></tr>
-          <tr><td>7</td><td><strong>Digital Calendar:</strong> Screen share to set up a "Deep Work" block.</td><td>Prioritization using tools.</td></tr>
-          <tr><td>8</td><td><strong>Collaborative Doc:</strong> Both edit a doc to solve a fake crisis.</td><td>Demonstrate real-time teamwork.</td></tr>
+          <tr><td>5</td><td><strong>The Reflection GIF:</strong> Send a GIF/Meme representing mood/growth. Explain why.</td><td>Habit of self-evaluation.</td></tr>
+          <tr><td>6</td><td><strong>The "Why" Drill:</strong> Mentee states goal; mentor asks "Why?" 3 times.</td><td>Connect personal values to goals.</td></tr>
+          <tr><td>7</td><td><strong>Digital Calendar Setup:</strong> Screen share to set up a "Deep Work" block.</td><td>Use a digital tool for prioritization.</td></tr>
+          <tr><td>8</td><td><strong>Collaborative Doc:</strong> Both edit a Doc simultaneously to solve a fake crisis.</td><td>Demonstrate real-time teamwork.</td></tr>
         </tbody>
         <tbody data-month="3" style="display:none;">
           <tr><td>9</td><td><strong>SMART Note:</strong> Type one specific, measurable goal with a deadline.</td><td>Draft a realistic 30-day plan.</td></tr>
-          <tr><td>10</td><td><strong>The Pivot Story:</strong> Share a "fail" story and identify the pivot point.</td><td>Define resilience in own words.</td></tr>
-          <tr><td>11</td><td><strong>The Pro/Con Table:</strong> Use a table in chat to weigh a real decision.</td><td>Use logic over emotion.</td></tr>
-          <tr><td>12</td><td><strong>"Who Am I Now?":</strong> 2-min video call speech on growth since Week 1.</td><td>Articulate growth journey.</td></tr>
+          <tr><td>10</td><td><strong>The Pivot Story:</strong> Share story of a "fail" and identify pivot point.</td><td>Define resilience in own words.</td></tr>
+          <tr><td>11</td><td><strong>The Pro/Con Table:</strong> Use a table in chat to weigh a real decision.</td><td>Use logic over emotion for a choice.</td></tr>
+          <tr><td>12</td><td><strong>"Who Am I Now?":</strong> 2-minute video call speech on how they've changed.</td><td>Articulate personal growth journey.</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="timeline-section" id="entrepreneurship" style="display:none;">
-        <div class="timeline-month-buttons">
-          <button class="active" data-month="1">Month 1</button>
-          <button data-month="2">Month 2</button>
-          <button data-month="3">Month 3</button>
-        </div>
-        <table>
-          <thead>
-            <tr><th>Week</th><th>Virtual Activity (Small & Quick)</th><th>Benchmark Points to Hit</th></tr>
-          </thead>
-          <tbody data-month="1">
-            <tr><td>1</td><td><strong>"Annoyance Mine":</strong> List 5 things that "suck" in the neighborhood. Pick 1.</td><td>Define a problem worth solving.</td></tr>
-            <tr><td>2</td><td><strong>Google Trends:</strong> Screen share Trends to see if people search for the idea.</td><td>Use data to prove interest.</td></tr>
-            <tr><td>3</td><td><strong>Startup Spreadsheet:</strong> 3 columns: Item, Cost, Priority.</td><td>Calculate "Minimum Viable" costs.</td></tr>
-            <tr><td>4</td><td><strong>Canva Logo:</strong> Pick a font and color palette in 10 minutes.</td><td>Create basic visual identity.</td></tr>
-          </tbody>
-          <tbody data-month="2" style="display:none;">
-            <tr><td>5</td><td><strong>"Angry Email" Fix:</strong> Mentor pastes fake bad review. Mentee drafts reply.</td><td>Demonstrate customer empathy.</td></tr>
-            <tr><td>6</td><td><strong>Voice Memo Pitch:</strong> Record 30-sec pitch on phone and send to mentor.</td><td>Deliver clear, confident pitch.</td></tr>
-            <tr><td>7</td><td><strong>Competitor DM:</strong> Find similar biz on IG. List 3 pros/cons.</td><td>Identify competitive advantage.</td></tr>
-            <tr><td>8</td><td><strong>"Bag" Calculator:</strong> Price - Costs = Profit. (10, 50, 100 sales).</td><td>Understand unit economics.</td></tr>
-          </tbody>
-          <tbody data-month="3" style="display:none;">
-            <tr><td>9</td><td><strong>Mission Tweet:</strong> Write business mission in <280 characters.</td><td>Define "Purpose" clearly.</td></tr>
-            <tr><td>10</td><td><strong>Content Draft:</strong> Create a "hook" for a TikTok/IG business post.</td><td>Apply marketing psychology.</td></tr>
-            <tr><td>11</td><td><strong>Relationship Map:</strong> List 5 businesses to partner with for promotion.</td><td>Identify Power Partnerships.</td></tr>
-            <tr><td>12</td><td><strong>The Final Deck:</strong> Share 3-slide presentation (Problem/Solution).</td><td>Present a completed business case.</td></tr>
-          </tbody>
-        </table>
+      <div class="timeline-month-buttons">
+        <button class="active" data-month="1">Month 1</button>
+        <button data-month="2">Month 2</button>
+        <button data-month="3">Month 3</button>
       </div>
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Virtual Activity (Small & Quick)</th><th>Benchmark Points to Hit</th></tr>
+        </thead>
+        <tbody data-month="1">
+          <tr><td>1</td><td><strong>The "Annoyance Mine":</strong> List 5 things that "suck" in neighborhood. Pick 1.</td><td>Define a problem worth solving.</td></tr>
+          <tr><td>2</td><td><strong>Google Trends Check:</strong> Screen share Trends to see interest in idea/topic.</td><td>Use data to prove market interest.</td></tr>
+          <tr><td>3</td><td><strong>The Startup Spreadsheet:</strong> 3-column list: Item, Cost, Priority (Need/Want).</td><td>Calculate "Minimum Viable" costs.</td></tr>
+          <tr><td>4</td><td><strong>Canva Logo Sprint:</strong> Use Canva to pick font and color palette in 10 mins.</td><td>Create a basic visual brand identity.</td></tr>
+        </tbody>
+        <tbody data-month="2" style="display:none;">
+          <tr><td>5</td><td><strong>The "Angry Email" Fix:</strong> Mentor pastes fake bad review. Mentee drafts reply.</td><td>Demonstrate "Customer First" empathy.</td></tr>
+          <tr><td>6</td><td><strong>Voice Memo Pitch:</strong> Mentee records 30-sec pitch and sends to mentor.</td><td>Deliver a clear, confident pitch.</td></tr>
+          <tr><td>7</td><td><strong>Competitor DM:</strong> Find similar biz on IG/TikTok. List 3 pros and 3 cons.</td><td>Identify a "Competitive Advantage."</td></tr>
+          <tr><td>8</td><td><strong>The "Bag" Calculator:</strong> Calculate: Price - Costs = Profit for 10, 50, 100 sales.</td><td>Understand basic unit economics.</td></tr>
+        </tbody>
+        <tbody data-month="3" style="display:none;">
+          <tr><td>9</td><td><strong>Mission Tweet:</strong> Write a business Mission Statement (<280 chars).</td><td>Define "Purpose" clearly.</td></tr>
+          <tr><td>10</td><td><strong>Content Draft:</strong> Create one "hook" for a TikTok or IG business post.</td><td>Apply marketing psychology.</td></tr>
+          <tr><td>11</td><td><strong>Relationship Map:</strong> List 5 partners for cross-promotion.</td><td>Identify "Power Partnerships."</td></tr>
+          <tr><td>12</td><td><strong>The Final Deck:</strong> Share 3-slide "Final Presentation" (Problem, Solution, Future).</td><td>Present a completed business case.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="timeline-section" id="academic" style="display:none;">
-        <div class="timeline-month-buttons">
-          <button class="active" data-month="1">Month 1</button>
-          <button data-month="2">Month 2</button>
-          <button data-month="3">Month 3</button>
-        </div>
-        <table>
-          <thead>
-            <tr><th>Week</th><th>Virtual Activity (Small & Quick)</th><th>Benchmark Points to Hit</th></tr>
-          </thead>
-          <tbody data-month="1">
-            <tr><td>1</td><td><strong>Folder Cleanup:</strong> Screen share. Organize files into subjects.</td><td>Create digital organization.</td></tr>
-            <tr><td>2</td><td><strong>Syllabus Highlight:</strong> Highlight assignments >20% of grade.</td><td>Focus on high-impact tasks.</td></tr>
-            <tr><td>3</td><td><strong>Podcast Summary:</strong> Listen to 5-min clip. Type 3-bullet summary.</td><td>Practice audio comprehension.</td></tr>
-            <tr><td>4</td><td><strong>Scanning Race:</strong> Find specific info in an article in <30 seconds.</td><td>Improve digital reading speed.</td></tr>
-          </tbody>
-          <tbody data-month="2" style="display:none;">
-            <tr><td>5</td><td><strong>"Clickbait" Test:</strong> Find a source that proves/disproves a headline.</td><td>Analyze source credibility.</td></tr>
-            <tr><td>6</td><td><strong>"Blurting" Note:</strong> Timer for 1 min. Type everything remembered from class.</td><td>Practice active recall.</td></tr>
-            <tr><td>7</td><td><strong>Exam Countdown:</strong> Mark Exam Date in red. Set 3 study dates.</td><td>Plan for long-term prep.</td></tr>
-            <tr><td>8</td><td><strong>AI Fact-Checker:</strong> Use AI to explain concept, then find 1 error.</td><td>Master efficient research.</td></tr>
-          </tbody>
-          <tbody data-month="3" style="display:none;">
-            <tr><td>9</td><td><strong>Outline "Skeleton":</strong> Type 3 Headings for a hypothetical essay.</td><td>Structure thoughts before writing.</td></tr>
-            <tr><td>10</td><td><strong>Presentation Practice:</strong> Share screen and "talk through" 3 slides.</td><td>Speak without notes.</td></tr>
-            <tr><td>11</td><td><strong>Group Work Script:</strong> Draft a firm/pro chat to a "lazy" member.</td><td>Practice group leadership.</td></tr>
-            <tr><td>12</td><td><strong>Grade Reflection:</strong> Compare habits to Week 1. Log what worked.</td><td>Self-assess academic growth.</td></tr>
-          </tbody>
-        </table>
+      <div class="timeline-month-buttons">
+        <button class="active" data-month="1">Month 1</button>
+        <button data-month="2">Month 2</button>
+        <button data-month="3">Month 3</button>
       </div>
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Virtual Activity (Small & Quick)</th><th>Benchmark Points to Hit</th></tr>
+        </thead>
+        <tbody data-month="1">
+          <tr><td>1</td><td><strong>Folder Cleanup:</strong> Screen share. Organize files into subject folders.</td><td>Create a digital organization system.</td></tr>
+          <tr><td>2</td><td><strong>The Syllabus Highlight:</strong> Highlight assignments >20% of grade for month.</td><td>Focus effort on high-impact tasks.</td></tr>
+          <tr><td>3</td><td><strong>Podcast Summary:</strong> Listen to 5-min educational clip. Type 3 bullets.</td><td>Practice comprehension without text.</td></tr>
+          <tr><td>4</td><td><strong>Scanning Race:</strong> Find specific answer in online article in <30 seconds.</td><td>Improve digital reading speed.</td></tr>
+        </tbody>
+        <tbody data-month="2" style="display:none;">
+          <tr><td>5</td><td><strong>The "Clickbait" Test:</strong> Mentor shares headline; find source to verify.</td><td>Analyze source credibility.</td></tr>
+          <tr><td>6</td><td><strong>The "Blurting" Note:</strong> Timer for 1 min. Type everything remembered from class.</td><td>Practice active recall (retention).</td></tr>
+          <tr><td>7</td><td><strong>Exam Countdown:</strong> Mark Exam Date in red. Work backward to set 3 dates.</td><td>Plan for long-term prep.</td></tr>
+          <tr><td>8</td><td><strong>AI Fact-Checker:</strong> Use AI to explain concept; find 1 error/over-simplification.</td><td>Master efficient research.</td></tr>
+        </tbody>
+        <tbody data-month="3" style="display:none;">
+          <tr><td>9</td><td><strong>The Outline "Skeleton":</strong> Type 3 Headings for a hypothetical essay.</td><td>Structure thoughts before writing.</td></tr>
+          <tr><td>10</td><td><strong>Presentation Practice:</strong> Share screen and talk through 3 slides.</td><td>Speak confidently without notes.</td></tr>
+          <tr><td>11</td><td><strong>Group Work Script:</strong> Draft professional message to "lazy" group member.</td><td>Practice group leadership.</td></tr>
+          <tr><td>12</td><td><strong>The Grade Reflection:</strong> Compare current habits to Week 1. Log what worked.</td><td>Self-assess academic growth.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-      <section id="admin-access-section">
-          <h3>🔐 Mentor Administration</h3>
-          <p class="subtitle">Enter the admin password to view the Point System & Mentor Guide</p>
-          <div class="admin-input-group">
-            <input type="password" id="admin-password" placeholder="Password: admin" style="width:100%; padding:.5rem; margin-bottom: .5rem; border-radius: 4px; border:none;">
-            <button onclick="checkAdmin()" class="btn btn-primary" style="width:100%; padding:.5rem;">Access Admin Guide</button>
-          </div>
-
-          <div id="mentor-guide" class="mentor-guide">
-            <h2 style="color:var(--accent);">🏆 The Point System (Gamification)</h2>
-            <p>Encourage mentors to award <strong>"Street Credits" (SC)</strong> to keep engagement high:</p>
-            
-            <div class="points-grid">
-                <div class="point-card"><strong>Attendance:</strong> 10 SC<br><small>Showing up on time.</small></div>
-                <div class="point-card"><strong>Engagement:</strong> 10 SC<br><small>Active participation.</small></div>
-                <div class="point-card"><strong>Challenge Mastery:</strong> 20 SC<br><small>Completing weekly activity.</small></div>
-                <div class="point-card" style="border-color:var(--street-tax)"><strong>"Street Tax" Bonus:</strong> 5 SC<br><small>Pushing through a hard critique.</small></div>
-            </div>
-            <hr style="margin:2rem 0; border:0; border-top:1px solid rgba(255,255,255,0.1)">
-            <p><small><em>Admin Note: Mentors should track these in a shared doc or the program dashboard.</em></small></p>
-          </div>
-      </section>
+    <div id="admin-login-area">
+      <p style="color: var(--muted); font-size: 0.8rem; margin-bottom: 10px;">Admin Access Only</p>
+      <input type="password" id="admin-pass-input" placeholder="Admin Password" style="padding: 8px; border-radius: 4px; border: none; margin-right: 5px;">
+      <button onclick="checkAdmin()" style="padding: 8px 15px; border-radius: 4px; background: var(--accent); color: white; border: none; cursor: pointer; font-weight: bold;">Login</button>
+      
+      <div id="admin-content">
+        <h2 style="margin-top:0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom:10px;">🏆 The Point System (Gamification)</h2>
+        <p>To keep engagement high, encourage mentors to award <strong>"Street Credits" (SC)</strong>:</p>
+        <ul style="line-height: 2;">
+          <li><strong>Attendance:</strong> 10 SC (Showing up on time)</li>
+          <li><strong>Engagement:</strong> 10 SC (Active participation in conversation)</li>
+          <li><strong>Challenge Mastery:</strong> 20 SC (Completing weekly virtual activity)</li>
+          <li><strong>Bonus "Street Tax" Point:</strong> 5 SC (When a mentee pushes through a difficult critique)</li>
+        </ul>
+        <p style="font-size: 0.9rem; color: var(--muted); font-style: italic;">
+          *This guide is designed for virtual-first mentorship via screen share and shared digital tools.
+        </p>
+      </div>
+    </div>
 
   </main>
 
@@ -506,15 +482,16 @@
       document.getElementById("password-screen").style.display="none";
     }
 
-    // Admin Access Logic
+    // Admin Access Function
     function checkAdmin() {
-        const pass = document.getElementById("admin-password").value;
-        if(pass === "admin") {
-            document.getElementById("mentor-guide").style.display = "block";
-            document.getElementById("admin-password").parentElement.style.display = "none";
-        } else {
-            alert("Access Denied");
-        }
+      const val = document.getElementById("admin-pass-input").value;
+      if(val === "admin") {
+        document.getElementById("admin-content").style.display = "block";
+        document.getElementById("admin-pass-input").style.display = "none";
+        document.querySelector("#admin-login-area button").style.display = "none";
+      } else {
+        alert("Incorrect Admin Password");
+      }
     }
 
     // Program multi-select
