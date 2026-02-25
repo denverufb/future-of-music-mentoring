@@ -12,6 +12,7 @@
   --text:#ffffff;
   --muted:#9199CA;
   --accent:#76ADCB;
+  --success:#4CAF50;
   --max:980px;
 }
 
@@ -22,6 +23,7 @@ body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
   background:var(--bg);
   color:var(--text);
+  line-height:1.45;
   text-align:center;
 }
 
@@ -36,8 +38,38 @@ body{
   padding:1.5rem 0;
 }
 
-.brand{font-weight:800;font-size:1.35rem}
-.subtitle{color:var(--muted);font-size:.9rem;margin-top:.25rem}
+.brand{
+  font-weight:800;
+  font-size:1.35rem;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:.9rem;
+  margin-top:.25rem;
+}
+
+.main-nav{
+  margin-top:1rem;
+  display:flex;
+  justify-content:center;
+  gap:.75rem;
+  flex-wrap:wrap;
+}
+
+.nav-link{
+  text-decoration:none;
+  padding:.5rem 1rem;
+  border-radius:999px;
+  background:#1E2238;
+  border:2px solid var(--accent);
+  color:#fff;
+  font-weight:600;
+}
+
+.nav-link:hover{
+  background:var(--accent);
+}
 
 .card{
   background:var(--card);
@@ -45,6 +77,39 @@ body{
   padding:1.5rem;
   margin-top:1.5rem;
   text-align:left;
+}
+
+.pillar{
+  margin-top:1.25rem;
+}
+
+.progress-bar{
+  background:#1E2238;
+  border-radius:6px;
+  overflow:hidden;
+  margin:.5rem 0;
+}
+
+.progress-fill{
+  height:12px;
+  background:var(--accent);
+}
+
+.goal{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  padding:.5rem 0;
+  cursor:pointer;
+}
+
+.check{ color:var(--success); font-size:1.2rem }
+.unchecked{ color:var(--muted); font-size:1.2rem }
+
+.error{
+  color:#ff6b6b;
+  margin-top:.75rem;
+  font-size:.9rem;
 }
 
 input, button{
@@ -62,36 +127,26 @@ button{
   font-weight:600;
 }
 
-.progress-bar{
-  background:#1E2238;
-  border-radius:6px;
-  overflow:hidden;
-  margin:.5rem 0;
-}
-
-.progress-fill{
-  height:12px;
-  background:var(--accent);
-}
-
-.note-box{
-  margin-top:1rem;
-  padding:1rem;
-  background:#1E2238;
-  border-radius:8px;
-  color:var(--muted);
-}
-
-.error{
-  color:#ff6b6b;
-  margin-top:.75rem;
-  font-size:.9rem;
-}
-
 footer{
   margin:2rem 0;
   color:var(--muted);
   font-size:.85rem;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th,td{
+  padding:8px;
+  border-bottom:1px solid #333;
+  text-align:left;
+}
+
+th{
+  color:var(--muted);
 }
 </style>
 </head>
@@ -102,6 +157,13 @@ footer{
   <div class="container">
     <div class="brand">Future of Music & Youth Creator Launch</div>
     <div class="subtitle">Mentorship Progress Portal</div>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+      <a href="survey.html" class="nav-link">Weekly Check-In</a>
+      <a href="progress.html" class="nav-link">Progress</a>
+    </nav>
   </div>
 </header>
 
