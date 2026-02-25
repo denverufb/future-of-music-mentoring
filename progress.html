@@ -12,7 +12,6 @@
   --text:#ffffff;
   --muted:#9199CA;
   --accent:#76ADCB;
-  --success:#4CAF50;
   --max:980px;
 }
 
@@ -23,7 +22,6 @@ body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
   background:var(--bg);
   color:var(--text);
-  line-height:1.45;
   text-align:center;
 }
 
@@ -38,38 +36,8 @@ body{
   padding:1.5rem 0;
 }
 
-.brand{
-  font-weight:800;
-  font-size:1.35rem;
-}
-
-.subtitle{
-  color:var(--muted);
-  font-size:.9rem;
-  margin-top:.25rem;
-}
-
-.main-nav{
-  margin-top:1rem;
-  display:flex;
-  justify-content:center;
-  gap:.75rem;
-  flex-wrap:wrap;
-}
-
-.nav-link{
-  text-decoration:none;
-  padding:.5rem 1rem;
-  border-radius:999px;
-  background:#1E2238;
-  border:2px solid var(--accent);
-  color:#fff;
-  font-weight:600;
-}
-
-.nav-link:hover{
-  background:var(--accent);
-}
+.brand{font-weight:800;font-size:1.35rem}
+.subtitle{color:var(--muted);font-size:.9rem;margin-top:.25rem}
 
 .card{
   background:var(--card);
@@ -77,39 +45,6 @@ body{
   padding:1.5rem;
   margin-top:1.5rem;
   text-align:left;
-}
-
-.pillar{
-  margin-top:1.25rem;
-}
-
-.progress-bar{
-  background:#1E2238;
-  border-radius:6px;
-  overflow:hidden;
-  margin:.5rem 0;
-}
-
-.progress-fill{
-  height:12px;
-  background:var(--accent);
-}
-
-.goal{
-  display:flex;
-  align-items:center;
-  gap:.75rem;
-  padding:.5rem 0;
-  cursor:pointer;
-}
-
-.check{ color:var(--success); font-size:1.2rem }
-.unchecked{ color:var(--muted); font-size:1.2rem }
-
-.error{
-  color:#ff6b6b;
-  margin-top:.75rem;
-  font-size:.9rem;
 }
 
 input, button{
@@ -127,26 +62,36 @@ button{
   font-weight:600;
 }
 
+.progress-bar{
+  background:#1E2238;
+  border-radius:6px;
+  overflow:hidden;
+  margin:.5rem 0;
+}
+
+.progress-fill{
+  height:12px;
+  background:var(--accent);
+}
+
+.note-box{
+  margin-top:1rem;
+  padding:1rem;
+  background:#1E2238;
+  border-radius:8px;
+  color:var(--muted);
+}
+
+.error{
+  color:#ff6b6b;
+  margin-top:.75rem;
+  font-size:.9rem;
+}
+
 footer{
   margin:2rem 0;
   color:var(--muted);
   font-size:.85rem;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
-
-th,td{
-  padding:8px;
-  border-bottom:1px solid #333;
-  text-align:left;
-}
-
-th{
-  color:var(--muted);
 }
 </style>
 </head>
@@ -157,22 +102,15 @@ th{
   <div class="container">
     <div class="brand">Future of Music & Youth Creator Launch</div>
     <div class="subtitle">Mentorship Progress Portal</div>
-
-    <nav class="main-nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-      <a href="survey.html" class="nav-link">Weekly Check-In</a>
-      <a href="progress.html" class="nav-link">Progress</a>
-    </nav>
   </div>
 </header>
 
 <main class="container">
 
   <div class="card" id="lookup">
-    <h2>View Your Progress</h2>
-    <p style="color:var(--muted)">Enter your first name to view your mentorship progress.</p>
-    <input id="nameInput" placeholder="Enter your first name" />
+    <h2>View Progress</h2>
+    <p style="color:var(--muted)">Enter your first name to view progress.</p>
+    <input id="nameInput" placeholder="Enter first name" />
     <br>
     <button onclick="loadProgress()">View Progress</button>
     <div class="error" id="errorMsg"></div>
@@ -190,87 +128,38 @@ th{
 </footer>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent=new Date().getFullYear();
 
-const mentees = {
-  leah:{
-    name:"Leah Jimerson",
-    goals:[
-      {text:"Graduate high school with a strong GPA and challenging classes that prepare for a competitive path, and put myself in a good position to apply for the U.S. Air Force Academy", completed:false},
-      {text:"Maintain a 3.8 GPA or higher by staying organized, turning in all assignments on time, and asking for help when concepts are confusing", completed:false}
-    ],
-    progress:{
-      "Academics":{percent:95,notes:["Excellent performance"]},
-      "Personal Development":{percent:85,notes:["Responsible and focused"]},
-      "Entrepreneurship":{percent:70,notes:["Participates well"]}
-    },
-    grades:[
-      ["Chemistry","A (91%)","A"],
-      ["Geometry","A (90%)","A"],
-      ["Honors World History","A (90%)","A"],
-      ["Business Communications","A (93%)","A"],
-      ["Child Development","A (94%)","A"],
-      ["Spanish II","A (90%)","A"],
-      ["Honors English","A (94%)","A"]
-    ],
-    gpa:"Calculate"
-  },
+const mentees={
   jeremiah:{
     name:"Jeremiah Jones",
-    goals:[
-      {text:"Achieve B's and A's during 2nd semester.", completed:false},
-      {text:"Get an after school job.", completed:false},
-      {text:"Follow daily routine for at least 4 days consistently.", completed:false},
-      {text:"Achieve better grades.", completed:false}
-    ],
-    progress:{
-      "Academics":{percent:0,notes:["Not started yet"]},
-      "Personal Development":{percent:9,notes:["Working on boosting confidence"]},
-      "Entrepreneurship":{percent:0,notes:["Not started yet"]}
-    },
-    grades:[
-      ["World History","D (68%)","C"],
-      ["Physical Science","C (69%)","B"],
-      ["Personal Finance","C (69%)","B"],
-      ["Literature","D (67%)","C"],
-      ["Home Maintenance","C (71%)","B"],
-      ["Geometry","D (64%)","C"],
-      ["Biology","D (67%)","C+"]
-    ],
-    gpa:"2.1"
-  },
-  derrick:{
-    name:"Derrick Flannel",
-    goals:[
-      {text:"Following instructions the first time they are given.", completed:false}
-    ],
-    progress:{
-      "Academics":{percent:0,notes:["Not started yet"]},
-      "Personal Development":{percent:50,notes:["He is confident and aware of how to set personal goals"]},
-      "Entrepreneurship":{percent:0,notes:["Not started yet"]}
-    },
-    grades:[],
-    gpa:"No grade on file"
+    progress:{Academics:40,"Personal Development":35,Entrepreneurship:25},
+    note:"Jeremiah is showing steady improvement. Continue focusing on academic consistency and daily structure."
   },
   billy:{
     name:"Billy Williams",
-    goals:[
-      {text:"Get an oil change on car (lol)", completed:false}
-    ],
-    progress:{
-      "Academics":{percent:0,notes:["Not started yet"]},
-      "Personal Development":{percent:0,notes:["Not started yet"]},
-      "Entrepreneurship":{percent:0,notes:["Not started yet"]}
-    },
-    grades:[
-      ["AP Environmental Science","B","A"],
-      ["AP Psychology","B","A"],
-      ["Literature","B","A-"],
-      ["Algebra 3","C","B"],
-      ["Art","A","A"],
-      ["Debate","A","A"]
-    ],
-    gpa:"Calculate"
+    progress:{Academics:75,"Personal Development":60,Entrepreneurship:55},
+    note:"Billy has strong potential. Encourage stronger discipline and long-term goal planning."
+  },
+  leah:{
+    name:"Leah Jimerson",
+    progress:{Academics:95,"Personal Development":85,Entrepreneurship:70},
+    note:"Leah is performing at a high level. Continue leadership development and career preparation focus."
+  },
+  zion:{
+    name:"Zion Williams",
+    progress:{Academics:50,"Personal Development":65,Entrepreneurship:45},
+    note:"Zion is growing in confidence. Academic accountability remains the priority."
+  },
+  derrick:{
+    name:"Derrick Flannel",
+    progress:{Academics:30,"Personal Development":50,Entrepreneurship:20},
+    note:"Derrick needs improvement in following through. Continue reinforcing responsibility habits."
+  },
+  micah:{
+    name:"Micah White",
+    progress:{Academics:70,"Personal Development":75,Entrepreneurship:60},
+    note:"Micah is progressing well. Keep building consistency and leadership confidence."
   }
 };
 
@@ -279,64 +168,50 @@ let currentMentee=null;
 function loadProgress(){
   const input=document.getElementById("nameInput").value.trim().toLowerCase();
   const key=Object.keys(mentees).find(k=>mentees[k].name.split(" ")[0].toLowerCase()===input);
+
   if(!key){
-    document.getElementById("errorMsg").textContent="No progress found for this first name.";
+    document.getElementById("errorMsg").textContent="No progress found for this name.";
     return;
   }
+
   currentMentee=key;
+
   document.getElementById("lookup").style.display="none";
   document.getElementById("progressCard").style.display="block";
-  document.getElementById("menteeName").textContent=mentees[key].name + " — Progress Overview";
+  document.getElementById("menteeName").textContent=mentees[key].name+" — Progress Overview";
+
   renderProgress();
 }
 
 function renderProgress(){
-  const sections=document.getElementById("progressSections");
-  sections.innerHTML="";
+  const container=document.getElementById("progressSections");
+  container.innerHTML="";
 
-  // Goals Section
-  const goalSection=document.createElement("div");
-  goalSection.className="pillar";
-  goalSection.innerHTML="<h3>Goals Throughout the Program</h3>";
-  if(mentees[currentMentee].goals.length===0){
-    const p=document.createElement("p");
-    p.style.color="var(--muted)";
-    p.textContent="Goals not set yet.";
-    goalSection.appendChild(p);
-  } else {
-    mentees[currentMentee].goals.forEach(goal=>{
-      const g=document.createElement("div");
-      g.className="goal";
-      g.innerHTML=`<span class="${goal.completed?"check":"unchecked"}">${goal.completed?"✔":"○"}</span><span>${goal.text}</span>`;
-      g.onclick=()=>{goal.completed=!goal.completed; renderProgress();}
-      goalSection.appendChild(g);
-    });
-  }
-  sections.appendChild(goalSection);
+  for(const pillar in mentees[currentMentee].progress){
+    const percent=mentees[currentMentee].progress[pillar];
 
-  // Pillars Section
-  for(const p in mentees[currentMentee].progress){
-    const data=mentees[currentMentee].progress[p];
     const section=document.createElement("div");
-    section.className="pillar";
-    section.innerHTML=`<h3>${p}</h3>
+    section.style.marginTop="1.5rem";
+
+    section.innerHTML=`
+      <h3>${pillar}</h3>
       <div class="progress-bar">
-        <div class="progress-fill" style="width:${data.percent}%"></div>
+        <div class="progress-fill" style="width:${percent}%"></div>
       </div>
-      <ul>${data.notes.map(n=>`<li>${n}</li>`).join("")}</ul>`;
-    sections.appendChild(section);
+      <p style="color:var(--muted)">Progress: ${percent}%</p>
+    `;
+
+    container.appendChild(section);
   }
 
-  // Grades Section
-  const gradeSection=document.createElement("div");
-  gradeSection.className="pillar";
-  gradeSection.innerHTML="<h3>Grades</h3>";
-  gradeSection.innerHTML+=`<table>
-    <tr><th>Course</th><th>Semester 1</th><th>Semester 2 Goal</th></tr>
-    ${mentees[currentMentee].grades.map(g=>`<tr><td>${g[0]}</td><td>${g[1]}</td><td>${g[2]||"No grade on file"}</td></tr>`).join("")}
-    <tr><td><strong>GPA</strong></td><td colspan="2">${mentees[currentMentee].gpa}</td></tr>
-  </table>`;
-  sections.appendChild(gradeSection);
+  const noteSection=document.createElement("div");
+  noteSection.innerHTML=`
+    <hr style="margin:2rem 0; border:1px solid #2a2f55;">
+    <h3>Mentor Notes</h3>
+    <div class="note-box">${mentees[currentMentee].note}</div>
+  `;
+
+  container.appendChild(noteSection);
 }
 </script>
 
